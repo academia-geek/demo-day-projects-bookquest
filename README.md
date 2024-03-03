@@ -1,4 +1,4 @@
-# 👋🏼 Bienvenid@ al Demo Day.
+# 👋🏼 Bienvenid@ al Demo Day..
 
 <h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Academia Geek 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
 
