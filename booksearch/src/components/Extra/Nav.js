@@ -1,6 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function Nav() {
+    const navigate = useNavigate();
+
+    const LoginForm = () => {
+        navigate('/Login');
+    }
     return (
         <div>
             <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white" }}>
@@ -15,7 +21,7 @@ export default function Nav() {
                     <li>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">
-                    <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width:"100%" }}>Login/Register</button>
+                    <button onClick={() => LoginForm()} style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width:"100%" }}>Login/Register</button>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
