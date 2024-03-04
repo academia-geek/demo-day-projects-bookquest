@@ -1,6 +1,6 @@
-# 📚 BookSearch: Plataforma para Accesibilidad de Libros Físicos 📚
+# 📚 Book|Queest: Plataforma para Accesibilidad de Libros Físicos 📚
 
-¡Bienvenidos a BookSearch! Esta plataforma está diseñada para mejorar la accesibilidad y disponibilidad de libros físicos tanto en bibliotecas públicas como en puntos de venta.
+¡Bienvenidos a Book|Queest! Esta plataforma está diseñada para mejorar la accesibilidad y disponibilidad de libros físicos tanto en bibliotecas públicas como en puntos de venta.
 
 ## ¿Cómo Funciona? 🚀
 
