@@ -23,6 +23,13 @@ export default function Home() {
                         </button>
                     </div>
                 </div>
+                <div className='SlideH'>
+                    <h1 className='titleSlide'>TE  PUEDEN  GUSTAR</h1>
+                    <p className='pSlide'>Selecciona cual te  gusta mas.</p>
+                    <div>
+                        
+                    </div>
+                </div>
 
             </div>
             <Footer />
