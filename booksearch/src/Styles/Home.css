@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700&family=Roboto+Slab:wght@100..900&family=Skranji:wght@700&display=swap');
+
+
+.imgNegrita {
+    background-image: url(https://res.cloudinary.com/dtmapxnao/image/upload/v1709574722/Open-Day/negritaKche_x43y4x.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.contText1{
+    font-weight: bold;
+    width: 21%;
+    height: auto;
+    font-size: 25px;
+    padding: 15px;
+    background-color: rgb(255, 255, 255, 0.32);
+    font-family: "Roboto Slab", serif;
+    border-radius: 20px;
+}
+
+.resaltado{
+    color: rgb(113, 104, 109);
+}

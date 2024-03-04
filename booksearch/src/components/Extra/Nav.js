@@ -3,7 +3,7 @@ import React from 'react'
 export default function Nav() {
     return (
         <div>
-            <div className="navbar bg-base-100" style={{ backgroundColor: "#484245" , color: "white" }}>
+            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)" , color: "white" }}>
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
@@ -33,7 +33,6 @@ export default function Nav() {
                             </li>
                             <li><a>Settings</a></li>
                             <li><a>Logout</a></li>
-                            <li><a>Buscar</a></li>
                         </ul>
                     </div>
                 </div>
