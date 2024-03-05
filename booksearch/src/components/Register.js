@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Styles/StylesRegister.css'
+import { actionGoogle } from '../redux/actionsLogin';
+import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+
 
 export default function Register() {
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         password: '',
@@ -61,8 +68,9 @@ export default function Register() {
                     <input type="checkbox" id="twitter" name="twitter" checked={formData.twitter} onChange={handleChange} />
                     <label htmlFor="twitter">Twitter</label>
                 </div>
-
-                <input type="submit" value="Registrarse" />
+                <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                <h1>O</h1>
+                <button className="btn btn-warning">Registrarme!</button>
             </form>
         </div>
     )
