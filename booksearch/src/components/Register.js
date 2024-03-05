@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../Styles/StylesRegister.css'
-import { actionGoogle } from '../redux/actionsLogin';
+import React, { useState } from 'react';
+import '../Styles/StylesRegister.css';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-
 
 export default function Register() {
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -17,7 +12,7 @@ export default function Register() {
         terms: false,
         dataTreatment: false,
         google: false,
-        twitter: false
+        facebook: false
     });
 
     const handleChange = (e) => {
@@ -31,46 +26,57 @@ export default function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // enviar los datos a backend
-    }; return (
+    };
+
+    return (
         <div className="container">
-            <h2>Registro de Usuario</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Nombre de Usuario:</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-                </div>
+            <div className="image-container">
+                <img src="https://res.cloudinary.com/dwpzqxijx/image/upload/v1709680646/AppPerfil/tb9gpqtaxq2efs3dardn.png" alt="Placeholder" />
+            </div>
+            <div className="form-container card">
+                <h2>Registro de Usuario</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="name">Nombre de Usuario:</label>
+                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                    </div>
 
-                <div className="form-group">
-                    <input type="checkbox" id="terms" name="terms" checked={formData.terms} onChange={handleChange} required />
-                    <label htmlFor="terms">Acepto los Términos y Condiciones</label>
-                </div>
+                    <div className="form-group">
+                        <input type="checkbox" id="terms" name="terms" checked={formData.terms} onChange={handleChange} required />
+                        <label htmlFor="terms">Acepto los Términos y Condiciones</label>
+                    </div>
 
-                <div className="form-group">
-                    <input type="checkbox" id="data-treatment" name="dataTreatment" checked={formData.dataTreatment} onChange={handleChange} required />
-                    <label htmlFor="data-treatment">Acepto el Tratamiento de Datos</label>
-                </div>
+                    <div className="form-group">
+                        <input type="checkbox" id="data-treatment" name="dataTreatment" checked={formData.dataTreatment} onChange={handleChange} required />
+                        <label htmlFor="data-treatment">Acepto el Tratamiento de Datos</label>
+                    </div>
 
-                <div className="form-group">
-                    <h4>Regístrate con:</h4>
-                    <input type="checkbox" id="google" name="google" checked={formData.google} onChange={handleChange} />
-                    <label htmlFor="google">Google</label>
-                    <input type="checkbox" id="twitter" name="twitter" checked={formData.twitter} onChange={handleChange} />
-                    <label htmlFor="twitter">Twitter</label>
-                </div>
-                <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
-                <h1>O</h1>
-                <button className="btn btn-warning">Registrarme!</button>
-            </form>
+                    <div className="form-group">
+                        <h4>Regístrate con:</h4>
+                        <div className="form-group">
+                            <input type="checkbox" id="google" name="google" checked={formData.google} onChange={handleChange} />
+                            <label htmlFor="google">Google</label>
+                        </div>
+                        <div className="form-group">
+                            <input type="checkbox" id="facebook" name="facebook" checked={formData.facebook} onChange={handleChange} />
+                            <label htmlFor="facebook">Facebook</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" className="register-btn">Registrarme!</button>
+
+                </form>
+            </div>
         </div>
     )
 }

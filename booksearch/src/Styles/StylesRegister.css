@@ -1,10 +1,32 @@
 .container {
-    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #ADACAC;
+}
+
+.card {
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.form-container {
+    width: 45%;
+}
+
+.image-container {
+    width: 45%;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
 }
 
 .form-group {
@@ -19,7 +41,7 @@
 .form-group input[type="password"],
 .form-group input[type="email"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -28,38 +50,18 @@
     margin-right: 5px;
 }
 
-.google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border: 1px solid #4285f4;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.google-btn img {
-    margin-right: 10px;
-}
-
-.or-divider {
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-}
-
 .register-btn {
     width: 100%;
-    background-color: #ffc107;
+    background-color: #8e8e8e;
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    color: #fff;
+    padding: 12px;
+    color: #8e8d8e;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .register-btn:hover {
-    background-color: #ffca28;
+    background-color: #0056b3;
 }
