@@ -1,49 +1,65 @@
 .container {
-    width: 50%;
-    margin: 50px auto;
-    background-color: #fff;
+    max-width: 400px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.form-group label {
+    font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border-radius: 5px;
 }
 
-input[type="checkbox"] {
+.form-group input[type="checkbox"] {
     margin-right: 5px;
 }
 
-input[type="submit"] {
-    width: 100%;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #4285f4;
+    border-radius: 5px;
     padding: 10px;
-    border-radius: 4px;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
+.google-btn img {
+    margin-right: 10px;
+}
+
+.or-divider {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.register-btn {
+    width: 100%;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background-color: #ffca28;
 }

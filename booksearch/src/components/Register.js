@@ -64,7 +64,6 @@ export default function Register() {
                     <h4>Regístrate con:</h4>
                     <input type="checkbox" id="google" name="google" checked={formData.google} onChange={handleChange} />
                     <label htmlFor="google">Google</label>
-
                     <input type="checkbox" id="twitter" name="twitter" checked={formData.twitter} onChange={handleChange} />
                     <label htmlFor="twitter">Twitter</label>
                 </div>
