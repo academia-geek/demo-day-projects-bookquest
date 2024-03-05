@@ -53,6 +53,10 @@ export default function Login() {
                                         </label>
                                         <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" required />
                                         <label className="label">
+                                            <span className="label-text">Contraseña</span>
+                                        </label>
+                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" required />
+                                        <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
                                             <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
                                         </label>
