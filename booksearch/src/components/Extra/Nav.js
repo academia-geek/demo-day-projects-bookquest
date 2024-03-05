@@ -14,7 +14,7 @@ export default function Nav() {
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
-                    <li style={{borderBottom:"3px solid black" , BorderRadius: "50px"}}>Inicio</li>
+                    <li>Inicio</li>
                     <li>Eventos</li>
                     <li>Estanteria</li>
                     <li>Nuevos</li>

@@ -1,25 +1,25 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700&family=Roboto+Slab:wght@100..900&family=Skranji:wght@700&display=swap');
 
 
 .imgNegrita {
     background-image: url(https://res.cloudinary.com/dtmapxnao/image/upload/v1709574722/Open-Day/negritaKche_x43y4x.png);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
 }
 
-.contText1{
+.contText1 {
+    background-color: rgb(255, 255, 255 , 0.32) !important;
     font-weight: bold;
     width: max-content;
     height: auto;
     font-size: 35px;
     padding: 15px;
-    background-color: rgb(255, 255, 255, 0.32);
     font-family: "Roboto Slab", serif;
     border-radius: 20px;
 }
 
-.contText2{
+.contText2 {
+    background-color: rgb(255, 255, 255 , 0.32) !important;
     margin-top: 2%;
     font-weight: normal;
     width: 35%;
@@ -27,17 +27,15 @@
     font-size: 15px;
     padding: 15px;
     color: white;
-    background-color: rgb(255, 255, 255, 0.32);
     font-family: "Roboto Slab", serif;
     border-radius: 20px;
 }
 
-
-.resaltado{
+.resaltado {
     color: rgb(113, 104, 109);
 }
 
-.btnB{
+.btnB {
     font-size: 25px;
     font-weight: bold;
     font-family: "Roboto Slab", serif;
@@ -48,7 +46,7 @@
     margin-top: 3%;
 }
 
-.SlideH{
+.SlideH {
     background-color: rgb(72, 66, 69);
     display: flex;
     flex-direction: column;
@@ -57,16 +55,21 @@
     gap: 30px;
 }
 
-.titleSlide{
+.titleSlide {
     color: white;
     font-size: 40px;
     font-weight: bold;
     font-family: "Roboto Slab", serif;
 }
 
-.pSlide{
+.pSlide {
     font-weight: normal;
     font-size: 15px;
     color: white;
     font-family: "Roboto Slab", serif;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
