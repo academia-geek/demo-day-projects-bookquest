@@ -81,6 +81,7 @@
 .imgN{
     width: 150px;
     border-radius: 50%;
+    object-fit: contain;
 }
 
 .infoN{
