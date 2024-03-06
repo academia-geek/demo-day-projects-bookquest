@@ -1,36 +1,52 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useLocation } from 'react-router-dom';
 
 const containerStyle = {
-    width: '400px',
-    height: '400px'
-};
-const center = {
-    lat: 6.348395,
-    lng: -75.563921
+    width: '800px',
+    height: '800px'
 };
 
-//RAMA DE PRUEBA
 const GoogleMaps = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U"
-    })
+    });
 
-    const [map, setMap] = useState(null)
+    const [map, setMap] = useState(null);
+    const [center, setCenter] = useState({ lat: 6.247813, lng: -75.424333 });
+    const [userLocation, setUserLocation] = useState(null);
 
     const onLoad = useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
-        setMap(map)
-    }, [])
+        setMap(map);
+    }, [center]);
 
     const onUnmount = useCallback(function callback(map) {
-        setMap(null)
-    }, [])
+        setMap(null);
+    }, []);
 
-    
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLatLng = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    setUserLocation(userLatLng);
+                    setCenter(userLatLng); // Actualizar el centro con la ubicación del usuario
+                },
+                (error) => {
+                    console.error("Error getting user location:", error);
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }, []);
+
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
@@ -38,11 +54,10 @@ const GoogleMaps = () => {
             zoom={10}
             onLoad={onLoad}
             onUnmount={onUnmount}
-        // defaultCenter = {center}
         >
-            { /* Child components, such as markers, info windows, etc. */}
             <Marker position={center}></Marker>
         </GoogleMap>
-    ) : <></>
-}
-export default memo(GoogleMaps)
+    ) : <></>;
+};
+
+export default memo(GoogleMaps);
