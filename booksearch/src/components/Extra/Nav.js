@@ -9,8 +9,9 @@ export default function Nav() {
     }
     return (
         <div>
-            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white", width: "100%" }}>
-                <div className="flex-1">
+            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.62)", color: "white", width: "100%" }}>
+                <div className="flex-1" style={{gap: "20px", padding:"10px"}}>
+                    <img style={{width:"50px"}} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759715/Open-Day/LogoBibioteca_uyy7nf.png'></img>
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
