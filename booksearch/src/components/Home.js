@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from './Extra/Footer'
 import Nav from './Extra/Nav'
 import Slider from './Extra/Slider'
 import '../Styles/Home.css'
 export default function Home() {
+
     return (
         <div>
             <Nav />
@@ -23,6 +24,7 @@ export default function Home() {
                         </button>
                     </div>
                 </div>
+                
                 <div className='SlideH'>
                     <h1 className='titleSlide'>TE  PUEDEN  GUSTAR</h1>
                     <p className='pSlide'>Selecciona cual te  gusta mas.</p>
