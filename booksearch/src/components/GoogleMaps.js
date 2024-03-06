@@ -9,6 +9,8 @@ const center = {
     lat: 6.348395,
     lng: -75.563921
 };
+
+//RAMA DE PRUEBA
 const GoogleMaps = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
