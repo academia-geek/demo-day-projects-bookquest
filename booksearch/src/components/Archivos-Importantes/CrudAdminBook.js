@@ -6,6 +6,7 @@ export default function CrudAdminBook() {
 
   const addBook = async () => {
     try {
+      console.log("Envio los Datos.")
       const payload = {
         NombreAutor: "Sebastian Perez2",
         NombreLibro: "100 años de Soledad2",
