@@ -9,7 +9,7 @@ export default function Nav() {
     }
     return (
         <div>
-            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white" }}>
+            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white", width: "100%" }}>
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
