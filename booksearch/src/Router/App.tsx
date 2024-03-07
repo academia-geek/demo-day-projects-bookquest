@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // Importaciones de componentes
 import HomePage from '../components/Home';
 import Login from '../components/Login';
-import Register from '../components/Register';
+import Register from '../components/RegisterUsuario';
 import Api from '../components/Api';
 
 function App() {
