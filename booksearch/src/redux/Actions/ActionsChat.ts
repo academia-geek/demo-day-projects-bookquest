@@ -16,8 +16,7 @@ export const actionFindChatAsync = () => {
                 );
                 const chatQuery2 = query(
                     collection(dataBase, "Chat"),
-                    where("UID2", "==", uid)
-                );
+                    where("UID2", "==", uid)                );
                 const chatSnapshot = await getDocs(chatQuery);
                 const chatSnapshot2 = await getDocs(chatQuery2);
                 if (chatSnapshot) {
