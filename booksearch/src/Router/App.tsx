@@ -11,7 +11,7 @@ import CrudAdminBook from '../components/Archivos-Importantes/CrudAdminBook';
 import AutenticacionAdmin from '../components/Archivos-Importantes/AutenticacionAdmin';
 import GoogleMaps from '../components/GoogleMaps';
 import CrudBookBilbiotecas from '../components/Archivos-Importantes/CrudBookBilbiotecas';
-import PrivateRoute from './PrivateRoute'; // Importa tu componente PrivateRoute
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   const [user, setUser] = useState(false);

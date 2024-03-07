@@ -5,25 +5,35 @@ import { useDispatch } from 'react-redux';
 import { actionGoogle } from '../redux/actionsLogin';
 import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
-import { AddUser } from '../redux/Actions/AgregarLibro';
+import { RecuperacionUsuarioRegistrados } from '../redux/Actions/AgregarLibro';
 
 export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    // const AddUser_Firestore = async () => {
+    //     try {
+    //         console.log("Se estan enviando los Datos.")
+    //         const payload = {
+    //             NombreUser: "PRUEBA FIRESTORE 1",
+    //             Contraseña: "PRUEBA FIRESTORE 1",
+    //             Contraseña2: "PRUEBA FIRESTORE 1"
+    //         }
+    //         dispatch(AddUser(payload))
+    //     } catch (error) {
 
-    const AddUser_Firestore = async () => {
-        try {
-            console.log("Se estan enviando los Datos.")
-            const payload = {
-                NombreUser: "PRUEBA FIRESTORE 1",
-                Contraseña: "PRUEBA FIRESTORE 1",
-                Contraseña2: "PRUEBA FIRESTORE 1"
-            }
-            dispatch(AddUser(payload))
-        } catch (error) {
+    //     }
+    // }
 
-        }
+const DisplayDatos = async () => {
+    const dispatch = useDispatch();
+    try {
+        // Llama a la acción y espera a que se complete
+        await dispatch(RecuperacionUsuarioRegistrados());
+    } catch (error) {
+        console.error('Error al mostrar datos:', error);
     }
+}
+
 
     const RegistroFrom = () => {
         navigate('/Register');
@@ -40,6 +50,7 @@ export default function Login() {
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <Formik
+                            initialValues={{ username: '', password: '' }} // Agregar el objeto initialValues
                         >
                             {({ isSubmitting }) => (
                                 <Form className="card-body">
@@ -55,16 +66,12 @@ export default function Login() {
                                         </label>
                                         <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" />
                                         <label className="label">
-                                            <span className="label-text">Contraseña</span>
-                                        </label>
-                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" />
-                                        <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
                                             <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => AddUser_Firestore()}>Login</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}>Login</button><br></br>
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                     </div>
                                 </Form>
@@ -78,4 +85,3 @@ export default function Login() {
 
     );
 }
-

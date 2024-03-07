@@ -1,22 +1,22 @@
 import { getAuth } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
 
 //---------------------------------------------------------------------
 
 export const CreateBook = (payload: object) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         const ID_Libro = getAuth()
         try {
-            const Create__Book = doc(dataBase, "ColeccionLibros" , crypto.randomUUID());
+            const Create__Book = doc(dataBase, "ColeccionLibros", crypto.randomUUID());
             const NewPublication_Book = {
                 ...payload
             }
             await setDoc(Create__Book, NewPublication_Book);
-            dispatch( NewPublication_Book);
-        }catch (error) {
-            console.log("Error al Subir el Libro: " , error);
+            dispatch(NewPublication_Book);
+        } catch (error) {
+            console.log("Error al Subir el Libro: ", error);
         }
     };
 };
@@ -25,13 +25,13 @@ export const CreateBook = (payload: object) => {
 
 // Add User
 export const AddUser = (payload: object) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         try {
-            const AddNewUser = doc(dataBase,"ColeccionUsuarios", crypto.randomUUID());
+            const AddNewUser = doc(dataBase, "ColeccionUsuarios", crypto.randomUUID());
             const PayloadNewUser = {
                 ...payload
             }
-            await setDoc(AddNewUser,PayloadNewUser)
+            await setDoc(AddNewUser, PayloadNewUser)
             dispatch(PayloadNewUser)
             console.log("Usuario agregado Correctamente.")
         } catch (error) {
@@ -42,14 +42,14 @@ export const AddUser = (payload: object) => {
 //---------------------------------------------------------------------
 
 // Add New User -Register-
-export const RegisterUser = (payload:any) => {
-    return async (dispatch:any) => {
+export const RegisterUser = (payload: any) => {
+    return async (dispatch: any) => {
         try {
-            const RegisterUser = doc(dataBase , "ColeccionRegistroUser" , crypto.randomUUID())
+            const RegisterUser = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
             const RegistroNuevoUsuario = {
                 ...payload
             }
-            await setDoc(RegisterUser , RegistroNuevoUsuario)
+            await setDoc(RegisterUser, RegistroNuevoUsuario)
             dispatch(RegisterUser)
         } catch (error) {
             console.log("Error al Registrar el Usuario... ", error)
@@ -60,7 +60,7 @@ export const RegisterUser = (payload:any) => {
 //---------------------------------------------------------------------
 // Library Information ---important--- 
 export const obtenerDatosBiblioteca = () => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         try {
             // Obtener la referencia al documento que deseas leer
             const ubicacionBibliotecaRef = doc(dataBase, 'ColeccionBibliotecas', 'dqqyrF5cIU1ivcE9FkAG');
@@ -72,7 +72,7 @@ export const obtenerDatosBiblioteca = () => {
                 const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
                 console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
                 const datosString = JSON.stringify(ubicacionBibliotecaData);
-                localStorage.setItem("Data" , datosString )
+                localStorage.setItem("Data", datosString)
                 // Despachar los datos obtenidos
                 dispatch(ubicacionBibliotecaData);
             } else {
@@ -83,3 +83,21 @@ export const obtenerDatosBiblioteca = () => {
         }
     }
 }
+
+export const RecuperacionUsuarioRegistrados = () => {
+    return async (dispatch:any) => {
+        try {
+            // Consulta Firestore para obtener todos los documentos de la colección
+            const querySnapshot = await getDocs(collection(dataBase, 'ColeccionRegistroUser'));
+
+            // Iterar sobre los documentos de la colección
+            querySnapshot.forEach((doc) => {
+                const userData = doc.data();
+                console.log(userData);
+                // Si coincide, puedes despachar una acción de Redux indicando que el usuario ha iniciado sesión correctamente
+            });
+        } catch (error) {
+            console.error('Error al recuperar información:', error);
+        }
+    };
+};
