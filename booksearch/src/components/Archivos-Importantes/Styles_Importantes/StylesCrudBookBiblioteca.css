@@ -1,0 +1,35 @@
+.Title-CrudBookBiblioteca{
+    text-align: center;
+    font-weight: 600;
+    margin: 20px 0px 20px 150px;
+}
+
+.HelpCrudBookBiblioteca{
+    text-decoration: none;
+    position: relative;
+    top: 60px;
+    right: 40px;
+    float: right;
+    color: blue;
+}
+
+.LabelInput_CrudBook{
+    text-align: center;
+}
+
+.ContenedorInputBook_Crud{
+    display: flex;
+    justify-content: center;
+}
+
+
+.InputAPI , .InputNODAL {
+    border: 1px solid black;
+    width: 400px;
+    border-radius: 6px;
+}
+
+.ValorIngresadoBookCRUD{
+    padding-left: 200px;
+    color: red;
+}
