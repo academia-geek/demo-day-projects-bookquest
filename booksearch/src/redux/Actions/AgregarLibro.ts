@@ -3,6 +3,7 @@ import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
 
+//---------------------------------------------------------------------
 
 export const CreateBook = (payload: object) => {
     return async (dispatch:any) => {
@@ -20,16 +21,51 @@ export const CreateBook = (payload: object) => {
     };
 };
 
+//---------------------------------------------------------------------
+
+// Add User
+export const AddUser = (payload: object) => {
+    return async (dispatch:any) => {
+        try {
+            const AddNewUser = doc(dataBase,"ColeccionUsuarios", crypto.randomUUID());
+            const PayloadNewUser = {
+                ...payload
+            }
+            await setDoc(AddNewUser,PayloadNewUser)
+            dispatch(PayloadNewUser)
+            console.log("Usuario agregado Correctamente.")
+        } catch (error) {
+            console.log("Error al  Agregar Usuario : ", error)
+        }
+    }
+}
+//---------------------------------------------------------------------
+
+// Add New User -Register-
+export const RegisterUser = (payload:any) => {
+    return async (dispatch:any) => {
+        try {
+            const RegisterUser = doc(dataBase , "ColeccionRegistroUser" , crypto.randomUUID())
+            const RegistroNuevoUsuario = {
+                ...payload
+            }
+            await setDoc(RegisterUser , RegistroNuevoUsuario)
+            dispatch(RegisterUser)
+        } catch (error) {
+            console.log("Error al Registrar el Usuario... ", error)
+        }
+    }
+}
+
+//---------------------------------------------------------------------
 // Library Information ---important--- 
 export const obtenerDatosBiblioteca = () => {
     return async (dispatch:any) => {
         try {
             // Obtener la referencia al documento que deseas leer
             const ubicacionBibliotecaRef = doc(dataBase, 'ColeccionBibliotecas', 'dqqyrF5cIU1ivcE9FkAG');
-
             // Obtener los datos del documento
             const ubicacionBibliotecaSnap = await getDoc(ubicacionBibliotecaRef);
-
             // Verificar si el documento existe
             if (ubicacionBibliotecaSnap.exists()) {
                 // Obtener los datos del documento

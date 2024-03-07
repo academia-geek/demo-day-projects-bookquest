@@ -18,10 +18,15 @@ const GoogleMaps = () => {
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
     });
 
+    const Local = localStorage.getItem("Data")
+    const ParseodatosString = JSON.parse(Local);
+    console.log(ParseodatosString.ubicación.longitude);
+
+
     const [map, setMap] = useState(null);
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.224333 });
     const [userLocation, setUserLocation] = useState(null);
-    const [destination, setDestination] = useState({ lat: 6.3317037, lng: -75.5578622 }); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: ParseodatosString.ubicación.latitude, lng: ParseodatosString.ubicación.longitude }); // Coordenadas del punto de llegada predeterminado
 
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
@@ -76,19 +81,16 @@ const GoogleMaps = () => {
         }
     }, [map, userLocation, destination]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                let data = dispatch(obtenerDatosBiblioteca());
-                console.log(data);
-            } catch (error) {
-                console.log("Error en la petición de información de biblioteca.", error);
-            }
-        };
-        fetchData();
-    }, [dispatch]);
-
-    
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             let  data  = await dispatch(obtenerDatosBiblioteca());
+    //         } catch (error) {
+    //             console.log("Error en la petición de información de biblioteca.", error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, [dispatch]);
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
