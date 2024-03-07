@@ -32,6 +32,47 @@ export default function Home() {
                         <Slider />
                     </div>
                 </div>
+                <div className='contInfoLanding'>
+                    <div className='contImgNosotros'>
+                        <div className='infoN'>
+                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709755698/Open-Day/241972221_272047854753886_8850634181354973882_n_s3ybqq.jpg'/>
+                            <h2 className='nameN' style={{textAlign: "start"}}>Jose<br></br>Castillo</h2>
+                        </div>
+                        <div className='infoN'>
+                            <h2 className='nameN' style={{textAlign: "end"}}>Sebastian <br></br>Perez</h2>
+                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709755701/Open-Day/287129861_5214598658634454_5380403816573380642_n_r4alnv.jpg'/>
+                        </div>
+                        <div className='infoN'>
+                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709756011/Open-Day/171051779_4499627910051526_9219517060017258154_n_z7jee5.jpg'/>
+                            <h2 className='nameN' style={{textAlign: "start"}}>Camilo <br></br>Mendoza</h2>
+                        </div>
+                    </div>
+                    <div style={{justifyContent: "center", alignItems: "center", display: "flex", flexDirection:"column"}}>
+                        <div className='Q'>
+                            <div className='QS'>
+                                <h1 className='PQS' style={{marginTop:"-9.5%"}}>¿Quienes somos?</h1>
+                                <p className='RQS'>En <span className="resaltado2">Book | Quest</span>, estamos comprometidos con la misión de hacer que la lectura sea más
+                                 accesible para todos. Nuestro equipo está formado por apasionados lectores y profesionales de la tecnología
+                                  que creen en el poder transformador de los libros físicos. Nos dedicamos a conectar a los lectores con
+                                   las bibliotecas y puntos de venta, proporcionando una plataforma intuitiva y eficiente para descubrir
+                                    y acceder a una amplia gama de libros. Creemos en el valor de la lectura enriquecedora y estamos
+                                     comprometidos a facilitar el acceso a la literatura y el conocimiento en todas partes."</p>
+                            </div>
+                            <img style={{padding:"20px", paddingRight: "0"}} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/libritos_bodyqj.png'/>
+                        </div>
+                        <div>
+                            <div className='Q'>
+                                <img style={{padding:"20px", paddingRight: "0"}} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/lector_hsllte.png'/>
+                                <div className='QS'>
+                                    <h1 className='PQS' style={{textAlign:"end", marginRight:"5%", marginTop: "-9.5%"}}>Nuestro Futuro</h1>
+                                    <p className='RQS'>"Nos imaginamos una biblioteca moderna y acogedora, diseñada para inspirar el
+                                     amor por la lectura y el aprendizaje en nuestra comunidad. Queremos que sea un lugar donde las personas
+                                     de todas las edades y orígenes se sientan bienvenidas y encuentren recursos que enriquezcan sus vidas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Footer />
         </div>
