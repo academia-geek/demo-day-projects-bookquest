@@ -79,14 +79,16 @@ const GoogleMaps = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Llama a la función obtenerDatosBiblioteca
-                await dispatch(obtenerDatosBiblioteca());
+                let data = dispatch(obtenerDatosBiblioteca());
+                console.log(data);
             } catch (error) {
                 console.log("Error en la petición de información de biblioteca.", error);
             }
         };
-        fetchData(); // Ejecuta la función fetchData al montar el componente
+        fetchData();
     }, [dispatch]);
+
+    
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}

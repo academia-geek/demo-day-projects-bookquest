@@ -24,7 +24,7 @@ export const CreateBook = (payload: object) => {
 export const obtenerDatosBiblioteca = () => {
     return async (dispatch:any) => {
         try {
-            // Obtener una referencia al documento que deseas leer
+            // Obtener la referencia al documento que deseas leer
             const ubicacionBibliotecaRef = doc(dataBase, 'ColeccionBibliotecas', 'dqqyrF5cIU1ivcE9FkAG');
 
             // Obtener los datos del documento
@@ -35,7 +35,8 @@ export const obtenerDatosBiblioteca = () => {
                 // Obtener los datos del documento
                 const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
                 console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
-
+                const datosString = JSON.stringify(ubicacionBibliotecaData);
+                localStorage.setItem("Data" , datosString )
                 // Despachar los datos obtenidos
                 dispatch(ubicacionBibliotecaData);
             } else {
