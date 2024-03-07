@@ -46,17 +46,17 @@ export default function Login() {
                                         <label className="label">
                                             <span className="label-text">Nombre de Usuario</span>
                                         </label>
-                                        <Field type="text" name="username" placeholder="Nombre de Usuario" className="input input-bordered" required />
+                                        <Field type="text" name="username" placeholder="Nombre de Usuario" className="input input-bordered"  />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
-                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" required />
+                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered"  />
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
-                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" required />
+                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered"  />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
                                             <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>

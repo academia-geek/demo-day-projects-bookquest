@@ -4,51 +4,93 @@ import './Styles_Importantes/StylesCrudBookBiblioteca.css';
 
 export default function CrudBookBilbiotecas() {
     const [inputValue, setInputValue] = useState('');
-    const [BooksApi, SetBooksApi] = useState([]);
+    const [booksApi, setBooksApi] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [BookNodal, SetBookNodal] = useState([]);
-
+    const [selectedBook, setSelectedBook] = useState({
+        id: null,
+        titulo: '',
+        autor: '',
+        genero: '',
+        año_publicacion: '',
+        isbn: '',
+        disponibilidad: false,
+        cantidad: 0,
+        imagen: '',
+        sinopsis: ''
+    });
 
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
-    const fetchBook = async () => {
+
+    const fetchBooks = async () => {
         try {
-            const responseBook = await axios.get(inputValue);
-            SetBooksApi(responseBook.data);
+            const response = await axios.get(inputValue);
+            setBooksApi(response.data);
         } catch (error) {
-            console.error("Error al obtener el libro:", error);
+            console.error("Error al obtener los libros:", error);
         }
     };
 
-    const VentanaNodal = async (Id) => {
-        console.log("Entro al Nodal...");
+    const deleteBook = async (id) => {
+        console.log("Id a eliminar:", id);
         try {
-            const responseNodal = await axios.get(`${inputValue}/${Id}`);
-            SetBookNodal(responseNodal.data);
+            await axios.delete(`${inputValue}/${id}`);
+            fetchBooks();
+            alert("Libro eliminado correctamente");
         } catch (error) {
-            console.error("Error al hacer la solicitud:", error);
+            console.error("Error al eliminar el libro:", error);
         }
     };
-    
 
     useEffect(() => {
         if (inputValue) {
-            fetchBook();
+            fetchBooks();
         }
     }, [inputValue]);
 
-    function openModal() {
+    const openModal = (book) => {
+        setSelectedBook(book);
         setModalOpen(true);
-    }
+    };
 
-    function closeModal() {
+    const closeModal = () => {
+        setSelectedBook({
+            id: null,
+            titulo: '',
+            autor: '',
+            genero: '',
+            año_publicacion: '',
+            isbn: '',
+            disponibilidad: false,
+            cantidad: 0,
+            imagen: '',
+            sinopsis: ''
+        });
         setModalOpen(false);
-    }
-    // console.log(BooksApi);
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value, type, checked } = event.target;
+        setSelectedBook(prevState => ({
+            ...prevState,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const saveChanges = async () => {
+        try {
+            await axios.put(`${inputValue}/${selectedBook.id}`, selectedBook);
+            fetchBooks();
+            closeModal();
+            alert("Cambios guardados correctamente");
+        } catch (error) {
+            console.error("Error al guardar los cambios:", error);
+        }
+    };
+
     return (
         <div>
-            <a href='#' className="HelpCrudBookBiblioteca">¿Necesitas Ayuda?<button className="btn btn-primary" onClick={openModal}>Editar Books</button></a>
             <h1 className='Title-CrudBookBiblioteca'>Libros Actuales en la Base Ingresadas</h1>
             <hr />
             <label className='LabelInput_CrudBook'>Ingrese la API de su base de Datos:</label>
@@ -59,51 +101,54 @@ export default function CrudBookBilbiotecas() {
                     value={inputValue}
                     onChange={handleChange}
                     placeholder="Ingresa la URL de su Base de Datos."
-                /></div>
+                />
+            </div>
 
             <p className='ValorIngresadoBookCRUD'>El valor ingresado es: {inputValue}</p>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>
-                            </th>
+                            <th></th>
                             <th>Autor Libro</th>
                             <th>Año Publicacion</th>
                             <th>Disponibilidad</th>
-                            <th>Genero</th>
+                            <th>Género</th>
                             <th>Isbn</th>
                             <th>Sipnosis</th>
-                            <th>Titulo</th>
+                            <th>Título</th>
+                            <th>Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {BooksApi?.map((Books, KeyBooks) => (
-                            <tr key={KeyBooks}>
+                        {booksApi.map((book, index) => (
+                            <tr key={index}>
                                 <th>
                                     <label>
-                                        <input type="checkbox" className="checkbox" onClick={() => VentanaNodal(Books.id)} />
+                                        <button style={{ color: "red" }} onClick={() => deleteBook(book.id)}>Eliminar</button>
+                                        <button style={{ color: "red" }} onClick={() => openModal(book)}>Editar</button>
                                     </label>
                                 </th>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={Books.Imagen} alt='Imagen Libro' />
+                                                <img src={book.imagen} alt='Imagen Libro' />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">{Books.autor}</div>
+                                            <div className="font-bold">{book.autor}</div>
                                             <div className="text-sm opacity-50">United States</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>{Books.año_publicacion}</td>
-                                <td>{Books.disponibilidad ? "Disponible" : "No disponible"}</td>
-                                <td>{Books.genero}</td>
-                                <td>{Books.isbn}</td>
-                                <td>{Books.sinopsis}</td>
-                                <td>{Books.titulo}</td>
+                                <td>{book.año_publicacion}</td>
+                                <td>{book.disponibilidad ? "Disponible" : "No disponible"}</td>
+                                <td>{book.genero}</td>
+                                <td>{book.isbn}</td>
+                                <td>{book.sinopsis}</td>
+                                <td>{book.titulo}</td>
+                                <td>{book.cantidad}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -111,40 +156,37 @@ export default function CrudBookBilbiotecas() {
             </div>
             {/* Modal Editar */}
             {modalOpen && (
-                <dialog id="my_modal_4" className="modal" open>
+                <div id="my_modal_4" className="modal" open>
                     <div className="modal-box w-11/12 max-w-5xl">
                         <h3 className="font-bold text-lg">¡Hola Administrador!</h3>
-                        <hr></hr>
-                        {
-                            BookNodal?.map((BooksNodal , KeyNodal)=> {
-                                
-                            })
-                        }
+                        <hr />
                         <p className="py-4">Recuerda tener cuidado con los cambios que haces.</p>
                         <label className='LabelNodal'>Título</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Autor</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Género</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Año de Publicación</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>ISBN</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Disponibilidad</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Imagen</label>
-                        <input type="text" className='InputNODAL' ></input>
-                        <label className='LabelNodal'>Sipnossiisi</label>
-                        <input type="text" className='InputNODAL' ></input>
+                        <label>Titulo del Libro</label>
+                        <input type="text" className='InputNODAL' name="titulo" value={selectedBook.titulo} onChange={handleInputChange} />
+                        <label>Autor del Libro</label>
+                        <input type="text" className='InputNODAL' name="autor" value={selectedBook.autor} onChange={handleInputChange} />
+                        <label>Género</label>
+                        <input type="text" className='InputNODAL' name="genero" value={selectedBook.genero} onChange={handleInputChange} />
+                        <label>Año de Publicación</label>
+                        <input type="number" className='InputNODAL' name="año_publicacion" value={selectedBook.año_publicacion} onChange={handleInputChange} />
+                        <label>ISBN</label>
+                        <input type="text" className='InputNODAL' name="isbn" value={selectedBook.isbn} onChange={handleInputChange} />
+                        <label>Disponibilidad</label>
+                        <input type="checkbox" className='InputNODAL' name="disponibilidad" checked={selectedBook.disponibilidad} onChange={handleInputChange} />
+                        <label>Cantidad</label>
+                        <input type="number" className='InputNODAL' name="cantidad" value={selectedBook.cantidad} onChange={handleInputChange} />
+                        <label>Imagen</label>
+                        <input type="text" className='InputNODAL' name="imagen" value={selectedBook.imagen} onChange={handleInputChange} />
+                        <label>Sinopsis</label>
+                        <textarea className='InputNODAL' name="sinopsis" value={selectedBook.sinopsis} onChange={handleInputChange} />
                         <div className="modal-action">
                             <button className="btn btn-error" onClick={closeModal}>Cerrar</button>
-                            <button className="btn btn-warning">Guardar</button>
+                            <button className="btn btn-warning" onClick={saveChanges}>Guardar</button>
                         </div>
                     </div>
-                </dialog>
+                </div>
             )}
-
         </div>
     );
 }

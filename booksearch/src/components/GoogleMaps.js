@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { useLocation } from 'react-router-dom';
+import { obtenerDatosBiblioteca } from '../../src/redux/Actions/AgregarLibro';
+import { useDispatch } from 'react-redux';
 
 const containerStyle = {
     width: '800px',
@@ -8,15 +10,18 @@ const containerStyle = {
 };
 
 const GoogleMaps = () => {
+    const dispatch = useDispatch();
+
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
     });
 
     const [map, setMap] = useState(null);
-    const [center, setCenter] = useState({ lat: 6.247813, lng: -75.424333 });
+    const [center, setCenter] = useState({ lat: 6.867813, lng: -75.224333 });
     const [userLocation, setUserLocation] = useState(null);
-    const [destination, setDestination] = useState({ lat: 6.247813,  lng: -75.424333 }); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: 6.3317037, lng: -75.5578622 }); // Coordenadas del punto de llegada predeterminado
 
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
@@ -36,7 +41,7 @@ const GoogleMaps = () => {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    console.log(userLatLng);
+                    // console.log(userLatLng);
                     setUserLocation(userLatLng);
                     setCenter(userLatLng);
                 },
@@ -45,7 +50,7 @@ const GoogleMaps = () => {
                 }
             );
         } else {
-            console.error("Geolocation is not supported by this browser.");
+            console.error("No se pudo hacer la Geolocalizacion");
         }
     }, []);
 
@@ -71,6 +76,17 @@ const GoogleMaps = () => {
         }
     }, [map, userLocation, destination]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Llama a la función obtenerDatosBiblioteca
+                await dispatch(obtenerDatosBiblioteca());
+            } catch (error) {
+                console.log("Error en la petición de información de biblioteca.", error);
+            }
+        };
+        fetchData(); // Ejecuta la función fetchData al montar el componente
+    }, [dispatch]);
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
