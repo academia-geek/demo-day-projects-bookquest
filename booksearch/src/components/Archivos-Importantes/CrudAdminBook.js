@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { CreateBook } from '../../redux/Actions/AgregarLibro';
+
 export default function CrudAdminBook() {
   const dispatch = useDispatch(); 
 
@@ -23,10 +24,11 @@ export default function CrudAdminBook() {
       console.log("Error creating");
     }
   }
+  
   return (
     <div>
       <h1>
-        <button className="btn btn-warning" onclick={() => addBook}>Iniciar</button>
+        <button className="btn btn-warning" onClick={() => addBook()}>Iniciar</button>
       </h1>
     </div>
   );
