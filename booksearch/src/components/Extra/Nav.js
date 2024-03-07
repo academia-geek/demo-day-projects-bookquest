@@ -15,11 +15,11 @@ export default function Nav() {
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
-                    <li>Inicio</li>
-                    <li>Eventos</li>
-                    <li>Estanteria</li>
-                    <li>Nuevos</li>
-                    <li>Colaboladores</li>
+                    <li onClick={()=>navigate("/")}>Inicio</li>
+                    <li onClick={()=>navigate()}>Eventos</li>
+                    <li onClick={()=>navigate()}>Estanteria</li>
+                    <li onClick={()=>navigate()}>Nuevos</li>
+                    <li onClick={()=>navigate()}>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">
                     <button onClick={() => LoginForm()} style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }}>Login/Register</button>
