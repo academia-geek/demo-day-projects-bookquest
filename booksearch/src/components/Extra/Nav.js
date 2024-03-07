@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 export default function Nav() {
     const navigate = useNavigate();
 
+    const HomeForm = () => {
+        navigate('/')
+    }
+
     const LoginForm = () => {
         navigate('/Login');
     }
@@ -11,7 +15,7 @@ export default function Nav() {
         <div>
             <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white" }}>
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">Book | Quest</a>
+                    <a onClick={() => HomeForm()} className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
                     <li style={{borderBottom:"3px solid black" , BorderRadius: "50px"}}>Inicio</li>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { actionGoogle } from '../redux/actionsLogin';
+import '../Styles/StylesLogin.css'
 import Nav from './Extra/Nav';
 
 export default function Login() {
@@ -50,12 +51,18 @@ export default function Login() {
                                         </label>
                                         <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" required />
                                         <label className="label">
-                                            <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
-                                            <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
+                                            <a href="#" className="label-text-alt link link-hover">¿Olvidaste tu Contraseña?</a>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => HomeForm()}>Login</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => HomeForm()}>Login</button>
+
+                                        <p className='o'>O</p>
+
+                                        <button className="btn btn-active" onClick={() => RegistroFrom()}>Register</button>
+
+                                        <div className="separator"></div>
+
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                     </div>
                                 </Form>
