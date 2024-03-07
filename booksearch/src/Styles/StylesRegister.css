@@ -1,3 +1,7 @@
+body {
+    background-color: #ADACAC;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -5,7 +9,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ADACAC;
+    /* background-color: #ADACAC; */
 }
 
 .card {
@@ -22,6 +26,8 @@
 
 .image-container {
     width: 45%;
+    opacity: 20%;
+    padding: 20px;
 }
 
 .image-container img {
@@ -51,7 +57,7 @@
 }
 
 .register-btn {
-    width: 100%;
+    width: 100%;    
     background-color: #8e8e8e;
     border: none;
     border-radius: 5px;
