@@ -39,7 +39,8 @@ function App() {
         <Route path="/Register" element={<Register />} />
         {/* Rutas privadas */}
         <Route path='/Detalles' element={<Detalles />} />
-        <Route path='/Detalles/:cat' element={<Detalles />} />
+        <Route path="/Detalles/:cat" element={<Detalles />} />
+        <Route path="/Detalles/:cat/:libro" element={<Detalles />} />
         <Route path="/API" element={<Api/>}/>
         <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
         <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>

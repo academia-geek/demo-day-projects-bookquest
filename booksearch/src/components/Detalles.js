@@ -8,6 +8,7 @@ export default function Detalles () {
     const navigate = useNavigate();
     const location = useLocation()
     const {cat} = useParams
+    console.log(cat)
 
     const categorias = [
         "All",
@@ -67,7 +68,7 @@ export default function Detalles () {
                 {isDetallesRoute && ( // Render contmapeos only if on /Detalles
                     <div className='ContMapeos'>
                         {librosFiltrados.map((libro) => (
-                            <div className='contDetails' key={libro.id} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${libro.titulo}`)}>{libro.titulo}</div>
+                            <div className='contDetails' key={libro.id} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${cat}/${libro.titulo}`)}>{libro.titulo}</div>
                         ))}
                     </div>
                 )}
