@@ -30,7 +30,7 @@ export default function Login() {
         }
     };
 
-    const RegistroFrom = () => {
+    const RegistroForm = () => {
         navigate('/Register');
     }
 
@@ -77,7 +77,7 @@ export default function Login() {
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() =>  handleLogin()}>Login</button><br></br>
+
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                     </div>
                                 </Form>
