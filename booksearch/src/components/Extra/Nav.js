@@ -17,8 +17,8 @@ export default function Nav() {
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
                     <li onClick={()=>navigate("/")}>Inicio</li>
                     <li onClick={()=>navigate()}>Eventos</li>
-                    <li onClick={()=>navigate()}>Estanteria</li>
-                    <li onClick={()=>navigate()}>Nuevos</li>
+                    <li onClick={()=>navigate("/Detalles")}>Estanteria</li>
+                    <li onClick={()=>navigate()}>Conocenos</li>
                     <li onClick={()=>navigate()}>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">

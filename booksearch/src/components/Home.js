@@ -50,7 +50,7 @@ export default function Home() {
                     <div style={{justifyContent: "center", alignItems: "center", display: "flex", flexDirection:"column"}}>
                         <div className='Q'>
                             <div className='QS'>
-                                <h1 className='PQS' style={{marginTop:"-9.5%"}}>¿Quienes somos?</h1>
+                                <h1 className='PQS' style={{marginTop:"0"}}>¿Quienes somos?</h1>
                                 <p className='RQS'>En <span className="resaltado2">Book | Quest</span>, estamos comprometidos con la misión de hacer que la lectura sea más
                                  accesible para todos. Nuestro equipo está formado por apasionados lectores y profesionales de la tecnología
                                   que creen en el poder transformador de los libros físicos. Nos dedicamos a conectar a los lectores con
@@ -64,7 +64,7 @@ export default function Home() {
                             <div className='Q'>
                                 <img style={{padding:"20px", paddingRight: "0"}} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/lector_hsllte.png'/>
                                 <div className='QS'>
-                                    <h1 className='PQS' style={{textAlign:"end", marginRight:"5%", marginTop: "-9.5%"}}>Nuestro Futuro</h1>
+                                    <h1 className='PQS' style={{textAlign:"end", marginRight:"5%", marginTop: "0"}}>Nuestro Futuro</h1>
                                     <p className='RQS'>"Nos imaginamos una biblioteca moderna y acogedora, diseñada para inspirar el
                                      amor por la lectura y el aprendizaje en nuestra comunidad. Queremos que sea un lugar donde las personas
                                      de todas las edades y orígenes se sientan bienvenidas y encuentren recursos que enriquezcan sus vidas.</p>
