@@ -21,7 +21,7 @@ export default function Register() {
     }
 
     const HomeForm = () => {
-        navigate('/Login');
+        navigate('/RegistroUsuario');
     }
     return (
         <div>
