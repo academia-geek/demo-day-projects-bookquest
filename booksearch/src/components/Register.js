@@ -7,10 +7,31 @@ import { useDispatch } from 'react-redux';
 import Atras from './Extra/Atras';
 import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
+import { RegisterUser } from '../redux/Actions/AgregarLibro';
 
 export default function Register() {
     const dispatch = useDispatch();
     // const navigate = useNavigate();
+
+    const AñadirNuevoUsuario = async () => {
+        try {
+            console.log("Entro al Añadir...")
+            const payload = {
+                NewName_User: formData.name,
+                Contraseña: formData.password,
+                ContraseñaTwo: formData.password,
+                email: formData.email,
+                terms: formData.terms,
+                dataTreatment: formData.dataTreatment,
+                google: formData.google,
+                twitter: formData.twitter
+            }
+            dispatch(RegisterUser(payload))
+            alert("Usuario Registrado.")
+        } catch (error) {
+            console.log("Error al Registrar el usuario mandando los Datos..." , error)
+        }
+    }
 
     const [formData, setFormData] = useState({
         name: '',
@@ -74,7 +95,7 @@ export default function Register() {
                     </div>
                     <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                     <h1>O</h1>
-                    <button className="btn btn-warning">Registrarme!</button>
+                    <button className="btn btn-warning" onClick={() => AñadirNuevoUsuario()}>Registrarme!</button>
                 </form>
             </div>
             <Footer />

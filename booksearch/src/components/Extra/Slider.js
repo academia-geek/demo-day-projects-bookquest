@@ -3,7 +3,7 @@ import './Slider.css';
 
 export default function Slider() {
     return (
-        <section className="container">
+        <section className="containerS">
             <div className='slider-wrapper'>
                 <div className='slider'>
                     {/* Logicamente se va a hacer un Mapeo  de las imagenes de los Libros
