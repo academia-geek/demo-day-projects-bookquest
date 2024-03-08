@@ -75,8 +75,9 @@ export const obtenerDatosBiblioteca = () => {
                 // console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
                 const datosString = JSON.stringify(ubicacionBibliotecaData);
                 localStorage.setItem("Data", datosString)
-                // Despachar los datos obtenidos
+                // Despachar los datos obtenidos 
                 dispatch(ubicacionBibliotecaData);
+
             } else {
                 console.log("El documento no existe.");
             }
