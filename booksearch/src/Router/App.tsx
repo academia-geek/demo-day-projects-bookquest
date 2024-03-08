@@ -29,19 +29,20 @@ function App() {
 
   return (
     <BrowserRouter>
-  <Routes>
-    {/* Rutas públicas */}
-    <Route path="/" element={<HomePage />} />
-    <Route path="/Login" element={<Login />} />
-    <Route path="/Register" element={<Register />} />
-    {/* Rutas privadas */}
-    <Route path="/API" element={<PrivateRoute isAuthenticated={user}><Api/></PrivateRoute>}/>
-    <Route path="/CrudAdminBook" element={<PrivateRoute isAuthenticated={user}><CrudAdminBook/></PrivateRoute>}/>
-    <Route path="/AutenticacionAdmin" element={<PrivateRoute isAuthenticated={user}><AutenticacionAdmin/></PrivateRoute>}/>
-    <Route path="/CrudBookBilbiotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/>
-    <Route path="/GoogleMaps" element={<PrivateRoute isAuthenticated={user}><GoogleMaps/></PrivateRoute>}/>
-  </Routes>
-</BrowserRouter>
+    <Routes>
+      {/* Rutas públicas */}
+      <Route path="/" element={<HomePage />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
+      {/* Rutas privadas */}
+      <Route path="/API" element={<Api/>}/>
+      <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
+      <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>
+      <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
+      <Route path="/GoogleMaps" element={<GoogleMaps/>}/>
+    </Routes>
+  </BrowserRouter>
+  
 
   );
 }
