@@ -17,7 +17,7 @@ const GoogleMaps = () => {
     });
     
     const [map, setMap] = useState(null);
-    const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 });
+    const [center, setCenter] = useState({ lat: 0, lng: 0 });
     const [userLocation, setUserLocation] = useState(null);
     const [destination, setDestination] = useState({ lat: 6.338705,  lng: -75.558986}); // Coordenadas del punto de llegada predeterminado
 
@@ -73,17 +73,6 @@ useEffect(() => {
         );
     }
 }, [map, userLocation, destination]);
-
-// useEffect(() => {
-//     const fetchData = async () => {
-//         try {
-//             let  data  = await dispatch(obtenerDatosBiblioteca());
-//         } catch (error) {
-//             console.log("Error en la petición de información de biblioteca.", error);
-//         }
-//     };
-//     fetchData();
-// }, [dispatch]);
 return isLoaded ? (
     <GoogleMap
         mapContainerStyle={containerStyle}

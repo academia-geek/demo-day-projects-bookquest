@@ -2,13 +2,12 @@ import { getAuth } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
-import { useNavigate } from "react-router-dom";
 
 function holis() {
-console.log("holis")
+    console.log("holis")
 }
-//---------------------------------------------------------------------
 
+//---------------------------------------------------------------------
 export const CreateBook = (payload: object) => {
     return async (dispatch: any) => {
         try {
@@ -61,7 +60,7 @@ export const RegisterUser = (payload: any) => {
 }
 
 //---------------------------------------------------------------------
-// Library Information ---important--- 
+// Library Information ---important---
 export const obtenerDatosBiblioteca = () => {
     return async (dispatch: any) => {
         try {
@@ -87,11 +86,11 @@ export const obtenerDatosBiblioteca = () => {
     }
 }
 
-export const RecuperacionUsuarioRegistrados = (valueName:string, valuePass:string) => {
-    return async (dispatch:any) => {
+export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
+    return async (dispatch: any) => {
         try {
             console.log(valueName, valuePass)
-            // Consulta Firestore para obtener todos los documentos de la colección
+            // Consulta Firestore para obtener todos los documentos de la colección. Datos de "agregarLibros"
             const querySnapshot = await getDocs(collection(dataBase, 'ColeccionRegistroUser'));
             let loggedIn = false;
             querySnapshot.forEach((doc) => {
@@ -103,10 +102,9 @@ export const RecuperacionUsuarioRegistrados = (valueName:string, valuePass:strin
             });
 
             if (loggedIn) {
-                console.log('¡Felicidades, ingresaste!');
-                holis()
+                alert('¡Felicidades, ingresaste!');
             } else {
-                console.log('Credenciales inválidas');
+                alert('Credenciales inválidas');
             }
         } catch (error) {
             console.error('Error al recuperar información:', error);
