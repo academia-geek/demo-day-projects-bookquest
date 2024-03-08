@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 // Importa tus componentes
 import HomePage from '../components/Home';
 import Login from '../components/Login';
-import Register from '../components/Register';
+import Register from '../components/RegisterUsuario';
 import Api from '../components/Api';
 import CrudAdminBook from '../components/Archivos-Importantes/CrudAdminBook';
 import AutenticacionAdmin from '../components/Archivos-Importantes/AutenticacionAdmin';

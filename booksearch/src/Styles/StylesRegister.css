@@ -1,48 +1,79 @@
-.container {
-    width: 100%;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
+body {
+    background-color: #ADACAC;
 }
 
-h2 {
-    text-align: center;
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #ADACAC; */
+}
+
+.card {
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.form-container {
+    width: 45%;
+}
+
+.image-container {
+    width: 45%;
+    opacity: 20%;
+    padding: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.form-group label {
+    font-weight: bold;
 }
 /* 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 } */
 
-input[type="checkbox"] {
+.form-group input[type="checkbox"] {
     margin-right: 5px;
 }
 
-input[type="submit"] {
-    width: 100%;
-    background-color: #007bff;
-    color: #fff;
+.register-btn {
+    width: 100%;    
+    background-color: #8e8e8e;
     border: none;
-    padding: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 12px;
+    color: black;
+    font-weight: bold;
+    
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
+.register-btn:hover {
+    background-color: darkslategray;
 }
