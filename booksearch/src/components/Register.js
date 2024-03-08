@@ -13,48 +13,8 @@ export default function Register() {
     const dispatch = useDispatch();
     // const navigate = useNavigate();
 
-    const AñadirNuevoUsuario = async () => {
-        try {
-            console.log("Entro al Añadir...")
-            const payload = {
-                NewName_User: formData.name,
-                Contraseña: formData.password,
-                ContraseñaTwo: formData.password,
-                email: formData.email,
-                terms: formData.terms,
-                dataTreatment: formData.dataTreatment,
-                google: formData.google,
-                twitter: formData.twitter
-            }
-            dispatch(RegisterUser(payload))
-            alert("Usuario Registrado.")
-        } catch (error) {
-            console.log("Error al Registrar el usuario mandando los Datos..." , error)
-        }
-    }
-
-    const [formData, setFormData] = useState({
-        name: '',
-        password: '',
-        email: '',
-        terms: false,
-        dataTreatment: false,
-        google: false,
-        twitter: false
-    });
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: type === 'checkbox' ? checked : value
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData); // enviar los datos a backend
-    }; return (
+   
+    return (
         <div>
             <Nav />
             <div className="container">
