@@ -13,16 +13,9 @@ export default function Nav() {
     }
     return (
         <div>
-<<<<<<< HEAD
-            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.62)", color: "white", width: "100%" }}>
-                <div className="flex-1" style={{ gap: "20px", padding: "10px" }}>
-                    <img style={{ width: "50px" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759715/Open-Day/LogoBibioteca_uyy7nf.png'></img>
-                    <a className="btn btn-ghost text-xl">Book | Quest</a>
-=======
             <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white" }}>
                 <div className="flex-1">
                     <a onClick={() => HomeForm()} className="btn btn-ghost text-xl">Book | Quest</a>
->>>>>>> b15eeb25b46d57e4a92d8883af6a6aef4d367cb9
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
                     <li onClick={()=>navigate("/")}>Inicio</li>

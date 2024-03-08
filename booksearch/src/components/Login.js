@@ -7,7 +7,7 @@ import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
 import { RecuperacionUsuarioRegistrados } from '../redux/Actions/AgregarLibro';
 import '../Styles/StylesLogin.css'
-import Nav from './Extra/Nav';
+
 
 export default function Login() {
     const navigate = useNavigate();
@@ -54,7 +54,7 @@ const DisplayDatos = async () => {
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <Formik
                             initialValues={{ username: '', password: '' }}
-                            onSubmit={handleSubmit}
+                            // onSubmit={handleSubmit}
                         >
                             {({ isSubmitting }) => (
                                 <Form className="card-body">
@@ -74,8 +74,8 @@ const DisplayDatos = async () => {
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => HomeForm()}>Login</button>
-
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} >Login</button>
+                                        {/* onClick={() => HomeForm()} */}
                                         <p className='o'>O</p>
 
                                         <button className="btn btn-active" onClick={() => RegistroFrom()}>Register</button>
