@@ -12,10 +12,12 @@ import AutenticacionAdmin from '../components/Archivos-Importantes/Autenticacion
 import GoogleMaps from '../components/GoogleMaps';
 import CrudBookBilbiotecas from '../components/Archivos-Importantes/CrudBookBilbiotecas';
 import PrivateRoute from './PrivateRoute';
+import Detalles from '../components/Detalles';
 
 function App() {
   const [user, setUser] = useState(false);
 
+  
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (userAuth) => {
@@ -36,9 +38,11 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         {/* Rutas privadas */}
-        <Route path="/API" element={<PrivateRoute isAuthenticated={user}><Api/></PrivateRoute>}/>
-        <Route path="/CrudAdminBook" element={<PrivateRoute isAuthenticated={user}><CrudAdminBook/></PrivateRoute>}/>
-        <Route path="/AutenticacionAdmin" element={<PrivateRoute isAuthenticated={user}><AutenticacionAdmin/></PrivateRoute>}/>
+        <Route path='/Detalles' element={<Detalles />} />
+        <Route path='/Detalles/:cat' element={<Detalles />} />
+        <Route path="/API" element={<Api/>}/>
+        <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
+        <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>
         {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
         <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
         <Route path="/GoogleMaps" element={<GoogleMaps/>}/>

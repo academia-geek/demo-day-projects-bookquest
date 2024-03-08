@@ -1,0 +1,62 @@
+.contSearch{
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.searchEs{
+    background-color: #D9D9D9;
+    color: black;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    width: 30%;
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+}
+
+.btnEs{
+    background-color: #ADACAC;
+    color: black;
+    border-radius: 20px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+}
+
+.imgLibritos {
+    background-image: url(https://res.cloudinary.com/dtmapxnao/image/upload/v1709908562/Open-Day/Biblioteca_1_zqrgsj.jpg);
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.ContMapeos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    padding: 50px;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 20px;
+    background-size: cover;
+}
+
+.contDetails{
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+    font-size: 17px;
+    font-family: "Roboto Slab", serif;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    text-shadow: -1px 0 1px #D9D9D9, 0 1px 1px #D9D9D9, 1px 0 1px #D9D9D9, 0 -1px 1px #D9D9D9;
+    border: solid;
+    border-color: #D9D9D9;
+    cursor: pointer;
+}
