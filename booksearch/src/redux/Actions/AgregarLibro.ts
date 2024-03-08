@@ -72,7 +72,7 @@ export const obtenerDatosBiblioteca = () => {
             if (ubicacionBibliotecaSnap.exists()) {
                 // Obtener los datos del documento
                 const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
-                console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
+                // console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
                 const datosString = JSON.stringify(ubicacionBibliotecaData);
                 localStorage.setItem("Data", datosString)
                 // Despachar los datos obtenidos
