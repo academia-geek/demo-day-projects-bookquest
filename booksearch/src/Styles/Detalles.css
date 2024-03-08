@@ -13,6 +13,7 @@
     width: 30%;
     font-size: 15px;
     font-family: "Roboto Slab", serif;
+    margin-left: 8%;
 }
 
 .btnEs{
@@ -59,4 +60,27 @@
     border: solid;
     border-color: #D9D9D9;
     cursor: pointer;
+}
+
+.contDetailImagen{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+.imgLibro{
+    object-fit: fill;
+}
+
+.popup {
+    position: absolute;
+    top: 50%; /* Centra el popup verticalmente */
+    left: calc(100% + 10px); /* Coloca el popup a un lado del libro con un espacio de 10px */
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    z-index: 999; /* Asegura que el popup esté por encima del resto del contenido */
+    transform: translateY(-50%); /* Centra el popup verticalmente */
 }

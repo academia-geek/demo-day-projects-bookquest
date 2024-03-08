@@ -1,41 +1,51 @@
-import React, { useEffect } from 'react'
-import Footer from './Extra/Footer'
-import Nav from './Extra/Nav'
-import Slider from './Extra/Slider'
+import React, { useEffect, useState } from 'react';
+import Footer from './Extra/Footer';
+import Nav from './Extra/Nav';
+import Slider from './Extra/Slider';
 import { useNavigate, useLocation, useParams} from 'react-router-dom';
-import '../Styles/Detalles.css'
+import '../Styles/Detalles.css';
+import axios from 'axios';
+
 export default function Detalles () {
     const navigate = useNavigate();
-    const location = useLocation()
-    const {cat} = useParams
+    const location = useLocation();
+    const {cat} = useParams();
     console.log(cat)
 
-    const categorias = [
-        "All",
-        "Accion",
-        "Ciencia",
-        "Fantasia",
-        "Misterio",
-        "Manga",
-        "Terror",
-        "Niños",
-        "Romance",
-        "Aventura"
-    ]
+    const [showPopup, setShowPopup] = useState(false);
+    const [currentBookTitle, setCurrentBookTitle] = useState('');
 
-    const libros = [
-        {id:1, titulo: "Libro 1", categorias: "Accion"},
-        {id:2, titulo: "Libro 2", categorias: "Ciencia"},
-        {id:3, titulo: "Libro 3", categorias: "Fantasia"},
-        {id:4, titulo: "Libro 4", categorias: "Misterio"},
-        {id:5, titulo: "Libro 5", categorias: "Manga"},
-        {id:6, titulo: "Libro 6", categorias: "Terror"},
-        {id:7, titulo: "Libro 7", categorias: "Niños"},
-        {id:8, titulo: "Libro 8", categorias: "Romance"},
-        {id:9, titulo: "Libro 9", categorias: "Aventura"}
-    ]
+    const [categorias, setCategorias] = useState([]);
+    const [librosFiltrados, setLibrosFiltrados] = useState([]);
 
-    const librosFiltrados = libros.filter((libro) => libro.categoria === cat);
+
+    const urls = [`https://biblioteca-el-raton.onrender.com/libros`,`https://biblioteca-el-chiguiro.onrender.com/libros`,`https://biblioteca-la-marzopa.onrender.com/libros`
+
+]
+
+    useEffect(() => {
+        console.log("Fetching books for all URLs");
+    
+        // Realizar una sola solicitud para obtener todos los libros de todas las URL
+        axios.all(urls.map(url => axios.get(url).then(response => response.data)))
+            .then(axios.spread((...responses) => {
+                // Combinar todos los resultados de las solicitudes en un solo array
+                const allLibros = responses.flat();
+                console.log("Received all books:", allLibros);
+    
+                // Obtener géneros únicos de todos los libros
+                const generosUnicos = Array.from(new Set(allLibros.map(libro => libro.genero)));
+                setCategorias(generosUnicos);
+    
+                // Filtrar los libros por categoría
+                const librosFiltrados = allLibros.filter(libro => libro.genero === cat);
+                console.log("Filtered books for category:", librosFiltrados);
+                setLibrosFiltrados(librosFiltrados);
+            }))
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [cat]);
 
     const getRandomColor = () => {
         const r = Math.floor(Math.random() * 255);
@@ -48,33 +58,36 @@ export default function Detalles () {
     const isDetallesPage = location.pathname === '/Detalles';
     const isDetallesRoute = location.pathname.startsWith("/Detalles/");
 
-  return (
-    <div>
-        <Nav/>
+    return (
         <div>
-            {/*contenedor del search*/}
-            <div className='contSearch'>
-                <input className='searchEs' type='search' placeholder='Busqueda'></input>
-                <button className='btnEs'>Buscar</button>
+            <Nav/>
+            <div>
+                {/* Contenedor del search */}
+                <div className='contSearch'>
+                    <input className='searchEs' type='search' placeholder='Busqueda'></input>
+                    <button className='btnEs'>Buscar</button>
+                </div>
+                <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
+                    {isDetallesPage && (
+                        <div className='ContMapeos'>
+                            {categorias.map((genero, index) => (
+                                <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${genero}`)}>{genero}</div>
+                            ))}
+                        </div>
+                    )}
+                    {isDetallesRoute && (
+                        <div className='ContMapeos'>
+                            {librosFiltrados.map((libro) => (
+                                <div className='contDetailImagen' key={libro.id} onMouseEnter={() => {setShowPopup(true); setCurrentBookTitle(libro.titulo); }} onMouseLeave={() => setShowPopup(false)} onClick={() => navigate(`/Detalles/${cat}/${libro.titulo}`)}>
+                                    <img className='imgLibro' src={libro.imagen} alt={libro.id}></img>
+                                    {showPopup && <div className='popup'>{currentBookTitle}</div>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
-            <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
-                {isDetallesPage && ( // Render contmapeos only if on /Detalles
-                    <div className='ContMapeos'>
-                        {categorias.map((categoria, index) => (
-                            <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => console.log(categoria) && navigate(`/Detalles/${categoria}`)}>{categoria}</div>
-                        ))}
-                    </div>
-                )}
-                {isDetallesRoute && ( // Render contmapeos only if on /Detalles
-                    <div className='ContMapeos'>
-                        {librosFiltrados.map((libro) => (
-                            <div className='contDetails' key={libro.id} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${cat}/${libro.titulo}`)}>{libro.titulo}</div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            <Footer/>
         </div>
-        <Footer/>
-    </div>
-  );
+    );
 }
