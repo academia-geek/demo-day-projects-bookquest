@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -11,30 +11,24 @@ export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const AddUser_Firestore = async () => {
-    //     try {
-    //         console.log("Se estan enviando los Datos.")
-    //         const payload = {
-    //             NombreUser: "PRUEBA FIRESTORE 1",
-    //             Contraseña: "PRUEBA FIRESTORE 1",
-    //             Contraseña2: "PRUEBA FIRESTORE 1"
-    //         }
-    //         dispatch(AddUser(payload))
-    //     } catch (error) {
+    const [valueName, setValueName] = useState('');
+    const [valuePass, setValuePass] = useState('');
 
-    //     }
-    // }
+    const handleNameChange = (event) => {
+        setValueName(event.target.value);
+    };
 
-const DisplayDatos = async () => {
-    const dispatch = useDispatch();
-
-    try {
-        // Llama a la acción y espera a que se complete
-        await dispatch(RecuperacionUsuarioRegistrados());
-    } catch (error) {
-        console.error('Error al mostrar datos:', error);
-    }
-}
-
+    const handlePassChange = (event) => {
+        setValuePass(event.target.value);
+    };
+    const handleLogin = async () => {
+        try {
+            // Llama a la acción para recuperar los datos del usuario
+            await dispatch(RecuperacionUsuarioRegistrados(valueName, valuePass));
+        } catch (error) {
+            // Captura y muestra el error si ocurrió al recuperar los datos del usuario
+        }
+    };
 
     const RegistroFrom = () => {
         navigate('/Register');
@@ -59,20 +53,31 @@ const DisplayDatos = async () => {
                                         <label className="label">
                                             <span className="label-text">Nombre de Usuario</span>
                                         </label>
-                                        <Field type="text" name="username" placeholder="Nombre de Usuario" className="input input-bordered" />
+                                        <input
+                                            type="text"
+                                            placeholder="Nombre de Usuario"
+                                            value={valueName}
+                                            onChange={handleNameChange}
+                                        />
+
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
-                                        <Field type="password" name="password" placeholder="Contraseña" className="input input-bordered" />
+                                        <input
+                                            type="password"
+                                            placeholder="Contraseña"
+                                            value={valuePass}
+                                            onChange={handlePassChange}
+                                        />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
                                             <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}>Login</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() =>  handleLogin()}>Login</button><br></br>
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                     </div>
                                 </Form>
