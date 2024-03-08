@@ -11,31 +11,31 @@ export default function Detalles () {
     console.log(cat)
 
     const categorias = [
-        "All",
-        "Accion",
-        "Ciencia",
-        "Fantasia",
-        "Misterio",
-        "Manga",
-        "Terror",
-        "Niños",
-        "Romance",
-        "Aventura"
+        {id:1, categoria:"All"},
+        {id:2, categoria:"Accion"},
+        {id:3, categoria:"Ciencia"},
+        {id:4, categoria:"Fantasia"},
+        {id:5, categoria:"Misterio"},
+        {id:6, categoria:"Manga"},
+        {id:7, categoria:"Terror"},
+        {id:8, categoria:"Niños"},
+        {id:9, categoria:"Romance"},
+        {id:10, categoria:"Aventura"}
     ]
 
     const libros = [
-        {id:1, titulo: "Libro 1", categoria: "Accion"},
-        {id:2, titulo: "Libro 2", categoria: "Ciencia"},
-        {id:3, titulo: "Libro 3", categoria: "Fantasia"},
-        {id:4, titulo: "Libro 4", categoria: "Misterio"},
-        {id:5, titulo: "Libro 5", categoria: "Manga"},
-        {id:6, titulo: "Libro 6", categoria: "Terror"},
-        {id:7, titulo: "Libro 7", categoria: "Niños"},
-        {id:8, titulo: "Libro 8", categoria: "Romance"},
-        {id:9, titulo: "Libro 9", categoria: "Aventura"}
+        {id:1, titulo: "Libro 1", categorias: "Accion"},
+        {id:2, titulo: "Libro 2", categorias: "Ciencia"},
+        {id:3, titulo: "Libro 3", categorias: "Fantasia"},
+        {id:4, titulo: "Libro 4", categorias: "Misterio"},
+        {id:5, titulo: "Libro 5", categorias: "Manga"},
+        {id:6, titulo: "Libro 6", categorias: "Terror"},
+        {id:7, titulo: "Libro 7", categorias: "Niños"},
+        {id:8, titulo: "Libro 8", categorias: "Romance"},
+        {id:9, titulo: "Libro 9", categorias: "Aventura"}
     ]
 
-    const librosFiltrados = libros.filter((libro) => libro.categorias === cat);
+    const librosFiltrados = libros.filter((libro) => libro.categoria === cat);
 
     const getRandomColor = () => {
         const r = Math.floor(Math.random() * 255);
@@ -60,8 +60,8 @@ export default function Detalles () {
             <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
                 {isDetallesPage && ( // Render contmapeos only if on /Detalles
                     <div className='ContMapeos'>
-                        {categorias.map((categoria, index) => (
-                            <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${categoria}`)}>{categoria}</div>
+                        {categorias.map((categoria) => (
+                            <div className='contDetails' key={categoria.id} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${categoria.categoria}`)}>{categoria.categoria}</div>
                         ))}
                     </div>
                 )}
