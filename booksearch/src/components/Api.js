@@ -17,7 +17,7 @@ export default function Api() {
         try {
             const response = await axios.request(options);
             setBooks(response.data);
-            console.log(books.author);
+            console.log(books);
             return response.data
         } catch (error) {
             console.error('Error fetching books:', error);

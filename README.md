@@ -1,34 +1,57 @@
-# 📚 Book|Queest: Plataforma para Accesibilidad de Libros Físicos 📚
+# 👋🏼 Bienvenid@ al Demo Day..
 
-¡Bienvenidos a Book|Queest! Esta plataforma está diseñada para mejorar la accesibilidad y disponibilidad de libros físicos tanto en bibliotecas públicas como en puntos de venta.
+<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Academia Geek 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
 
-## ¿Cómo Funciona? 🚀
+En este Proyecto a realizar vas a evidenciar los conceptos adquiridos en todo este proceso de aprendizaje como React Js, JavaScript, Redux y Firebase.
 
-1. 📖 **Explora y Descubre:** Utiliza nuestra plataforma para buscar y descubrir libros físicos en diferentes ubicaciones.
-2. 🔍 **Encuentra Disponibilidad:** Obtén información sobre la disponibilidad de libros y detalles como precios y opciones de envío.
-3. 📚 **Promueve la Lectura:** Conecta a lectores ávidos con los recursos existentes para fomentar la promoción de la lectura y el intercambio cultural.
+# 🎯 Objetivo del DemoDay:
 
-## Características Principales 🌟
+Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de JavaScript Vanilla. 
 
-- **Centralización de Inventarios:** Reúne información sobre inventarios de libros de diversas fuentes.
-- **Búsqueda y Localización:** Permite a los usuarios buscar y localizar fácilmente los libros que desean en diferentes ubicaciones.
-- **Detalles y Precios:** Proporciona detalles como precios y opciones de envío en puntos de venta.
-- **Promoción de la Lectura:** Facilita la conexión entre lectores ávidos y los recursos existentes, fomentando la promoción de la lectura y el intercambio cultural.
+Con el Demo Day se pretende que los beneficiarios demuestren todos sus conocimientos adquiridos a empresas Nacionales e Internacionales, con esto pueden vivir la experiencia de exponer un proyecto y una idea de negocio al mundo.
 
-## ¡Únete a la Comunidad! 🌐
+# 📹 Video explicado:
 
-- 💬 Únete a nuestra [comunidad en Discord](#) para discutir nuevas características y compartir tus experiencias.
-- 🌟 ¡Contribuye a nuestro [repositorio en GitHub](#) para mejorar y expandir BookSearch!
+[¿Como hacer el proyecto DemoDay?](https://drive.google.com/file/d/1kzQ5TuYc0NuIH6qGe5_Wr3Fnrjd5qKJp/view)
 
-## Tecnologías Utilizadas 🛠️
+# ☕ Pasos para desarrollar el DemoDay:
 
-- React
-- Redux
-- HTML
-- CSS
+1. Crear un proyecto con la plantilla Basic Kanban y en la descripción colocar:
 
-## Licencia 📜
+>- Texto descriptivo.
+>- Enlace del prototipo en alta fidelidad (marvel o herramienta usada).
+>- Enlace del despliegue.
+>- Enlace del video demo.
 
-Este proyecto está bajo la Licencia [MIT](https://opensource.org/licenses/MIT).
+Todo esto usando markdown
 
-¡Gracias por usar BookSearch para simplificar la búsqueda de libros físicos! 📖🔍✨
+2. Crear dos milestones que corresponden a todo el desarrollo de la aplicación y se deben crear de esta forma:
+
+>- **Componente Design Thinking:** Poner una descripción y los objetivos de ese componente.
+>- **Componente técnico:** Poner una descripción y los objetivos de ese componente.
+
+3. Crear issues por cada una de las tareas de Design Thinking:
+
+>- 5 por qué
+>- Perfil del cliente
+>- Mapa de valor
+>- Prototipo de baja fidelidad
+>- Prototipo de mediana fidelidad
+>- Presentación
+
+4. Crear issues por cada una de las tareas técnicas:
+
+>- Readme profesional
+>- Guía de estilos
+>- Landing Page del producto
+>- Diseño responsive
+>- Autenticación con Google y Facebook
+>- Enrutamiento dinámico con protección de rutas
+>- Crud con Firebase
+>- Imágenes y/o videos en la nube
+
+5. Aquellos issues que consideren crear para su proceso de desarrollo se deben adjuntar al milestone de Componente Técnico.
+
+6. Cada uno de estos issues debe estar asignado a una o más intergrantes del equipo de desarrollo. 
+
+7. Colocar etiquetas que logren diferenciar los diferentes issues según el componente al que corresponde.

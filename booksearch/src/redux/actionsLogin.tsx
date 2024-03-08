@@ -26,25 +26,3 @@ export const actionGoogle = () => {
     };
 };
 
-// ------------------------Logout-------------------------------//
-
-export const actionLogoutAsyn = () => {
-    return (dispatch: Dispatch) => {
-        const auth = getAuth();
-
-        signOut(auth)
-            .then(() => {
-                dispatch(actionLogoutSyn());
-                console.log("Adios..");
-            })
-            .catch((error) => {
-                console.warn(error);
-            });
-    };
-};
-
-export const actionLogoutSyn = () => {
-    return {
-        type: typesLogin.logout,
-    };
-};

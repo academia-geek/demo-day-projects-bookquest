@@ -4,29 +4,26 @@ import { useNavigate } from 'react-router-dom';
 export default function Nav() {
     const navigate = useNavigate();
 
-    const HomeForm = () => {
-        navigate('/')
-    }
-
     const LoginForm = () => {
         navigate('/Login');
     }
     return (
         <div>
-            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.52)", color: "white" }}>
-                <div className="flex-1">
-                    <a onClick={() => HomeForm()} className="btn btn-ghost text-xl">Book | Quest</a>
+            <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.62)", color: "white", width: "100%" }}>
+                <div className="flex-1" style={{ gap: "20px", padding: "10px" }}>
+                    <img style={{ width: "50px" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759715/Open-Day/LogoBibioteca_uyy7nf.png'></img>
+                    <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
                 <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
-                    <li style={{borderBottom:"3px solid black" , BorderRadius: "50px"}}>Inicio</li>
-                    <li>Eventos</li>
-                    <li>Estanteria</li>
-                    <li>Nuevos</li>
-                    <li>Colaboladores</li>
+                    <li onClick={()=>navigate("/")}>Inicio</li>
+                    <li onClick={()=>navigate()}>Eventos</li>
+                    <li onClick={()=>navigate("/Detalles")}>Estanteria</li>
+                    <li onClick={()=>navigate()}>Conocenos</li>
+                    <li onClick={()=>navigate()}>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">
-                    <button onClick={() => LoginForm()} style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width:"100%" }}>Login/Register</button>
-                    <div className="dropdown dropdown-end"> 
+                    <button onClick={() => LoginForm()} style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }}>Login/Register</button>
+                    <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />

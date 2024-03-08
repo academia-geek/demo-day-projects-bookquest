@@ -1,74 +1,45 @@
-body {
-    background-color: #ADACAC;
-}
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
+    border-radius: 8px;
 }
 
-.card {
-    flex: 1;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    padding: 20px;
-}
-
-.form-container {
-    width: 45%;
-    background-color: #b8b8b8;
-}
-
-.image-container {
-    width: 45%;
-    opacity: 20%;
-    padding: 20px;
-}
-
-.image-container img {
-    width: 100%;
-    height: auto;
+h2 {
+    text-align: center;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
-    font-weight: bold;
+label {
+    display: block;
+    margin-bottom: 5px;
 }
-
-.form-group input[type="text"],
-.form-group input[type="password"],
-.form-group input[type="email"] {
+/* 
+input[type="text"],
+input[type="password"],
+input[type="email"] {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    border-radius: 4px;
+    box-sizing: border-box;
+} */
 
-.form-group input[type="checkbox"] {
+input[type="checkbox"] {
     margin-right: 5px;
 }
 
-.register-btn {
-    width: 100%;    
-    background-color: #8e8e8e;
+input[type="submit"] {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 12px;
-    color: black;
-    font-weight: bold;
-    
+    padding: 10px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.register-btn:hover {
-    background-color: darkslategray;
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }
