@@ -11,7 +11,7 @@ import CrudAdminBook from '../components/Archivos-Importantes/CrudAdminBook';
 import AutenticacionAdmin from '../components/Archivos-Importantes/AutenticacionAdmin';
 import GoogleMaps from '../components/GoogleMaps';
 import CrudBookBilbiotecas from '../components/Archivos-Importantes/CrudBookBilbiotecas';
-import PrivateRoute from './PrivateRoute'; // Importa tu componente PrivateRoute
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   const [user, setUser] = useState(false);
@@ -39,8 +39,9 @@ function App() {
         <Route path="/API" element={<PrivateRoute isAuthenticated={user}><Api/></PrivateRoute>}/>
         <Route path="/CrudAdminBook" element={<PrivateRoute isAuthenticated={user}><CrudAdminBook/></PrivateRoute>}/>
         <Route path="/AutenticacionAdmin" element={<PrivateRoute isAuthenticated={user}><AutenticacionAdmin/></PrivateRoute>}/>
-        <Route path="/GoogleMaps" element={<PrivateRoute isAuthenticated={user}><GoogleMaps/></PrivateRoute>}/>
-        <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/>
+        {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
+        <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
+        <Route path="/GoogleMaps" element={<GoogleMaps/>}/>
       </Routes>
     </BrowserRouter>
   );
