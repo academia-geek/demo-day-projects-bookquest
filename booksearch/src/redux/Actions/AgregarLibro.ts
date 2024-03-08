@@ -2,12 +2,15 @@ import { getAuth } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
+import { useNavigate } from "react-router-dom";
 
+function holis() {
+console.log("holis")
+}
 //---------------------------------------------------------------------
 
 export const CreateBook = (payload: object) => {
     return async (dispatch: any) => {
-        const ID_Libro = getAuth()
         try {
             const Create__Book = doc(dataBase, "ColeccionLibros", crypto.randomUUID());
             const NewPublication_Book = {
@@ -84,20 +87,29 @@ export const obtenerDatosBiblioteca = () => {
     }
 }
 
-export const RecuperacionUsuarioRegistrados = () => {
+export const RecuperacionUsuarioRegistrados = (valueName:string, valuePass:string) => {
     return async (dispatch:any) => {
         try {
+            console.log(valueName, valuePass)
             // Consulta Firestore para obtener todos los documentos de la colección
             const querySnapshot = await getDocs(collection(dataBase, 'ColeccionRegistroUser'));
-
-            // Iterar sobre los documentos de la colección
+            let loggedIn = false;
             querySnapshot.forEach((doc) => {
                 const userData = doc.data();
-                console.log(userData);
-                // Si coincide, puedes despachar una acción de Redux indicando que el usuario ha iniciado sesión correctamente
+                // console.log(userData);
+                if (userData.NewName_User === valueName && userData.Contraseña === valuePass) {
+                    loggedIn = true;
+                }
             });
+
+            if (loggedIn) {
+                console.log('¡Felicidades, ingresaste!');
+                holis()
+            } else {
+                console.log('Credenciales inválidas');
+            }
         } catch (error) {
             console.error('Error al recuperar información:', error);
         }
     };
-};
+}

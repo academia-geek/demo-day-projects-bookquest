@@ -39,8 +39,9 @@ function App() {
         <Route path="/API" element={<PrivateRoute isAuthenticated={user}><Api/></PrivateRoute>}/>
         <Route path="/CrudAdminBook" element={<PrivateRoute isAuthenticated={user}><CrudAdminBook/></PrivateRoute>}/>
         <Route path="/AutenticacionAdmin" element={<PrivateRoute isAuthenticated={user}><AutenticacionAdmin/></PrivateRoute>}/>
-        <Route path="/GoogleMaps" element={<PrivateRoute isAuthenticated={user}><GoogleMaps/></PrivateRoute>}/>
-        <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/>
+        {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
+        <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
+        <Route path="/GoogleMaps" element={<GoogleMaps/>}/>
       </Routes>
     </BrowserRouter>
   );
