@@ -2,10 +2,7 @@ import { getAuth } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
-
-function holis() {
-    console.log("holis")
-}
+import { Navigate } from "react-router-dom";
 
 //---------------------------------------------------------------------
 export const CreateBook = (payload: object) => {
@@ -88,6 +85,7 @@ export const obtenerDatosBiblioteca = () => {
 }
 
 export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
+
     return async (dispatch: any) => {
         try {
             console.log(valueName, valuePass)
@@ -99,6 +97,9 @@ export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: str
                 // console.log(userData);
                 if (userData.NewName_User === valueName && userData.Contraseña === valuePass) {
                     loggedIn = true;
+                } else if (valueName === "" && valuePass === "") {
+                    loggedIn = false;
+                } else if (userData.NewName_User === "//" &&  userData.Contraseña === "&&") {
                 }
             });
 
