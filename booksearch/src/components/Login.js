@@ -10,7 +10,7 @@ import { RecuperacionUsuarioRegistrados } from '../redux/Actions/AgregarLibro';
 export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    // const AddUser_Firestore = async () => {
     const [valueName, setValueName] = useState('');
     const [valuePass, setValuePass] = useState('');
 
@@ -21,7 +21,6 @@ export default function Login() {
     const handlePassChange = (event) => {
         setValuePass(event.target.value);
     };
-
     const handleLogin = async () => {
         try {
             // Llama a la acción para recuperar los datos del usuario
@@ -46,7 +45,7 @@ export default function Login() {
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <Formik
-                            initialValues={{ username: '', password: '' }}
+                            initialValues={{ username: '', password: '' }} // Agregar el objeto initialValues
                         >
                             {({ isSubmitting }) => (
                                 <Form className="card-body">
@@ -54,35 +53,31 @@ export default function Login() {
                                         <label className="label">
                                             <span className="label-text">Nombre de Usuario</span>
                                         </label>
-                                        <Field
+                                        <input
                                             type="text"
-                                            name="username"
                                             placeholder="Nombre de Usuario"
-                                            className="input input-bordered"
                                             value={valueName}
                                             onChange={handleNameChange}
                                         />
+
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
-                                        <Field
+                                        <input
                                             type="password"
-                                            name="password"
                                             placeholder="Contraseña"
-                                            className="input input-bordered"
                                             value={valuePass}
                                             onChange={handlePassChange}
                                         />
-
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
                                             <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" onClick={() => handleLogin(valueName ,valuePass)}>Login</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() =>  handleLogin()}>Login</button><br></br>
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                     </div>
                                 </Form>
