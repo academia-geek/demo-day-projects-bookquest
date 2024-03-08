@@ -17,11 +17,11 @@ export default function Register() {
     };
 
     const RegistroFrom = () => {
-        navigate('/Register');
+        navigate('/RegistroBiblio');
     }
 
     const HomeForm = () => {
-        navigate('/');
+        navigate('/Login');
     }
     return (
         <div>

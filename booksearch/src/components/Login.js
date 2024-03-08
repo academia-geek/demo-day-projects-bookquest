@@ -16,7 +16,7 @@ export default function Login() {
         setSubmitting(false);
     };
 
-    const RegistroFrom = () => {
+    const RegistroForm = () => {
         navigate('/Register');
     }
 
@@ -59,7 +59,7 @@ export default function Login() {
 
                                         <p className='o'>O</p>
 
-                                        <button className="btn btn-active" onClick={() => RegistroFrom()}>Register</button>
+                                        <button className="btn btn-active" onClick={() => RegistroForm()}>Register</button>
 
                                         <div className="separator"></div>
 
