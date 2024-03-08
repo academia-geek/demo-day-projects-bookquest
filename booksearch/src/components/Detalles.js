@@ -11,16 +11,16 @@ export default function Detalles () {
     console.log(cat)
 
     const categorias = [
-        {id:1, categoria:"All"},
-        {id:2, categoria:"Accion"},
-        {id:3, categoria:"Ciencia"},
-        {id:4, categoria:"Fantasia"},
-        {id:5, categoria:"Misterio"},
-        {id:6, categoria:"Manga"},
-        {id:7, categoria:"Terror"},
-        {id:8, categoria:"Niños"},
-        {id:9, categoria:"Romance"},
-        {id:10, categoria:"Aventura"}
+        "All",
+        "Accion",
+        "Ciencia",
+        "Fantasia",
+        "Misterio",
+        "Manga",
+        "Terror",
+        "Niños",
+        "Romance",
+        "Aventura"
     ]
 
     const libros = [
@@ -60,8 +60,8 @@ export default function Detalles () {
             <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
                 {isDetallesPage && ( // Render contmapeos only if on /Detalles
                     <div className='ContMapeos'>
-                        {categorias.map((categoria) => (
-                            <div className='contDetails' key={categoria.id} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${categoria.categoria}`)}>{categoria.categoria}</div>
+                        {categorias.map((categoria, index) => (
+                            <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => console.log(categoria) && navigate(`/Detalles/${categoria}`)}>{categoria}</div>
                         ))}
                     </div>
                 )}
