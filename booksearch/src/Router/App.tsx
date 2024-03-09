@@ -43,6 +43,7 @@ function App() {
         <Route path="/API" element={<Api/>}/>
         <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
         <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>
+        {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
         <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
         <Route path="/GoogleMaps" element={<GoogleMaps/>}/>
       </Routes>
