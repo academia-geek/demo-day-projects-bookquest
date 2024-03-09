@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Slider.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Slider() {
+    const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(0);
+    const changePage = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const [allLibros, setAllLibros] = useState([]);
+
+    const urls = [
+        `https://biblioteca-el-chiguiro.onrender.com/libros`,
+        `https://biblioteca-el-raton.onrender.com/libros`,
+        `https://biblioteca-la-marzopa.onrender.com/libros`
+    ];
+
+    useEffect(() => {
+        console.log("Fetching books for all URLs");
+
+        // Realizar una sola solicitud para obtener todos los libros de todas las URL
+        axios
+            .all(urls.map(url => axios.get(url).then(response => response.data)))
+            .then(axios.spread((...responses) => {
+                // Combinar todos los resultados de las solicitudes en un solo array
+                const allLibros = responses.flat();
+                console.log("Received all books:", allLibros);
+                setAllLibros(allLibros);
+            }))
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    },[]);
+
     return (
         <section className="containerS">
             <div className='slider-wrapper'>
@@ -9,20 +42,14 @@ export default function Slider() {
                     {/* Logicamente se va a hacer un Mapeo  de las imagenes de los Libros
                         Estaremos con esta para las pruebas y Etc
                     */}
-                    <img id='slider-1' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610628/BookQueest/Portada%20Libros/images_mvuohs.jpg' alt=''></img>
-                    <img id="slider-2" className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610626/BookQueest/Portada%20Libros/d2db2cbe3d4637169937431046db4c61_mufpz5.jpg' alt=''></img>
-                    <img id='slider-3' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610619/BookQueest/Portada%20Libros/0cedcc243feee39342cdfe9df409e7eb_cdfmuh.jpg' alt=''></img>
-                    <img id='slider-4' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610601/BookQueest/Portada%20Libros/images_diujij.jpg' alt=''></img>
-                    <img id='slider-5' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610581/BookQueest/Portada%20Libros/1623078210-la-naranja-mecanica-anthony-burgess-201505261226_dae1sk.jpg' alt=''></img>
-                    <img id='slider-6' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610568/BookQueest/Portada%20Libros/fcb598893ba4a5fd0dee8b0cc34f055d_gholg4.jpg' alt=''></img>
-                    <img id='slider-7' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610526/BookQueest/Portada%20Libros/images_pcv1eg.jpg' alt=''></img>
-                    <img id='slider-8' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610498/BookQueest/Portada%20Libros/portadas-libros-big-2019101610_zkftpm.jpg' alt=''></img>
-                    <img id='slider-9' className='ImgSLIDER' src='https://res.cloudinary.com/dfqxaodn0/image/upload/v1709610498/BookQueest/Portada%20Libros/portadas-libros-big-2019101610_zkftpm.jpg' alt=''></img>
+                    {allLibros.slice(currentPage * 6, (currentPage + 1) * 6).map((libro, index) => (
+                        <img id={index} className='ImgSLIDER' style={{cursor: "pointer"}} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
+                    ))}
                 </div>
                 <div className='slider-nav'>
-                    <a href="#slider-1" className='slider-button'></a>
-                    <a href="#slider-5" className='slider-button'></a>
-                    <a href="#slider-9" className='slider-button'></a>
+                    <a onClick={() => changePage(0)} className='slider-button'></a>
+                    <a onClick={() => changePage(1)} className='slider-button'></a>
+                    <a onClick={() => changePage(2)} className='slider-button'></a>
                 </div>
             </div>
         </section>
