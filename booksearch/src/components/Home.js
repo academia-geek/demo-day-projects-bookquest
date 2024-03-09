@@ -3,8 +3,9 @@ import Footer from './Extra/Footer'
 import Nav from './Extra/Nav'
 import Slider from './Extra/Slider'
 import '../Styles/Home.css'
+import { useNavigate } from 'react-router-dom';
 export default function Home() {
-
+    const navigate = useNavigate();
     return (
         <div>
             <Nav />
@@ -19,7 +20,7 @@ export default function Home() {
                         <p className='contText2'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                         </p>
-                        <button className='btnB' onClick={() => alert("Sera una Ventana Nodal se Search")}>
+                        <button className='btnB' onClick={() => navigate(`/Detalles/All`)}>
                             ¡Busca ahora!
                         </button>
                     </div>
