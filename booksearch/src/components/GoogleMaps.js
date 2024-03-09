@@ -13,6 +13,18 @@ const GoogleMaps = () => {
     // Redux dispatch
     const dispatch = useDispatch();
 
+    // Recuperar Dispacht AgregarLibro
+    const [datosBiblioteca, setDatosBiblioteca] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const datos = await obtenerDatosBiblioteca();
+            setDatosBiblioteca(datos); 
+            console.log(datosBiblioteca)
+        };
+        fetchData();
+    }, []);
+
     // Carga de la API de Google Maps
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',

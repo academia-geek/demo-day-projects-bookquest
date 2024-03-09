@@ -73,12 +73,13 @@ export default function Login() {
                                         />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
-                                            <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
+                                            <button className="btn btn-warning" onClick={() => RegistroForm()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
 
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"}   onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() =>  handleLogin()}>Login</button><br></br>
                                     </div>
                                 </Form>
                             )}

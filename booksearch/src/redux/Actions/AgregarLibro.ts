@@ -69,17 +69,14 @@ export const obtenerDatosBiblioteca = () => {
             if (ubicacionBibliotecaSnap.exists()) {
                 // Obtener los datos del documento
                 const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
-                // console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
-                const datosString = JSON.stringify(ubicacionBibliotecaData);
-                localStorage.setItem("Data", datosString)
+                console.log("Datos de la biblioteca:", ubicacionBibliotecaData.ubicación);
                 // Despachar los datos obtenidos 
                 dispatch(ubicacionBibliotecaData);
-
             } else {
                 console.log("El documento no existe.");
             }
         } catch (error) {
-            console.log("Error al obtener los datos de la biblioteca:", error);
+            console.log(error);
         }
     }
 }
@@ -102,7 +99,6 @@ export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: str
                 } else if (userData.NewName_User === "//" &&  userData.Contraseña === "&&") {
                 }
             });
-
             if (loggedIn) {
                 alert('¡Felicidades, ingresaste!');
             } else {
