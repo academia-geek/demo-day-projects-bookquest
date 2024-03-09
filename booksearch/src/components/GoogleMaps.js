@@ -5,8 +5,9 @@ import { obtenerDatosBiblioteca } from '../../src/redux/Actions/AgregarLibro'; /
 import { useDispatch } from 'react-redux'; // Importación de useDispatch de react-redux
 
 const containerStyle = {
-    width: '800px',
-    height: '800px'
+    width: '500px',
+    height: '500px'
+
 };
 
 const GoogleMaps = () => {
