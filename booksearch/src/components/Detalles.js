@@ -20,6 +20,8 @@ export default function Detalles() {
     const [librosFiltrados, setLibrosFiltrados] = useState([]);
     const [libritoMayor, setLibritoMayor] = useState([]);
 
+    const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
+    const [segundoFiltro, setSegundoFiltro] = useState([])
 
     //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
     const urls = [
@@ -68,6 +70,14 @@ export default function Detalles() {
         return `rgb(${r}, ${g}, ${b}, 0.7)`;
     };
 
+    useEffect(() => {
+        // Filtrar los libros por el término de búsqueda
+        const filteredBooks = librosFiltrados.filter(libro =>
+            libro.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setSegundoFiltro(filteredBooks);
+    }, [searchTerm, librosFiltrados]); // Escuchar cambios en el término de búsqueda y la lista de libros
+
     const isDetallesPage = location.pathname === `/Detalles`;
     const isDetallesCat = location.pathname === `/Detalles/${encodedCat}`;
     const isDetallesLibro = location.pathname === `/Detalles/${encodedCat}/${encodedLibrit}`;
@@ -78,7 +88,7 @@ export default function Detalles() {
             <div>
                 {/* Contenedor del search */}
                 <div className='contSearch'>
-                    <input className='searchEs' type='search' placeholder='Busqueda'></input>
+                    <input className='searchEs' type='search' placeholder='Busqueda' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></input>
                     <button className='btnEs'>Buscar</button>
                 </div>
                 <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
@@ -95,7 +105,7 @@ export default function Detalles() {
                         )}
                         {isDetallesCat && (
                             <div className='ContMapeos'>
-                                {librosFiltrados.map((libro) => (
+                                {segundoFiltro.map((libro) => (
                                     <div
                                         key={libro.id}
                                         className='contDetailImagen'
