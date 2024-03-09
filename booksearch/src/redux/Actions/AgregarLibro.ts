@@ -1,11 +1,8 @@
-import { getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
-
-function holis() {
-    console.log("holis")
-}
+import { Navigate } from "react-router-dom";
 
 //---------------------------------------------------------------------
 export const CreateBook = (payload: object) => {
@@ -47,12 +44,25 @@ export const AddUser = (payload: object) => {
 export const RegisterUser = (payload: any) => {
     return async (dispatch: any) => {
         try {
-            const RegisterUser = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
-            const RegistroNuevoUsuario = {
-                ...payload
-            }
-            await setDoc(RegisterUser, RegistroNuevoUsuario)
-            dispatch(RegisterUser)
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, payload.email, payload.Contraseña)
+                .then(async (userCredential) => { 
+                    const user = userCredential.user;
+                    const RegisterUser = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
+                    const RegistroNuevoUsuario = {
+                        ...payload , 
+                        uid: user.uid,
+                    }
+                    await setDoc(RegisterUser, RegistroNuevoUsuario)
+                    dispatch(RegisterUser)
+                    window.location.reload()
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("Error al Registrar el Usuario.")
+                });
+
         } catch (error) {
             console.log("Error al Registrar el Usuario... ", error)
         }
@@ -72,17 +82,14 @@ export const obtenerDatosBiblioteca = () => {
             if (ubicacionBibliotecaSnap.exists()) {
                 // Obtener los datos del documento
                 const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
-                // console.log("Datos de la biblioteca:", ubicacionBibliotecaData);
-                const datosString = JSON.stringify(ubicacionBibliotecaData);
-                localStorage.setItem("Data", datosString)
+                console.log("Datos de la biblioteca:", ubicacionBibliotecaData.ubicación);
                 // Despachar los datos obtenidos 
                 dispatch(ubicacionBibliotecaData);
-
             } else {
                 console.log("El documento no existe.");
             }
         } catch (error) {
-            console.log("Error al obtener los datos de la biblioteca:", error);
+            console.log(error);
         }
     }
 }
@@ -90,23 +97,18 @@ export const obtenerDatosBiblioteca = () => {
 export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
     return async (dispatch: any) => {
         try {
-            console.log(valueName, valuePass)
-            // Consulta Firestore para obtener todos los documentos de la colección. Datos de "agregarLibros"
-            const querySnapshot = await getDocs(collection(dataBase, 'ColeccionRegistroUser'));
-            let loggedIn = false;
-            querySnapshot.forEach((doc) => {
-                const userData = doc.data();
-                // console.log(userData);
-                if (userData.NewName_User === valueName && userData.Contraseña === valuePass) {
-                    loggedIn = true;
-                }
-            });
-
-            if (loggedIn) {
-                alert('¡Felicidades, ingresaste!');
-            } else {
-                alert('Credenciales inválidas');
-            }
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, valueName, valuePass)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert('Error en autenticación:')
+                });
         } catch (error) {
             console.error('Error al recuperar información:', error);
         }

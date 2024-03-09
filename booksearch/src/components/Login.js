@@ -6,11 +6,11 @@ import { actionGoogle } from '../redux/actionsLogin';
 import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
 import { RecuperacionUsuarioRegistrados } from '../redux/Actions/AgregarLibro';
+import {AddUser} from '../redux/Actions/AgregarLibro'
 
 export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const AddUser_Firestore = async () => {
     const [valueName, setValueName] = useState('');
     const [valuePass, setValuePass] = useState('');
 
@@ -21,16 +21,39 @@ export default function Login() {
     const handlePassChange = (event) => {
         setValuePass(event.target.value);
     };
+
+    const GuardarUserAdd = async (valueName,valuePass) => {
+        if (!valueName.trim() || !valuePass.trim()) {
+            alert("Por favor, complete todos los campos.");
+            window.location.reload(); // Recarga la página
+            return;
+        }
+        try {
+            console.log("Entering GuardarUser...");
+            const AddUser_Login = {
+                uid: crypto.randomUUID(),
+                NombreUser: "Sebastian Perez",
+                Contraseña: "10221324343"
+            }
+            dispatch(AddUser(AddUser_Login))
+            console.log("Datos Add!")
+        } catch (error) {
+            console.log("Error al guardar el Login...", error);
+        }
+    }
+
     const handleLogin = async () => {
         try {
             // Llama a la acción para recuperar los datos del usuario
             await dispatch(RecuperacionUsuarioRegistrados(valueName, valuePass));
+            // Llama a GuardarUserAdd después de iniciar sesión exitosamente
+            GuardarUserAdd(valueName, valuePass);
         } catch (error) {
-            // Captura y muestra el error si ocurrió al recuperar los datos del usuario
+            console.log("Error al hacer validacion con datos...", error);
         }
     };
 
-    const RegistroFrom = () => {
+    const RegistroForm = () => {
         navigate('/Register');
     }
 
@@ -73,12 +96,13 @@ export default function Login() {
                                         />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
-                                            <button className="btn btn-warning" onClick={() => RegistroFrom()}>No tienes cuenta aún?</button>
+                                            <button className="btn btn-warning" onClick={() => RegistroForm()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() =>  handleLogin()}>Login</button><br></br>
+
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => handleLogin()}>Login</button><br></br>
                                     </div>
                                 </Form>
                             )}

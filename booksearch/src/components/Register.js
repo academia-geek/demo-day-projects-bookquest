@@ -15,6 +15,7 @@ export default function Register() {
 
     const AñadirNuevoUsuario = async () => {
         try {
+            
             console.log("Entro al Añadir...")
             const payload = {
                 NewName_User: formData.name,
@@ -29,7 +30,7 @@ export default function Register() {
             dispatch(RegisterUser(payload))
             alert("Usuario Registrado.")
         } catch (error) {
-            console.log("Error al Registrar el usuario mandando los Datos..." , error)
+            console.log("Error al Registrar el usuario mandando los Datos...", error)
         }
     }
 
