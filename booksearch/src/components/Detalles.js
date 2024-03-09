@@ -93,6 +93,7 @@ export default function Detalles() {
                 </div>
                 <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
                     <div className='fondoBlanco'>
+                        <button className='btnAtras' onClick={()=>navigate(-1)}>Atras</button>
                         {isDetallesPage && (
                             <div className='ContMapeos'>
                                 <div className='contDetails' style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/All`)}>

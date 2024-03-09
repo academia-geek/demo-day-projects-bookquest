@@ -51,9 +51,14 @@
 }
 
 .fondoBlanco{
+    display: flex;
     padding: 50px;
     background-color: rgb(255, 255, 255, 0.7);
     border-radius: 20px;
+    min-height: 400px;
+    min-width: 80%;
+    gap: 20px;
+    flex-direction: column;
 }
 
 .contDetails{
@@ -134,4 +139,16 @@
     font-family: "Roboto Slab", serif;
     font-weight: bold;
     font-size: 30px;
+}
+
+.btnAtras{
+    width: fit-content;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Roboto Slab", serif;
+    font-weight: bold;
+    background-color: #ADACAC;
+    border-radius: 20px;
+    text-align: center;
 }
