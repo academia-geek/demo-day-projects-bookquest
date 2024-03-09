@@ -68,6 +68,8 @@
     display: flex;
     justify-content: center;
     width: 200px;
+    cursor: pointer;
+    position: relative;
 }
 
 .imgLibro{
@@ -76,11 +78,20 @@
 
 .popup {
     position: absolute;
-    top: 50%; /* Centra el popup verticalmente */
-    left: calc(100% + 10px); /* Coloca el popup a un lado del libro con un espacio de 10px */
-    background-color: white;
+    width: 110%;
+    top: 50%;
+    left: calc(100% + 10px);
+    background-color: #ADACAC ;
     padding: 10px;
-    border: 1px solid black;
-    z-index: 999; /* Asegura que el popup esté por encima del resto del contenido */
-    transform: translateY(-50%); /* Centra el popup verticalmente */
+    z-index: 999;
+    transform: translateY(-50%);
+    font-size: 20px;
+    display: none; /* Por defecto, ocultamos el popup */
+    border-radius: 10px;
 }
+
+.contDetailImagen:hover .popup {
+    display: block; /* Mostramos el popup cuando se hace hover en el contenedor de imagen */
+}
+
+
