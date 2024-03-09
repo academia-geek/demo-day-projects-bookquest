@@ -74,7 +74,7 @@ export default function Login() {
                                 <Form className="card-body">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Nombre de Usuario</span>
+                                            <span className="label-text">Correo Electrónico</span>
                                         </label>
                                         <input
                                             type="text"
