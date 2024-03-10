@@ -15,6 +15,7 @@ export default function Register() {
 
     const AñadirNuevoUsuario = async () => {
         try {
+            
             console.log("Entro al Añadir...")
             const payload = {
                 NewName_User: formData.name,
