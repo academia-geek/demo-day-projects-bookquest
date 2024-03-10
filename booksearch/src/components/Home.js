@@ -56,10 +56,10 @@ export default function Home() {
                         </div>
                         <div className='infoN'>
                             <h2 className='nameN' style={{ textAlign: "end" }}>Sebastian <br></br>Perez</h2>
-                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709755701/Open-Day/287129861_5214598658634454_5380403816573380642_n_r4alnv.jpg' alt='Imagen2' />
+                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709755701/Open-Day/287129861_5214598658634454_5380403816573380642_n_r4alnv.jpg'  alt='Imagen2' />
                         </div>
                         <div className='infoN'>
-                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709756011/Open-Day/171051779_4499627910051526_9219517060017258154_n_z7jee5.jpg' alt='Imagen3' />
+                            <img className='imgN' src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709756011/Open-Day/171051779_4499627910051526_9219517060017258154_n_z7jee5.jpg'  alt='Imagen3' />
                             <h2 className='nameN' style={{ textAlign: "start" }}>Camilo <br></br>Mendoza</h2>
                         </div>
                     </div>
@@ -74,11 +74,11 @@ export default function Home() {
                                     y acceder a una amplia gama de libros. Creemos en el valor de la lectura enriquecedora y estamos
                                     comprometidos a facilitar el acceso a la literatura y el conocimiento en todas partes."</p>
                             </div>
-                            <img style={{ padding: "20px", paddingRight: "0" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/libritos_bodyqj.png' alt='Imagen1' />
+                            <img style={{ padding: "20px", paddingRight: "0" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/libritos_bodyqj.png'  alt='Imagen1'  />
                         </div>
                         <div>
                             <div className='Q'>
-                                <img style={{ padding: "20px", paddingRight: "0" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/lector_hsllte.png' alt='Imagen2' />
+                                <img style={{ padding: "20px", paddingRight: "0" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/lector_hsllte.png' alt='Imagen'  />
                                 <div className='QS'>
                                     <h1 className='PQS' style={{ textAlign: "end", marginRight: "5%", marginTop: "0" }}>Nuestro Futuro</h1>
                                     <p className='RQS'>"Nos imaginamos una biblioteca moderna y acogedora, diseñada para inspirar el

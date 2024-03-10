@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { actionGoogle } from '../redux/actionsLogin';
 import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
 import { RecuperacionUsuarioRegistrados } from '../redux/Actions/AgregarLibro';
-import {AddUser} from '../redux/Actions/AgregarLibro'
+import { AddUser } from '../redux/Actions/AgregarLibro'
 
 export default function Login() {
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [valueName, setValueName] = useState('');
     const [valuePass, setValuePass] = useState('');
-        const [modalOpen, setModalOpen] = useState(false);
-
-
     const handleNameChange = (event) => {
         setValueName(event.target.value);
     };
@@ -24,7 +22,8 @@ export default function Login() {
         setValuePass(event.target.value);
     };
 
-    const GuardarUserAdd = async (valueName,valuePass) => {
+    
+    const GuardarUserAdd = async (valueName, valuePass) => {
         if (!valueName.trim() || !valuePass.trim()) {
             alert("Por favor, complete todos los campos.");
             window.location.reload(); // Recarga la página
@@ -102,10 +101,9 @@ export default function Login() {
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button><br></br>
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => handleLogin()}>Login</button><br></br>
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}>Biblioteca</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => navigate('/Biblioteca')}>Biblioteca</button><br></br>
                                     </div>
                                 </Form>
                             )}
