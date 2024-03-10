@@ -41,10 +41,24 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 50px;
+    background-size: cover;
+}
+
+.ContCosiaco{
+    display: flex;
+    gap: 50px;
+    background-size: cover;
+}
+
+.fondoBlanco{
+    display: flex;
     padding: 50px;
     background-color: rgb(255, 255, 255, 0.7);
     border-radius: 20px;
-    background-size: cover;
+    min-height: 400px;
+    min-width: 80%;
+    gap: 20px;
+    flex-direction: column;
 }
 
 .contDetails{
@@ -81,7 +95,8 @@
     width: 110%;
     top: 50%;
     left: calc(100% + 10px);
-    background-color: #ADACAC ;
+    background-color: #545454;
+    color: white;
     padding: 10px;
     z-index: 999;
     transform: translateY(-50%);
@@ -90,8 +105,50 @@
     border-radius: 10px;
 }
 
+.boldP{
+    font-weight: bold;
+}
+
 .contDetailImagen:hover .popup {
     display: block; /* Mostramos el popup cuando se hace hover en el contenedor de imagen */
 }
 
+.contenedorDetalleLibro{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
+.imgLibroDet{
+    width: 20%;
+}
+.contDetLib{
+    background-color: #ADACAC;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: "Roboto Slab", serif;
+    height: 100%;
+}
+
+.columna{
+    flex-direction: column;
+}
+
+.h1SlideDetalle{
+    color: #30A69A;
+    font-family: "Roboto Slab", serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.btnAtras{
+    width: fit-content;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Roboto Slab", serif;
+    font-weight: bold;
+    background-color: #ADACAC;
+    border-radius: 20px;
+    text-align: center;
+}
