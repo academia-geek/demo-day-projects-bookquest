@@ -13,6 +13,8 @@ export default function Login() {
     const dispatch = useDispatch();
     const [valueName, setValueName] = useState('');
     const [valuePass, setValuePass] = useState('');
+        const [modalOpen, setModalOpen] = useState(false);
+
 
     const handleNameChange = (event) => {
         setValueName(event.target.value);
@@ -74,7 +76,7 @@ export default function Login() {
                                 <Form className="card-body">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Correo Electrónico</span>
+                                            <span className="label-text">Nombre de Usuario</span>
                                         </label>
                                         <input
                                             type="text"
@@ -101,8 +103,9 @@ export default function Login() {
                                     </div>
                                     <div className="form-control mt-6">
 
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button><br></br>
                                         <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => handleLogin()}>Login</button><br></br>
+                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}>Biblioteca</button><br></br>
                                     </div>
                                 </Form>
                             )}
