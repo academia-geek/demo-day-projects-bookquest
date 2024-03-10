@@ -15,7 +15,7 @@ export default function Register() {
 
     const AñadirNuevoUsuario = async () => {
         try {
-            
+
             console.log("Entro al Añadir...")
             const payload = {
                 NewName_User: formData.name,
@@ -62,18 +62,13 @@ export default function Register() {
                 <h2>Registro de Usuario</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="name">Nombre de Usuario:</label>
-                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                        <label htmlFor="name">Correo Electrónico:</label>
+                        <input type="email" id="name" name="name" value={formData.name} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="password">Contraseña:</label>
                         <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="email">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group">
