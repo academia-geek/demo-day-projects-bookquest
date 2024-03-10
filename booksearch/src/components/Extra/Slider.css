@@ -1,0 +1,47 @@
+/* --------- SLIDER ----------- */
+.containerS {
+    padding: 20px;
+    background-color: rgb(72, 66, 69)!important;
+}
+
+.slider-wrapper {
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    aspect-ratio: 40/10;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.ImgSLIDER {
+    object-fit: cover;
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto; 
+}
+
+.slider-nav {
+    display: flex;
+    position: absolute;
+    gap: 10px;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.slider-button {
+    position: relative;
+    top:17px;
+    width: 50px;
+    height: 10px;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.slider-button:hover {
+background: rgba(255, 255, 255);
+}
