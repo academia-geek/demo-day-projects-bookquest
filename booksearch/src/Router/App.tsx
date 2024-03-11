@@ -13,6 +13,7 @@ import GoogleMaps from '../components/GoogleMaps';
 import CrudBookBilbiotecas from '../components/Archivos-Importantes/CrudBookBilbiotecas';
 import PrivateRoute from './PrivateRoute';
 import Detalles from '../components/Detalles';
+import { Conocenos } from '../components/Conocenos';
 import Nav from '../components/Extra/Nav';
 import Biblioteca from '../components/Biblioteca';
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/Conocenos" element={<Conocenos />} />
         {/* Rutas privadas */}
         <Route path='/Detalles' element={<Detalles />} />
         <Route path="/Detalles/:cat" element={<Detalles />} />

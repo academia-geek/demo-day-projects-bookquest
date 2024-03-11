@@ -24,11 +24,12 @@ export default function Nav() {
                     <img style={{ width: "50px" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759715/Open-Day/LogoBibioteca_uyy7nf.png' alt="Imagen"></img>
                     <a className="btn btn-ghost text-xl">Book | Quest</a>
                 </div>
-                <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontWeight: "bold" }}>
-                    <li onClick={() => navigate("/")}>Inicio</li>
-                    <li onClick={() => navigate("/Detalles")}>Estanteria</li>
-                    <li onClick={() => navigate()}>Conocenos</li>
-                    <li onClick={() => navigate()}>Colaboladores</li>
+
+                <ol style={{ marginRight: "50px", gap: "60px", cursor: "pointer", fontweight: "bold" }}>
+                    <li onClick={()=>navigate("/")}>Inicio</li>
+                    <li onClick={()=>navigate("/Detalles")}>Estanteria</li>
+                    <li onClick={()=>navigate("/Conocenos")}>Conocenos</li>
+                    <li onClick={()=>navigate()}>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">
                     {NameUserActual === NameUserActual && (
