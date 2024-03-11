@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import '../Styles/StylosLoginBiblioteca.css'
 import { useNavigate } from 'react-router-dom';
+import { AñadirLibrary } from '../redux/Actions/AgregarLibro'
+import { useDispatch } from 'react-redux';
+
 
 export default function Biblioteca() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [bibliotecaData, setBibliotecaData] = useState({
         name: '',
         isbn: '',
@@ -14,6 +18,30 @@ export default function Biblioteca() {
         nit: ''
     });
 
+    const AlmacenarDatosBiblioteca = async (event) => {
+        event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+        console.log("AlmacenarDatosBiblioteca");
+        try {
+            console.log("Entering Almacenar Datos...");
+            // Usar los valores ingresados por el usuario en el formulario
+            const bibliotecaDataToSend = {
+                name: bibliotecaData.name,
+                isbn: bibliotecaData.isbn,
+                api: bibliotecaData.api,
+                email: bibliotecaData.email,
+                latitude: bibliotecaData.latitude,
+                longitude: bibliotecaData.longitude,
+                nit: bibliotecaData.nit
+            };
+            // Llama a la acción AñadirLibrary con los datos de la biblioteca
+            dispatch(AñadirLibrary(bibliotecaDataToSend));
+            console.log("Envio los Datos Correctamente.. ");
+        } catch (error) {
+            console.error("Hubo un problema en el BibliotecaData...", error);
+        }
+    };
+    
+    
     const handleChange = (event) => {
         const { id, value } = event.target;
         setBibliotecaData(prevState => ({
@@ -22,18 +50,10 @@ export default function Biblioteca() {
         }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Biblioteca Data:', bibliotecaData);
-        sessionStorage.setItem("DatosLoginBiblioteca", JSON.stringify(bibliotecaData)); // Almacena los datos en sessionStorage
-        console.log("Datos Enviados..");
-        navigate('/Detalles');
-    };
-    
     return (
         <div>
             <div className='content-form'>
-                <form className='formBiblioteca' onSubmit={handleSubmit}>
+                <form className='formBiblioteca'>
                     <div className="input-row">
                         <input className='inputBiblioteca'
                             type="text"
@@ -47,7 +67,7 @@ export default function Biblioteca() {
                             id="isbn"
                             value={bibliotecaData.isbn}
                             onChange={handleChange}
-                            placeholder='ISB de la biblioteca'
+                            placeholder='Nit de la biblioteca'
                         />
                         <input className='inputBiblioteca'
                             type="text"
@@ -89,7 +109,7 @@ export default function Biblioteca() {
 
                         />
                     </div>
-                    <button type="submit" className='btnEnviarLibrary'>Enviar</button>
+                    <button type="submit" className='btnEnviarLibrary' onClick={AlmacenarDatosBiblioteca}>Enviar</button>
                 </form>
             </div>
         </div>

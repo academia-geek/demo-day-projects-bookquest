@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { useLocation } from 'react-router-dom'; // Importación de useLocation de react-router-dom
 import { obtenerDatosBiblioteca } from '../../src/redux/Actions/AgregarLibro'; // Importación de obtenerDatosBiblioteca de redux
-import { useDispatch } from 'react-redux'; // Importación de useDispatch de react-redux
+import { useDispatch, useSelector } from 'react-redux'; // Importación de useDispatch de react-redux
 
 const containerStyle = {
     width: '500px',
@@ -10,33 +10,34 @@ const containerStyle = {
 };
 
 const GoogleMaps = () => {
+    //Estados para las Coordenadas.
+
     // Redux dispatch
     const dispatch = useDispatch();
-
-    // Recuperar Dispacht AgregarLibro
-    const [datosBiblioteca, setDatosBiblioteca] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
+    const obtenerYMostrarDatos = async () => {
+        try {
             const datos = await obtenerDatosBiblioteca();
-            setDatosBiblioteca(datos);
-            console.log(datosBiblioteca)
-        };
-        fetchData();
-    }, []);
-
+            // console.log(datos);
+            datos.forEach(coordenadas => {
+                // console.log(datos)
+                if (coordenadas.ubicación === undefined) {                    
+                    console.warn("No tiene Coordenadas...")
+                } else if (coordenadas.ubicación === coordenadas.ubicación){
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    //Llamado de la funcion de AgregarLibros Actions.
+    useEffect(() => {
+        obtenerYMostrarDatos();
+    })
     // Carga de la API de Google Maps
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
     });
-
-
-    const coordenadasLoginLongitud = localStorage.getItem("LoginLongitud");
-    const coordenadasLoginLatitud = localStorage.getItem("LoginLatitud");
-
-    console.log("Coordenadas Llegadas del Login-Longitud: " , coordenadasLoginLongitud )
-    console.log("Coordenadas Llegadas del Login-Latitud: " , coordenadasLoginLatitud )
 
     // Estados del componente
     const [map, setMap] = useState(null); // Estado para el mapa

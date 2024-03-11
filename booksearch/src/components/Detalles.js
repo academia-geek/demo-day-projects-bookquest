@@ -6,6 +6,7 @@ import '../Styles/Detalles.css';
 import axios from 'axios';
 import Slider from './Extra/Slider';
 import GoogleMaps from './GoogleMaps';
+import { obtenerDatosBiblioteca } from '../redux/Actions/AgregarLibro'
 
 export default function Detalles() {
     const navigate = useNavigate();
@@ -23,26 +24,25 @@ export default function Detalles() {
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
     const [segundoFiltro, setSegundoFiltro] = useState([])
 
-    //Estados para almacenar los datos de  la Biblioteca.
-    const [CoordenadasLoginLatitud , setCoordenadasLoginLatitud] = useState([]);
-    const [CoordenadasLoginLongitud , setCoordenadasLoginLongitud] = useState([]);
+    //Estados par la manipulacion de los datos de la biblioteca. Exportada de "AgregarLibros" e Importada "aca"
+    const [ApiBookLibrary , Set_ApiBookLibrary] = useState()
 
     //Se traen los Datos del Login de Biblioteca. Para empezar a jugar con ellos. "Sebastian."
-    useEffect(() => {
-        const storedData = sessionStorage.getItem("DatosLoginBiblioteca");
-        if (storedData) {
-            console.log(JSON.parse(storedData)); // parsear los datos.
-            const parseoDatos = JSON.parse(storedData)
-            setCoordenadasLoginLatitud(parseoDatos.latitude)
-            setCoordenadasLoginLongitud(parseoDatos.longitude)
-            localStorage.getItem("LoginLongitud" , setCoordenadasLoginLongitud)
-            localStorage.getItem("LoginLatitud" , setCoordenadasLoginLatitud)
-        } else {
-            console.error("Datos no Recuperados...");
+    const obtenerYMostrarDatos = async () => {
+        try {
+            const datos = await obtenerDatosBiblioteca();
+            datos.forEach(DatosBiblioteca => {
+                console.log(DatosBiblioteca);
+            });
+        } catch (error) {
+            console.log(error);
         }
-    }, []);
-    
-    
+    }
+    //Llamado de la funcion de AgregarLibros Actions.
+    useEffect(() => {
+        obtenerYMostrarDatos();
+    })
+
     //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
     const urls = [
         `https://biblioteca-el-chiguiro.onrender.com/libros`,
