@@ -46,11 +46,11 @@ export const RegisterUser = (payload: any) => {
         try {
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, payload.email, payload.Contraseña)
-                .then(async (userCredential) => { 
+                .then(async (userCredential) => {
                     const user = userCredential.user;
                     const RegisterUser = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
                     const RegistroNuevoUsuario = {
-                        ...payload , 
+                        ...payload,
                         uid: user.uid,
                     }
                     await setDoc(RegisterUser, RegistroNuevoUsuario)
@@ -94,20 +94,31 @@ export const obtenerDatosBiblioteca = () => {
     }
 }
 
+// Verficacion user 
 export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
     return async (dispatch: any) => {
         try {
             const auth = getAuth();
+            let autenti = false;
+            console.log(autenti);
             signInWithEmailAndPassword(auth, valueName, valuePass)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
+                    autenti = true;
+                    console.log(autenti);
+                    sessionStorage.setItem("booleanAutentication", autenti.toString());
+                    sessionStorage.setItem("nameUserSesion", valueName.toString());
+                    console.log(valueName.toString());
                     window.location.reload();
+                    window.location.href = "/"
                 })
+
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    alert('Error en autenticación:')
+                    alert('Error en autenticación:');
+                    window.location.reload();
                 });
         } catch (error) {
             console.error('Error al recuperar información:', error);
