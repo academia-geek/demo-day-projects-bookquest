@@ -23,17 +23,26 @@ export default function Detalles() {
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
     const [segundoFiltro, setSegundoFiltro] = useState([])
 
+    //Estados para almacenar los datos de  la Biblioteca.
+    const [CoordenadasLoginLatitud , setCoordenadasLoginLatitud] = useState([]);
+    const [CoordenadasLoginLongitud , setCoordenadasLoginLongitud] = useState([]);
+
     //Se traen los Datos del Login de Biblioteca. Para empezar a jugar con ellos. "Sebastian."
     useEffect(() => {
         const storedData = sessionStorage.getItem("DatosLoginBiblioteca");
         if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            console.log("Datos Recuperados:", parsedData);
-        }else {
-            console.log("Datos no Recuperados...");
+            console.log(JSON.parse(storedData)); // parsear los datos.
+            const parseoDatos = JSON.parse(storedData)
+            setCoordenadasLoginLatitud(parseoDatos.latitude)
+            setCoordenadasLoginLongitud(parseoDatos.longitude)
+            localStorage.getItem("LoginLongitud" , setCoordenadasLoginLongitud)
+            localStorage.getItem("LoginLatitud" , setCoordenadasLoginLatitud)
+        } else {
+            console.error("Datos no Recuperados...");
         }
-    }, []); 
-
+    }, []);
+    
+    
     //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
     const urls = [
         `https://biblioteca-el-chiguiro.onrender.com/libros`,

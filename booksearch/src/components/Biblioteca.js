@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import '../Styles/StylosLoginBiblioteca.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Biblioteca() {
+    const navigate = useNavigate();
     const [bibliotecaData, setBibliotecaData] = useState({
         name: '',
         isbn: '',
@@ -23,10 +25,11 @@ export default function Biblioteca() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Biblioteca Data:', bibliotecaData);
-        sessionStorage.getItem("DatosLoginBiblioteca" , bibliotecaData)
+        sessionStorage.setItem("DatosLoginBiblioteca", JSON.stringify(bibliotecaData)); // Almacena los datos en sessionStorage
         console.log("Datos Enviados..");
+        navigate('/Detalles');
     };
-
+    
     return (
         <div>
             <div className='content-form'>

@@ -11,9 +11,9 @@ export default function Nav() {
     if (autentiString === null) {
         autentiString = false;
     }
-    if (NameUserActual === null || NameUserActual === undefined) {
-        alert("Hay un Problema con el Nombre de Usuario")
-    }
+    // if (NameUserActual === null || NameUserActual === undefined) {
+    //     navigate('/login');
+    // }
     console.log("Autenticacion User: ", autentiString);
     console.log(NameUserActual);
 

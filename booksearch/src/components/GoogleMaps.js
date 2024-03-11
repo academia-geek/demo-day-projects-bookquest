@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'; // Importación de useDispatch de rea
 const containerStyle = {
     width: '500px',
     height: '500px'
-
 };
 
 const GoogleMaps = () => {
@@ -20,7 +19,7 @@ const GoogleMaps = () => {
     useEffect(() => {
         const fetchData = async () => {
             const datos = await obtenerDatosBiblioteca();
-            setDatosBiblioteca(datos); 
+            setDatosBiblioteca(datos);
             console.log(datosBiblioteca)
         };
         fetchData();
@@ -31,12 +30,19 @@ const GoogleMaps = () => {
         id: 'google-map-scxript',
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
     });
-    
+
+
+    const coordenadasLoginLongitud = localStorage.getItem("LoginLongitud");
+    const coordenadasLoginLatitud = localStorage.getItem("LoginLatitud");
+
+    console.log("Coordenadas Llegadas del Login-Longitud: " , coordenadasLoginLongitud )
+    console.log("Coordenadas Llegadas del Login-Latitud: " , coordenadasLoginLatitud )
+
     // Estados del componente
     const [map, setMap] = useState(null); // Estado para el mapa
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 }); // Estado para el centro del mapa
     const [userLocation, setUserLocation] = useState(null); // Estado para la ubicación del usuario
-    const [destination, setDestination] = useState({ lat: 6.338705,  lng: -75.558986}); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: 6.3317037, lng: -75.5578622 }); // Coordenadas del punto de llegada predeterminado
 
     // Callback para cuando el mapa se carga correctamente
     const onLoad = useCallback(function callback(map) {
