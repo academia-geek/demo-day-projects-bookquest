@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { UsuariosRegistrados } from '../redux/Actions/AgregarLibro';
-import { actionDeletePublicationAsync } from '../redux/Actions/AgregarLibro';
+// import { actionDeletePublicationAsync } from '../redux/Actions/AgregarLibro';    
 import { useDispatch } from 'react-redux';
 
 export default function ProfileUser() {
@@ -31,7 +31,7 @@ export default function ProfileUser() {
 
     const delatePublication = async () => {
         try {
-            await dispatch(actionDeletePublicationAsync(idUsuario));
+            // await dispatch(actionDeletePublicationAsync(idUsuario));
             console.log('Publicación eliminada correctamente');
         } catch (error) {
             console.error('Error al eliminar la publicación:', error);
