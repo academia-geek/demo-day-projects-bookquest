@@ -25,15 +25,29 @@ export default function Detalles() {
     const [segundoFiltro, setSegundoFiltro] = useState([])
 
     //Estados par la manipulacion de los datos de la biblioteca. Exportada de "AgregarLibros" e Importada "aca"
-    const [ApiBookLibrary , Set_ApiBookLibrary] = useState()
+    const [ApiBookLibrary, Set_ApiBookLibrary] = useState()
+
+    //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
+    const urls = [
+        `https://biblioteca-el-chiguiro.onrender.com/libros`
+    ];
+
+    const newArray = [
+
+    ]
 
     //Se traen los Datos del Login de Biblioteca. Para empezar a jugar con ellos. "Sebastian."
     const obtenerYMostrarDatos = async () => {
         try {
             const datos = await obtenerDatosBiblioteca();
             datos.forEach(DatosBiblioteca => {
-                console.log(DatosBiblioteca);
+                if (DatosBiblioteca) {
+                    newArray.push(DatosBiblioteca.urls)
+                }
+                console.log(DatosBiblioteca.urls);
+
             });
+            console.warn(newArray);
         } catch (error) {
             console.log(error);
         }
@@ -41,18 +55,10 @@ export default function Detalles() {
     //Llamado de la funcion de AgregarLibros Actions.
     useEffect(() => {
         obtenerYMostrarDatos();
-    })
-
-    //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
-    const urls = [
-        `https://biblioteca-el-chiguiro.onrender.com/libros`,
-        `https://biblioteca-el-raton.onrender.com/libros`,
-        `https://biblioteca-la-marzopa.onrender.com/libros`
-    ];
+    }, [])
 
     useEffect(() => {
-        console.log("Fetching books for all URLs");
-
+        console.log("Fetching books for all URLs"); 
         // Realizar una sola solicitud para obtener todos los libros de todas las URL
         axios
             .all(urls.map(url => axios.get(url).then(response => response.data)))
