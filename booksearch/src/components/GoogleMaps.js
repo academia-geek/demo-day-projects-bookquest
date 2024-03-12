@@ -19,11 +19,7 @@ const GoogleMaps = () => {
             const datos = await obtenerDatosBiblioteca();
             // console.log(datos);
             datos.forEach(coordenadas => {
-                // console.log(datos)
-                if (coordenadas.ubicación === undefined) {                    
-                    console.warn("No tiene Coordenadas...")
-                } else if (coordenadas.ubicación === coordenadas.ubicación){
-                }
+                console.log(coordenadas.ubicación)
             });
         } catch (error) {
             console.log(error);
