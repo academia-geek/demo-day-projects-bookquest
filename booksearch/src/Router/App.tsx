@@ -15,6 +15,9 @@ import PrivateRoute from './PrivateRoute';
 import Detalles from '../components/Detalles';
 import { Conocenos } from '../components/Conocenos';
 import Nav from '../components/Extra/Nav';
+import Biblioteca from '../components/Biblioteca';
+import ProfileUser from '../components/ProfileUser';
+
 function App() {
   const [user, setUser] = useState(false);
 
@@ -44,8 +47,10 @@ function App() {
         <Route path="/Detalles/:cat/:librit" element={<Detalles />} />
         <Route path="/API" element={<Api/>}/>
         <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
+        <Route path="/Biblioteca" element={<Biblioteca/>}/>
+        <Route path="/ProfileUser" element={<ProfileUser />} />
+        {/* <Route path="/Biblioteca" element={<Biblioteca/>}/> */}
         <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>
-        {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
         <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
         <Route path="/Nav" element={<Nav/>}/>
         <Route path="/GoogleMaps" element={<GoogleMaps/>}/>

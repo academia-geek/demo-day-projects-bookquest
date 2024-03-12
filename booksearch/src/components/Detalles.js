@@ -6,6 +6,7 @@ import '../Styles/Detalles.css';
 import axios from 'axios';
 import Slider from './Extra/Slider';
 import GoogleMaps from './GoogleMaps';
+import { obtenerDatosBiblioteca } from '../redux/Actions/AgregarLibro'
 
 export default function Detalles() {
     const navigate = useNavigate();
@@ -23,16 +24,41 @@ export default function Detalles() {
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
     const [segundoFiltro, setSegundoFiltro] = useState([])
 
+    //Estados par la manipulacion de los datos de la biblioteca. Exportada de "AgregarLibros" e Importada "aca"
+    const [ApiBookLibrary, Set_ApiBookLibrary] = useState()
+
     //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
     const urls = [
-        `https://biblioteca-el-chiguiro.onrender.com/libros`,
-        `https://biblioteca-el-raton.onrender.com/libros`,
-        `https://biblioteca-la-marzopa.onrender.com/libros`
+        `https://biblioteca-el-chiguiro.onrender.com/libros`
     ];
 
-    useEffect(() => {
-        console.log("Fetching books for all URLs");
+    const newArray = [
 
+    ]
+
+    //Se traen los Datos del Login de Biblioteca. Para empezar a jugar con ellos. "Sebastian."
+    const obtenerYMostrarDatos = async () => {
+        try {
+            const datos = await obtenerDatosBiblioteca();
+            datos.forEach(DatosBiblioteca => {
+                if (DatosBiblioteca) {
+                    newArray.push(DatosBiblioteca.urls)
+                }
+                console.log(DatosBiblioteca.urls);
+
+            });
+            console.warn(newArray);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    //Llamado de la funcion de AgregarLibros Actions.
+    useEffect(() => {
+        obtenerYMostrarDatos();
+    }, [])
+
+    useEffect(() => {
+        console.log("Fetching books for all URLs"); 
         // Realizar una sola solicitud para obtener todos los libros de todas las URL
         axios
             .all(urls.map(url => axios.get(url).then(response => response.data)))
@@ -52,7 +78,7 @@ export default function Detalles() {
                 setLibrosFiltrados(librosFiltrados);
 
                 // Elegir un libro exacto
-                const libroExacto = allLibros.filter(exacto => exacto.titulo === librit  );
+                const libroExacto = allLibros.filter(exacto => exacto.titulo === librit);
                 console.log("Filtered libro exacto:", libroExacto);
                 setLibritoMayor(libroExacto)
 
@@ -93,7 +119,7 @@ export default function Detalles() {
                 </div>
                 <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
                     <div className='fondoBlanco'>
-                        <button className='btnAtras' onClick={()=>navigate(-1)}>Atras</button>
+                        <button className='btnAtras' onClick={() => navigate(-1)}>Atras</button>
                         {isDetallesPage && (
                             <div className='ContMapeos'>
                                 <div className='contDetails' style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/All`)}>
@@ -130,41 +156,41 @@ export default function Detalles() {
                         )}
                         {isDetallesLibro &&
                             <div className='ContCosiaco'>
-                                {libritoMayor.map((exacto)=>(
-                                    <div className='contenedorDetalleLibro columna' style={{gap:"50px"}} key={exacto.id}>
+                                {libritoMayor.map((exacto) => (
+                                    <div className='contenedorDetalleLibro columna' style={{ gap: "50px" }} key={exacto.id}>
                                         <div className='contenedorDetalleLibro'>
                                             <img className='imgLibroDet' src={exacto.imagen} alt={exacto.id}></img>
                                             <div className='contDetLib'>
-                                                    <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
-                                                    <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
-                                                    <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
-                                                    <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
-                                                    <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
-                                                    <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
+                                                <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
+                                                <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
+                                                <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
+                                                <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
+                                                <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
+                                                <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
                                             </div>
                                         </div>
-                                        <div style={{display:"flex", flexDirection:"column",textAlign:"center",justifyContent:"center", gap: "15px"}}>
+                                        <div style={{ display: "flex", flexDirection: "column", textAlign: "center", justifyContent: "center", gap: "15px" }}>
                                             <h1 className='h1SlideDetalle'>Tambien te puede interesar<br></br>según tu categoria</h1>
                                             <div className='slider'>
                                                 {/*aqui dejar solo un mapeo, puse dos pq el slide quedaba flojito xd*/}
-                                                {librosFiltrados.map((libro) =>(
-                                                    <img id='slider-1' className='ImgSLIDER' style={{cursor: "pointer"}} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
+                                                {librosFiltrados.map((libro) => (
+                                                    <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
                                                 ))}
-                                                {librosFiltrados.map((libro) =>(
-                                                    <img id='slider-1' className='ImgSLIDER' style={{cursor: "pointer"}} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
+                                                {librosFiltrados.map((libro) => (
+                                                    <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
                                                 ))}
                                             </div>
                                         </div>
-                                        <div style={{display:"flex", gap:"30px"}}>
+                                        <div style={{ display: "flex", gap: "30px" }}>
                                             <GoogleMaps />
                                             {/*info de la biblioteca y que tales*/}
-                                            <div className='contDetLib' style={{width:"500px"}}>
-                                                    <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
-                                                    <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
-                                                    <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
-                                                    <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
-                                                    <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
-                                                    <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
+                                            <div className='contDetLib' style={{ width: "500px" }}>
+                                                <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
+                                                <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
+                                                <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
+                                                <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
+                                                <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
+                                                <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
                                             </div>
                                         </div>
                                     </div>

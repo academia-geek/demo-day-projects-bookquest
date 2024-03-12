@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { DocumentData, collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
 import { Navigate } from "react-router-dom";
 
@@ -22,22 +22,6 @@ export const CreateBook = (payload: object) => {
 
 //---------------------------------------------------------------------
 
-// Add User
-export const AddUser = (payload: object) => {
-    return async (dispatch: any) => {
-        try {
-            const AddNewUser = doc(dataBase, "ColeccionUsuarios", crypto.randomUUID());
-            const PayloadNewUser = {
-                ...payload
-            }
-            await setDoc(AddNewUser, PayloadNewUser)
-            dispatch(PayloadNewUser)
-            console.log("Usuario agregado Correctamente.")
-        } catch (error) {
-            console.log("Error al  Agregar Usuario : ", error)
-        }
-    }
-}
 //---------------------------------------------------------------------
 
 // Add New User -Register-
@@ -70,29 +54,6 @@ export const RegisterUser = (payload: any) => {
 }
 
 //---------------------------------------------------------------------
-// Library Information ---important---
-export const obtenerDatosBiblioteca = () => {
-    return async (dispatch: any) => {
-        try {
-            // Obtener la referencia al documento que deseas leer
-            const ubicacionBibliotecaRef = doc(dataBase, 'ColeccionBibliotecas', 'dqqyrF5cIU1ivcE9FkAG');
-            // Obtener los datos del documento
-            const ubicacionBibliotecaSnap = await getDoc(ubicacionBibliotecaRef);
-            // Verificar si el documento existe
-            if (ubicacionBibliotecaSnap.exists()) {
-                // Obtener los datos del documento
-                const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
-                console.log("Datos de la biblioteca:", ubicacionBibliotecaData.ubicación);
-                // Despachar los datos obtenidos 
-                dispatch(ubicacionBibliotecaData);
-            } else {
-                console.log("El documento no existe.");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
 
 // Verficacion user 
 export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
@@ -125,3 +86,64 @@ export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: str
         }
     };
 }
+
+
+//Agregar Libro o biblioteca
+export const AñadirLibrary = (payload: object) => {
+    return async (dispatch: any) => {
+        try {
+            const AñadirLibro = doc(dataBase , "ColeccionBibliotecas" , crypto.randomUUID())
+            const PaylodaAñadirLibro = {
+                ...payload
+            }
+            await setDoc(AñadirLibro , PaylodaAñadirLibro)
+            dispatch(PaylodaAñadirLibro)
+            console.error("Biblioteca almacenada Correctamente...");
+        } catch (error) {
+            console.error("Error al Añadir Biblioteca...")
+        }
+    }
+}
+
+
+// Add User
+export const AddUser = (payload: object) => {
+    return async (dispatch: any) => {
+        try {
+            const AddNewUser = doc(dataBase, "ColeccionUsuarios", crypto.randomUUID());
+            const PayloadNewUser = {
+                ...payload
+            }
+            await setDoc(AddNewUser, PayloadNewUser)
+            dispatch(PayloadNewUser)
+            console.log("Usuario agregado Correctamente.")
+        } catch (error) {
+            console.log("Error al  Agregar Usuario : ", error)
+        }
+    }
+}
+
+// Library Information ---important---
+export const obtenerDatosBiblioteca = async (): Promise<DocumentData[]> => {
+    try {
+        // Obtener la referencia a la colección
+        const bibliotecasCollectionRef = collection(dataBase, 'ColeccionBibliotecas');
+        // Obtener todos los documentos de la colección
+        const snapshot = await getDocs(bibliotecasCollectionRef);
+
+        const bibliotecas: DocumentData[] = [];
+        snapshot.forEach(doc => {
+            // Obtener los datos de cada documento
+            const bibliotecaData = doc.data();
+            // Agregar los datos al array de bibliotecas
+            bibliotecas.push(bibliotecaData);
+        });
+
+        // Devolver el array de bibliotecas
+        return bibliotecas;
+    } catch (error) {
+        console.error("Error al obtener datos de la colección:", error);
+        throw error;
+    }
+};
+

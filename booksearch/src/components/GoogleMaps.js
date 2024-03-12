@@ -2,41 +2,48 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { useLocation } from 'react-router-dom'; // Importación de useLocation de react-router-dom
 import { obtenerDatosBiblioteca } from '../../src/redux/Actions/AgregarLibro'; // Importación de obtenerDatosBiblioteca de redux
-import { useDispatch } from 'react-redux'; // Importación de useDispatch de react-redux
+import { useDispatch, useSelector } from 'react-redux'; // Importación de useDispatch de react-redux
 
 const containerStyle = {
     width: '500px',
     height: '500px'
-
 };
 
 const GoogleMaps = () => {
+    //Estados para las Coordenadas.
+
     // Redux dispatch
     const dispatch = useDispatch();
-
-    // Recuperar Dispacht AgregarLibro
-    const [datosBiblioteca, setDatosBiblioteca] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
+    const obtenerYMostrarDatos = async () => {
+        try {
             const datos = await obtenerDatosBiblioteca();
-            setDatosBiblioteca(datos); 
-            console.log(datosBiblioteca)
-        };
-        fetchData();
-    }, []);
-
+            // console.log(datos);
+            datos.forEach(coordenadas => {
+                // console.log(datos)
+                if (coordenadas.ubicación === undefined) {                    
+                    console.warn("No tiene Coordenadas...")
+                } else if (coordenadas.ubicación === coordenadas.ubicación){
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    //Llamado de la funcion de AgregarLibros Actions.
+    useEffect(() => {
+        obtenerYMostrarDatos();
+    })
     // Carga de la API de Google Maps
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
         googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
     });
-    
+
     // Estados del componente
     const [map, setMap] = useState(null); // Estado para el mapa
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 }); // Estado para el centro del mapa
     const [userLocation, setUserLocation] = useState(null); // Estado para la ubicación del usuario
-    const [destination, setDestination] = useState({ lat: 6.338705,  lng: -75.558986}); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: 6.3317037, lng: -75.5578622 }); // Coordenadas del punto de llegada predeterminado
 
     // Callback para cuando el mapa se carga correctamente
     const onLoad = useCallback(function callback(map) {
