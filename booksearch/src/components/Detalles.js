@@ -24,68 +24,40 @@ export default function Detalles() {
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
     const [segundoFiltro, setSegundoFiltro] = useState([])
 
-    //Estados par la manipulacion de los datos de la biblioteca. Exportada de "AgregarLibros" e Importada "aca"
-    const [ApiBookLibrary, Set_ApiBookLibrary] = useState()
-
-    //aqui toca almacenar los url de todas las bases de datos mapeando la coleccion de UsuariosBiblioteca o como se llame en firebase
-    const urls = [
-        `https://biblioteca-el-chiguiro.onrender.com/libros`
-    ];
-
-    const newArray = [
-
-    ]
-
-    //Se traen los Datos del Login de Biblioteca. Para empezar a jugar con ellos. "Sebastian."
-    const obtenerYMostrarDatos = async () => {
-        try {
-            const datos = await obtenerDatosBiblioteca();
-            datos.forEach(DatosBiblioteca => {
-                if (DatosBiblioteca) {
-                    newArray.push(DatosBiblioteca.urls)
-                }
-                console.log(DatosBiblioteca.urls);
-
-            });
-            console.warn(newArray);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    //Llamado de la funcion de AgregarLibros Actions.
+    
+   // Obtener las URLs de las bibliotecas
     useEffect(() => {
-        obtenerYMostrarDatos();
-    }, [])
-
-    useEffect(() => {
-        console.log("Fetching books for all URLs"); 
-        // Realizar una sola solicitud para obtener todos los libros de todas las URL
-        axios
-            .all(urls.map(url => axios.get(url).then(response => response.data)))
-            .then(axios.spread((...responses) => {
-                // Combinar todos los resultados de las solicitudes en un solo array
-                const allLibros = responses.flat();
-                console.log("Received all books:", allLibros);
-                setAllLibros(allLibros);
+        const obtenerYMostrarDatos = async () => {
+            try {
+                const datos = await obtenerDatosBiblioteca();
+                const urls = datos.flatMap(biblioteca => biblioteca.urls);
+                console.log("URLs de bibliotecas:", urls);
+                // Realizar una sola solicitud para obtener todos los libros de todas las URL
+                const responses = await Promise.all(urls.map(url => axios.get(url)));
+                const libros = responses.map(response => response.data).flat();
+                console.log("Libros recibidos:", libros);
+                setAllLibros(libros);
 
                 // Obtener géneros únicos de todos los libros
-                const generosUnicos = Array.from(new Set(allLibros.map(libro => libro.genero)));
+                const generosUnicos = Array.from(new Set(libros.map(libro => libro.genero)));
                 setCategorias(generosUnicos);
 
                 // Filtrar los libros por categoría
-                const librosFiltrados = allLibros.filter(libro => cat === 'All' || libro.genero === cat);
-                console.log("Filtered books for category:", librosFiltrados);
+                const librosFiltrados = libros.filter(libro => cat === 'All' || libro.genero === cat);
+                console.log("Libros filtrados por categoría:", librosFiltrados);
                 setLibrosFiltrados(librosFiltrados);
 
                 // Elegir un libro exacto
-                const libroExacto = allLibros.filter(exacto => exacto.titulo === librit);
-                console.log("Filtered libro exacto:", libroExacto);
-                setLibritoMayor(libroExacto)
+                const libroExacto = libros.filter(exacto => exacto.titulo === librit);
+                console.log("Libro exacto encontrado:", libroExacto);
+                setLibritoMayor(libroExacto);
 
-            }))
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
+            }
+        };
+        
+        obtenerYMostrarDatos();
     }, [cat, librit]);
 
     const getRandomColor = () => {
