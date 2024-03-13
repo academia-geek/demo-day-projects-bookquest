@@ -10,6 +10,7 @@ import { GeoPoint } from 'firebase/firestore';
 
 
 export default function Biblioteca() {
+    const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [bibliotecaData, setBibliotecaData] = useState({
@@ -44,7 +45,11 @@ export default function Biblioteca() {
         }
     };
     
-    
+    const handleRegister =() =>{
+        AlmacenarDatosBiblioteca()
+        navigate ("/Login")
+    }
+
     const handleChange = (event) => {
         const { id, value } = event.target;
         setBibliotecaData(prevState => ({
@@ -83,7 +88,7 @@ export default function Biblioteca() {
                                             onChange={handleChange}
                                             placeholder='Nombre de la biblioteca'
                                         />
-                                        <div style={{display:"flex", gap:"10px"}}>
+                                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                                             <input className='inputBiblioteca'
                                                 type="password"
                                                 id="contra"
@@ -100,6 +105,16 @@ export default function Biblioteca() {
                                                 placeholder='Url Base de Datos'
                                                 style={{width:"100%", borderRadius:"10px"}}
                                             />
+                                            <div className='pdelPop' style={{display:"flex", backgroundColor:"gray", borderRadius:"10px", padding:"5px", cursor:"pointer", position:"relative"}} onMouseEnter={() => setShowPopup(true)} onMouseLeave={() => setShowPopup(false)}>?</div>
+                                                {showPopup && (
+                                                    <div className='popup2 texTo2' style={{display:"flex", gap:"10px"}}> Si aun no tienes tu base de datos pública desplegada,
+                                                         comunicate con nosotros para darte asesoria, he aqui un ejemplo de su estructura y campos necesarios para el buen funcionamiento dentro
+                                                        de nuestra plataforma. en imagen se agrega un url rescatable con la imagen 'preferiblemente a color' del libro, definir por defecto 
+                                                        la disponibilidad en "true" mientras se tengan existencias
+
+                                                        <img style={{objectFit:"fill", height:"100%"}} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1710365800/Open-Day/CapturaDB_ej6ozk.png'></img>
+                                                    </div>
+                                                )}
                                         </div>
                                         <input className='inputBiblioteca'
                                             style={{borderRadius:"10px"}}
@@ -141,7 +156,7 @@ export default function Biblioteca() {
                                         <label className="infoN">
                                             <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta? <span style={{color:"#30A69A", padding:"0"}}>Inicia sesión</span></a>
                                         </label>
-                                    <button type="submit" style={{backgroundColor:"#8E8D8E", width:"100%"}} className="btn btn-active" onClick={AlmacenarDatosBiblioteca}>Enviar</button>
+                                    <button type="submit" style={{backgroundColor:"#8E8D8E", width:"100%"}} className="btn btn-active" onClick={handleRegister}>Enviar</button>
                                 </Form>
                             )}
                         </Formik>
@@ -153,69 +168,3 @@ export default function Biblioteca() {
 
     );
 }
-
-//    return (
-//        <div>
-//            <div className='content-form'>
-//                <form className='formBiblioteca'>
-//                    <div className="input-row">
-//                        <input className='inputBiblioteca'
-//                            type="text"
-//                            id="name"
-//                            value={bibliotecaData.name}
-//                            onChange={handleChange}
-//                            placeholder='Nombre de la biblioteca'
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="text"
-//                            id="isbn"
-//                            value={bibliotecaData.isbn}
-//                            onChange={handleChange}
-//                            placeholder='Nit de la biblioteca'
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="text"
-//                            id="api"
-//                            value={bibliotecaData.api}
-//                            onChange={handleChange}
-//                            placeholder='API de tu Bilbioteca'
-//
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="email"
-//                            id="email"
-//                            value={bibliotecaData.email}
-//                            onChange={handleChange}
-//                            placeholder='Email de tu Biblioteca'
-//
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="text"
-//                            id="latitude"
-//                            value={bibliotecaData.latitude}
-//                            onChange={handleChange}
-//                            placeholder='Latitud de la biblioteca'
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="text"
-//                            id="longitude"
-//                            value={bibliotecaData.longitude}
-//                            onChange={handleChange}
-//                            placeholder='Longitud de la biblioteca'
-//
-//                        />
-//                        <input className='inputBiblioteca'
-//                            type="number"
-//                            id="nit"
-//                            value={bibliotecaData.nit}
-//                            onChange={handleChange}
-//                            placeholder='NIT de la biblioteca'
-//
-//                        />
-//                    </div>
-//                    <button type="submit" className='btnEnviarLibrary' onClick={AlmacenarDatosBiblioteca}>Enviar</button>
-//                </form>
-//            </div>
-//        </div>
-//    );
-//}
