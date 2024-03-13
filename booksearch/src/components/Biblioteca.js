@@ -139,7 +139,7 @@ export default function Biblioteca() {
                                         />
                                     </div>
                                         <label className="infoN">
-                                            <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta?</a>
+                                            <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta? <span style={{color:"#30A69A", padding:"0"}}>Inicia sesión</span></a>
                                         </label>
                                     <button type="submit" style={{backgroundColor:"#8E8D8E", width:"100%"}} className="btn btn-active" onClick={AlmacenarDatosBiblioteca}>Enviar</button>
                                 </Form>

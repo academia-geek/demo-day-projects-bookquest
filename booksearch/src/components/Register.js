@@ -116,7 +116,7 @@ export default function Register() {
                                     </div>
 
                                     <label className="infoN" style={{padding:"0"}}>
-                                            <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta?</a>
+                                            <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta? <span style={{color:"#30A69A", padding:"0"}}>Inicia sesión</span></a>
                                     </label>
                                     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                                         <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
