@@ -85,8 +85,8 @@ export default function Login() {
                                         <label className="label">
                                             <span className="label-text">Correo Electronico</span>
                                         </label>
-                                        <input
-                                            style={{borderRadius:"10px", paddingLeft:"2px"}}
+                                        <input className='inputBiblioteca'
+                                            style={{borderRadius:"10px"}}
                                             type="text"
                                             placeholder="Correo Electronico"
                                             value={valueName}
@@ -97,8 +97,8 @@ export default function Login() {
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
-                                        <input
-                                            style={{borderRadius:"10px", paddingLeft:"2px"}}
+                                        <input className='inputBiblioteca'
+                                            style={{borderRadius:"10px"}}
                                             type="password"
                                             placeholder="Contraseña"
                                             value={valuePass}
