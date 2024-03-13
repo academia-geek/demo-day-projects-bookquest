@@ -23,7 +23,7 @@ export default function Nav() {
     return (
         <div>
             <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.62)", color: "white", width: "100%" }}>
-                <div className="flex-1" style={{ gap: "20px", padding: "10px" }}>
+                <div className="flex-1" onClick={()=> navigate("/")} style={{ gap: "20px", padding: "10px", cursor:"pointer" }}>
                     <img style={{ width: "50px" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759715/Open-Day/LogoBibioteca_uyy7nf.png' alt="Imagen"></img>
                     <a className="btn btn-ghost" style={{fontFamily:"Roboto Slab, serif", fontweight:"bold", fontSize:"25px"}}>Book | Quest</a>
                 </div>

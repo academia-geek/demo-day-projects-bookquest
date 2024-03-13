@@ -42,7 +42,7 @@ export const Conocenos = () => {
                                 <p className='texTo2'>Nuestro patrimonio bibliográfico abarca una<br></br>amplia variedad de temas y autores, Estos<br></br>documentos, están disponibles para consulta<br></br>en nuestra plataforma.</p>
                             </div>
                             <div className='contTextoChido'>
-                                <p className='texTo2'>Únete a nosotros en BookFinder y descubre la riqueza<br></br>del patrimonio bibliográfico y documental de nuestra<br></br>comunidad.
+                                <p className='texTo2'>Únete a nosotros en Book | Quest y descubre la riqueza<br></br>del patrimonio bibliográfico y documental de nuestra<br></br>comunidad.
                                     ¡Explora, investiga y sumérgete en nuestra<br></br>biblioteca virtual!</p>
                             </div>
                         </div>
