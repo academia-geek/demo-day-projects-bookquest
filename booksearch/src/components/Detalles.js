@@ -84,97 +84,95 @@ export default function Detalles() {
         <div>
             <Nav />
             <div>
-                <Nav />
-                <div>
-                    {/* Contenedor del search */}
-                    <div className='contSearch'>
-                        <input className='searchEs' type='search' placeholder='Busqueda' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></input>
-                        <button className='btnEs'>Buscar</button>
-                    </div>
-                    <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
-                        <div className='fondoBlanco'>
-                            <button className='btnAtras' onClick={() => navigate(-1)}>Atras</button>
-                            {isDetallesPage && (
-                                <div className='ContMapeos'>
-                                    <div className='contDetails' style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/All`)}>
-                                        All
+                {/* Contenedor del search */}
+                <div className='contSearch' style={{position:"sticky", top:"0", backgroundColor:"white", zIndex:"999"}}>
+                    <input className='searchEs' type='search' placeholder='Busqueda' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></input>
+                    <button className='btnEs'>Buscar</button>
+                </div>
+                <div className='imgLibritos' style={{ width: '100%', minHeight: '600px', position: 'relative' }}>
+                    <div className='fondoBlanco'>
+                        <button className='btnAtras' onClick={() => navigate(-1)}>Atras</button>
+                        {isDetallesPage && (
+                            <div className='ContMapeos'>
+                                <div className='contDetails' style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/All`)}>
+                                    All
+                                </div>
+                                {categorias.map((genero, index) => (
+                                    <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${genero}`)}>{genero}</div>
+                                ))}
+                            </div>
+                        )}
+                        {isDetallesCat && (
+                            <div className='ContMapeos'>
+                                {segundoFiltro.map((libro) => (
+                                    <div
+                                        key={libro.id}
+                                        className='contDetailImagen'
+                                        onMouseEnter={() => setShowPopup(true)}
+                                        onMouseLeave={() => setShowPopup(false)}
+                                        onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}
+                                    >
+                                        <img className='imgLibro' src={libro.imagen} alt={libro.id}></img>
+                                        {showPopup && (
+                                            <div className='popup texTo2'>
+                                                <span className='boldP'>Titulo:</span> {libro.titulo}<br></br><br></br>
+                                                <span className='boldP'>Genero:</span> {libro.genero}<br></br><br></br>
+                                                <span className='boldP'>Autor:</span> {libro.autor}<br></br><br></br>
+                                                <span className='boldP'>Publicacion:</span> {libro.año_publicacion}<br></br><br></br>
+                                                <span className='boldP'>Isbn:</span> {libro.isbn}
+                                            </div>
+                                        )}
                                     </div>
-                                    {categorias.map((genero, index) => (
-                                        <div className='contDetails' key={index} style={{ backgroundColor: getRandomColor() }} onClick={() => navigate(`/Detalles/${genero}`)}>{genero}</div>
-                                    ))}
-                                </div>
-                            )}
-                            {isDetallesCat && (
-                                <div className='ContMapeos'>
-                                    {segundoFiltro.map((libro) => (
-                                        <div
-                                            key={libro.id}
-                                            className='contDetailImagen'
-                                            onMouseEnter={() => setShowPopup(true)}
-                                            onMouseLeave={() => setShowPopup(false)}
-                                            onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}
-                                        >
-                                            <img className='imgLibro' src={libro.imagen} alt={libro.id}></img>
-                                            {showPopup && (
-                                                <div className='popup'>
-                                                    <span className='boldP'>Titulo:</span> {libro.titulo}<br></br>
-                                                    <span className='boldP'>Genero:</span> {libro.genero}<br></br>
-                                                    <span className='boldP'>Autor:</span> {libro.autor}<br></br>
-                                                    <span className='boldP'>Publicacion:</span> {libro.año_publicacion}<br></br>
-                                                    <span className='boldP'>Isbn:</span> {libro.isbn}
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                            {isDetallesLibro &&
-                                <div className='ContCosiaco'>
-                                    {libritoMayor.map((exacto) => (
-                                        <div className='contenedorDetalleLibro columna' style={{ gap: "50px" }} key={exacto.id}>
-                                            <div className='contenedorDetalleLibro'>
-                                                <img className='imgLibroDet' src={exacto.imagen} alt={exacto.id}></img>
-                                                <div className='contDetLib'>
-                                                    <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
-                                                    <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
-                                                    <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
-                                                    <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
-                                                    <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
-                                                    <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
-                                                </div>
-                                            </div>
-                                            <div style={{ display: "flex", flexDirection: "column", textAlign: "center", justifyContent: "center", gap: "15px" }}>
-                                                <h1 className='h1SlideDetalle'>Tambien te puede interesar<br></br>según tu categoria</h1>
-                                                <div className='slider'>
-                                                    {/*aqui dejar solo un mapeo, puse dos pq el slide quedaba flojito xd*/}
-                                                    {librosFiltrados.map((libro) => (
-                                                        <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
-                                                    ))}
-                                                    {librosFiltrados.map((libro) => (
-                                                        <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                            <div style={{ display: "flex", gap: "30px" }}>
-                                                <GoogleMaps />
-                                                {/*info de la biblioteca y que tales*/}
-                                                <div className='contDetLib' style={{ width: "500px" }}>
-                                                    <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
-                                                    <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
-                                                    <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
-                                                    <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
-                                                    <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
-                                                    <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
-                                                </div>
+                                ))}
+                            </div>
+                        )}
+                        {isDetallesLibro &&
+                            <div className='ContCosiaco'>
+                                {libritoMayor.map((exacto) => (
+                                    <div className='contenedorDetalleLibro columna' style={{ gap: "50px" }} key={exacto.id}>
+                                        <div className='contenedorDetalleLibro'>
+                                            <img className='imgLibroDet' src={exacto.imagen} alt={exacto.id}></img>
+                                            <div className='contDetLib texTo2'>
+                                                <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
+                                                <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
+                                                <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
+                                                <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
+                                                <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
+                                                <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            }
-                        </div>
+                                        <div style={{ display: "flex", flexDirection: "column", textAlign: "center", justifyContent: "center", gap: "15px" }}>
+                                            <h1 className='h1SlideDetalle'>Tambien te puede interesar<br></br>según tu categoria</h1>
+                                            <div className='slider'>
+                                                {/*aqui dejar solo un mapeo, puse dos pq el slide quedaba flojito xd*/}
+                                                {librosFiltrados.map((libro) => (
+                                                    <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
+                                                ))}
+                                                {librosFiltrados.map((libro) => (
+                                                    <img id='slider-1' className='ImgSLIDER' style={{ cursor: "pointer" }} src={libro.imagen} alt={libro.id} onClick={() => navigate(`/Detalles/${libro.genero}/${libro.titulo}`)}></img>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div style={{ display: "flex", gap: "30px" }}>
+                                            <GoogleMaps />
+                                            {/*info de la biblioteca y que tales*/}
+                                            <div className='contDetLib texTo2' style={{ width: "500px" }}>
+                                                <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
+                                                <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
+                                                <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
+                                                <span className='resaltado2'>Publicacion:</span> {exacto.año_publicacion}<br></br>
+                                                <span className='resaltado2'>Isbn:</span> {exacto.isbn}<br></br>
+                                                <span className='resaltado2'>Sinopsis:</span> {exacto.sinopsis}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        }
                     </div>
                 </div>
-                <Footer />
             </div>
-        );
-    }
+            <Footer />
+        </div>
+    );
+}
