@@ -114,11 +114,11 @@ export default function Detalles() {
                                     >
                                         <img className='imgLibro' src={libro.imagen} alt={libro.id}></img>
                                         {showPopup && (
-                                            <div className='popup'>
-                                                <span className='boldP'>Titulo:</span> {libro.titulo}<br></br>
-                                                <span className='boldP'>Genero:</span> {libro.genero}<br></br>
-                                                <span className='boldP'>Autor:</span> {libro.autor}<br></br>
-                                                <span className='boldP'>Publicacion:</span> {libro.año_publicacion}<br></br>
+                                            <div className='popup texTo2'>
+                                                <span className='boldP'>Titulo:</span> {libro.titulo}<br></br><br></br>
+                                                <span className='boldP'>Genero:</span> {libro.genero}<br></br><br></br>
+                                                <span className='boldP'>Autor:</span> {libro.autor}<br></br><br></br>
+                                                <span className='boldP'>Publicacion:</span> {libro.año_publicacion}<br></br><br></br>
                                                 <span className='boldP'>Isbn:</span> {libro.isbn}
                                             </div>
                                         )}
@@ -132,7 +132,7 @@ export default function Detalles() {
                                     <div className='contenedorDetalleLibro columna' style={{ gap: "50px" }} key={exacto.id}>
                                         <div className='contenedorDetalleLibro'>
                                             <img className='imgLibroDet' src={exacto.imagen} alt={exacto.id}></img>
-                                            <div className='contDetLib'>
+                                            <div className='contDetLib texTo2'>
                                                 <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
                                                 <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
                                                 <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
@@ -156,7 +156,7 @@ export default function Detalles() {
                                         <div style={{ display: "flex", gap: "30px" }}>
                                             <GoogleMaps />
                                             {/*info de la biblioteca y que tales*/}
-                                            <div className='contDetLib' style={{ width: "500px" }}>
+                                            <div className='contDetLib texTo2' style={{ width: "500px" }}>
                                                 <span className='resaltado2'>Titulo:</span> {exacto.titulo}<br></br>
                                                 <span className='resaltado2'>Genero:</span> {exacto.genero}<br></br>
                                                 <span className='resaltado2'>Autor:</span> {exacto.autor}<br></br>
