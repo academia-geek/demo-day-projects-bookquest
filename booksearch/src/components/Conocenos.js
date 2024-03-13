@@ -11,7 +11,7 @@ export const Conocenos = () => {
         <div>
             <Nav />
             <div style={{ width: '100%', minHeigh: '100px' }}>
-                <div className='contInfoLanding' style={{ width: '100%', minHeight: '600px', position: 'relative', justifyContent: "space-around", padding: "60px" }}>
+                <div className='contInfoLanding' style={{ width: '100%', minHeight: '600px', position: 'relative', justifyContent: "space-around", padding: "60px"}}>
                     <img style={{ position: "absolute", left: "35%", bottom: "15px" }} src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709759716/Open-Day/lector_hsllte.png' />
                     <div style={{ backgroundColor: "rgb(255,255,255)", padding: "40px", paddingLeft: "60px", paddingRight: "60px", borderRadius: "10px" }}>
                         <h1 className='texTo'>"Descubre un<br></br><span className="resaltado">mundo</span> de<br></br><span className="resaltado">conocimiento</span> en<br></br> tus <span className="resaltado">manos</span>"</h1>

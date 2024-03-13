@@ -62,13 +62,20 @@ export default function Login() {
     return (
         <div>
             <Nav />
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">¡Inicia Sesión!</h1>
-                        <p className="py-6">Explora, Descubre, Sumérgete en un Mar de Conocimiento en la Biblioteca Digital.</p>
+            <div className="hero min-h-screen bg-base-200" style={{backgroundColor:"#B8B8B8"}}>
+                <img src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709768800/Open-Day/LogoBiblioNube_dbrkmt.png' style={{opacity:"0.2", width:"50%"}}/>
+                <div className="hero-content flex-col lg:flex-row" style={{justifyContent:"space-between", width:"90%"}}>
+                    <div style={{display:"flex" ,alignItems:"center", justifyContent:"center", flexDirection:"column", marginLeft:"8%"}}>
+                        <h1 style={{fontSize:"45px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content"}} className="texTo">¡Inicia Sesión!</h1>
+                        <br></br>
+                        <p style={{fontSize:"30px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content", textAlign:"center"}} className="texTo2">Comienza a <span className="resaltado2">navegar</span><br></br>
+                            en nuestra <span className="resaltado2">nube</span> de libros,<br></br>
+                            siéntete <span className="resaltado2">libre</span> de encontrar<br></br>
+                            lo que <span className="resaltado2">necesitas</span> cuando<br></br>
+                            lo necesitas.
+                        </p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100" style={{backgroundColor:"rgb(255,255,255,0.5)"}}>
                         <Formik
                             initialValues={{ username: '', password: '' }} // Agregar el objeto initialValues
                         >
@@ -76,21 +83,22 @@ export default function Login() {
                                 <Form className="card-body">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Nombre de Usuario</span>
+                                            <span className="label-text">Correo Electronico</span>
                                         </label>
                                         <input
+                                            style={{borderRadius:"10px", paddingLeft:"2px"}}
                                             type="text"
                                             placeholder="Correo Electronico"
                                             value={valueName}
                                             onChange={handleNameChange}
                                         />
-
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Contraseña</span>
                                         </label>
                                         <input
+                                            style={{borderRadius:"10px", paddingLeft:"2px"}}
                                             type="password"
                                             placeholder="Contraseña"
                                             value={valuePass}
@@ -98,7 +106,7 @@ export default function Login() {
                                         />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
-                                            <button className="btn btn-warning" onClick={() => RegistroForm()}>No tienes cuenta aún?</button>
+                                            <button className="btn btn-warning" style={{padding:"10px"}} onClick={() => RegistroForm()}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
