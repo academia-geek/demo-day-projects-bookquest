@@ -12,12 +12,21 @@ import { RegisterUser } from '../redux/Actions/AgregarLibro';
 export default function Register() {
     const dispatch = useDispatch();
     // const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        name: '',
+        password: '',
+        email: '',
+        terms: false,
+        dataTreatment: false,
+        google: false,
+        twitter: false
+    });
 
     const AñadirNuevoUsuario = async () => {
         try {
-
             console.log("Entro al Añadir...")
             const payload = {
+                id: Math.floor(Math.random() * Date.now()).toString(16),
                 NewName_User: formData.name,
                 Contraseña: formData.password,
                 ContraseñaTwo: formData.password,
@@ -34,15 +43,7 @@ export default function Register() {
         }
     }
 
-    const [formData, setFormData] = useState({
-        name: '',
-        password: '',
-        email: '',
-        terms: false,
-        dataTreatment: false,
-        google: false,
-        twitter: false
-    });
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;

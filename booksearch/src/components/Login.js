@@ -21,42 +21,43 @@ export default function Login() {
     const handlePassChange = (event) => {
         setValuePass(event.target.value);
     };
-
-    
-    const GuardarUserAdd = async (valueName, valuePass) => {
-        if (!valueName.trim() || !valuePass.trim()) {
-            alert("Por favor, complete todos los campos.");
-            window.location.reload(); // Recarga la página
-            return;
-        }
-        try {
-            console.log("Entering GuardarUser...");
-            const AddUser_Login = {
-                uid: crypto.randomUUID(),
-                NombreUser: "Sebastian Perez",
-                Contraseña: "10221324343"
-            }
-            dispatch(AddUser(AddUser_Login))
-            console.log("Datos Add!")
-        } catch (error) {
-            console.log("Error al guardar el Login...", error);
-        }
-    }
+    // const GuardarUserAdd = async (valueName, valuePass) => {
+    //     if (!valueName.trim() || !valuePass.trim()) {
+    //         alert("Por favor, complete todos los campos.");
+    //         window.location.reload(); // Recarga la página
+    //         return;
+    //     }
+    //     try {
+    //         console.log("Entering GuardarUser...");
+    //         const AddUser_Login = {
+    //             uid: crypto.randomUUID(),
+    //             NombreUser: "Sebastian Perez",
+    //             Contraseña: "10221324343"
+    //         }
+    //         dispatch(AddUser(AddUser_Login))
+    //         console.log("Datos Add!")
+    //     } catch (error) {
+    //         console.log("Error al guardar el Login...", error);
+    //     }
+    // }
 
     const handleLogin = async () => {
         try {
             // Llama a la acción para recuperar los datos del usuario
             await dispatch(RecuperacionUsuarioRegistrados(valueName, valuePass));
+            console.log(valueName, valuePass);
             // Llama a GuardarUserAdd después de iniciar sesión exitosamente
-            GuardarUserAdd(valueName, valuePass);
         } catch (error) {
             console.log("Error al hacer validacion con datos...", error);
         }
     };
 
     const RegistroForm = () => {
-        navigate('/Register');
+        navigate('/Register');  
     }
+    // //
+    // dispatch(actionLoginAsyn(valueName, valuePass));
+    // reset();
 
     return (
         <div>
@@ -79,7 +80,7 @@ export default function Login() {
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="Nombre de Usuario"
+                                            placeholder="Correo Electronico"
                                             value={valueName}
                                             onChange={handleNameChange}
                                         />

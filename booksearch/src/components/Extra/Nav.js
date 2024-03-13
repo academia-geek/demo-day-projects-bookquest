@@ -15,8 +15,8 @@ export default function Nav() {
     if (autentiString === null) {
         autentiString = false;
     }
-    console.log("Autenticacion User: ", autentiString);
-    console.log(NameUserActual);
+    // console.log("Autenticacion User: ", autentiString);
+    // console.log(NameUserActual);
 
     return (
         <div>
