@@ -23,16 +23,15 @@ export const CreateBook = (payload: object) => {
 
 //---------------------------------------------------------------------
 
-//---------------------------------------------------------------------
-
 // Add New User -Register-
 export const RegisterUser = (payload: any) => {
     return async (dispatch: any) => {
         try {
-            const auth = getAuth();
-            const Register_User = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
+            const uid = crypto.randomUUID()
+            const Register_User = doc(dataBase, "ColeccionRegistroUser" , uid)
             const RegistroNuevoUsuario = {
                 ...payload,
+                id: uid
             }
             await setDoc(Register_User, RegistroNuevoUsuario)
             dispatch(RegistroNuevoUsuario)
@@ -41,6 +40,8 @@ export const RegisterUser = (payload: any) => {
         }
     }
 }
+
+//---------------------------------------------------------------------------------------
 // export const RegisterUser = (payload: any) => {
 //     return async (dispatch: any) => {
 //         try {
@@ -110,7 +111,7 @@ export const actionRegisterSync = (email: string, password: string) => {
 
 
 
-//Agregar Libro o biblioteca
+//------------------------------------Agregar Libro o biblioteca---------------------------------
 export const AñadirLibrary = (payload: object) => {
     return async (dispatch: any) => {
         try {
@@ -128,7 +129,7 @@ export const AñadirLibrary = (payload: object) => {
 }
 
 
-// Add User
+// ---------------------------------------------------Add User-----------------------------------------
 export const AddUser = (payload: object) => {
     return async (dispatch: any) => {
         try {
@@ -145,7 +146,7 @@ export const AddUser = (payload: object) => {
     }
 }
 
-// Library Information ---important---
+// --------------------------------------------Library Information ---important----------------------------------------
 export const obtenerDatosBiblioteca = async (): Promise<DocumentData[]> => {
     try {
         // Obtener la referencia a la colección
@@ -170,7 +171,7 @@ export const obtenerDatosBiblioteca = async (): Promise<DocumentData[]> => {
 };
 
 
-//Traer informacion del Firestore Usuarlios Registrados....
+//------------------------------------------------Traer informacion del Firestore Usuarlios Registrados-------------------------------------
 export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
     try {
         // Obtener referencia a la colección "ColeccionRegistroUser"
@@ -197,7 +198,7 @@ export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
 };
 
 
-// Función para actualizar un usuario en Firestore
+// -------------------------------------------------------------Función para actualizar un usuario en Firestore-----------------------------------------
 export const actualizarUsuario = async (idUsuario: string, nuevosDatos: DocumentData): Promise<void> => {
     console.log("Id entrante: " , idUsuario);
     try {
@@ -215,3 +216,11 @@ export const actualizarUsuario = async (idUsuario: string, nuevosDatos: Document
         throw error;
     }
 };
+
+//---------------------------------------------------------Eliminar Usuario---------------------------------------------
+export const EliminarUsuario = async () => {
+    try {
+    } catch (error) {
+        
+    }
+}

@@ -19,7 +19,7 @@ export default function ProfileUser() {
         try {
             const datosBiblioteca = await UsuariosRegistrados();
             console.log(datosBiblioteca);
-            const usuario = datosBiblioteca.find(persona => persona.NewName_User === 'Manzana');
+            const usuario = datosBiblioteca.find(persona => persona.NewName_User === 'Carlos');
             if (usuario) {
                 console.log("Usuario encontrado...");
                 console.log(usuario);
