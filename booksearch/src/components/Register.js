@@ -57,10 +57,12 @@ export default function Register() {
     }; return (
         <div>
             <Nav />
-            <div className="card">
-                <div className="container">
+            <div>
+                <div className="left-container">
                     <div className="image-container">
                         <img src={'https://res.cloudinary.com/dtmapxnao/image/upload/v1709768800/Open-Day/LogoBiblioNube_dbrkmt.png'} alt="" />
+                    </div>
+                    <div className="text-container">
                         <p>
                             Hola lector, es un gusto que nos
                             acompañes, esperamos que
@@ -70,47 +72,52 @@ export default function Register() {
                         </p>
                     </div>
 
-                    <div className="form-container">
-                        <h2>Registro de Usuario</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="name">Nombre de Usuario:</label>
-                                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-                            </div>
+                    <div className="card right-container">
+                        <div className="container">
+                            <div className="form-container">
+                                <h2>Registro de Usuario</h2>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <label htmlFor="name">Nombre de Usuario:</label>
+                                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                                    </div>
 
-                            <div className="form-group">
-                                <label htmlFor="password">Contraseña:</label>
-                                <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-                            </div>
+                                    <div className="form-group">
+                                        <label htmlFor="password">Contraseña:</label>
+                                        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                                    </div>
 
-                            <div className="form-group">
-                                <label htmlFor="email">Correo Electrónico:</label>
-                                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-                            </div>
+                                    <div className="form-group">
+                                        <label htmlFor="email">Correo Electrónico:</label>
+                                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                                    </div>
 
-                            <div className="form-group">
-                                <input type="checkbox" id="terms" name="terms" checked={formData.terms} onChange={handleChange} required />
-                                <label htmlFor="terms">Acepto los Términos y Condiciones</label>
-                            </div>
+                                    <div className="form-group">
+                                        <input type="checkbox" id="terms" name="terms" checked={formData.terms} onChange={handleChange} required />
+                                        <label htmlFor="terms">Acepto los Términos y Condiciones</label>
+                                    </div>
 
-                            <div className="form-group">
-                                <input type="checkbox" id="data-treatment" name="dataTreatment" checked={formData.dataTreatment} onChange={handleChange} required />
-                                <label htmlFor="data-treatment">Acepto el Tratamiento de Datos</label>
-                            </div>
+                                    <div className="form-group">
+                                        <input type="checkbox" id="data-treatment" name="dataTreatment" checked={formData.dataTreatment} onChange={handleChange} required />
+                                        <label htmlFor="data-treatment">Acepto el Tratamiento de Datos</label>
+                                    </div>
 
-                            <div className="form-group">
-                                <h4>Regístrate con:</h4>
-                                <input type="checkbox" id="google" name="google" checked={formData.google} onChange={handleChange} />
-                                <label htmlFor="google">Google</label>
+                                    <div className="form-group">
+                                        <h4>Regístrate con:</h4>
+                                        <input type="checkbox" id="google" name="google" checked={formData.google} onChange={handleChange} />
+                                        <label htmlFor="google">Google</label>
 
-                                <input type="checkbox" id="twitter" name="twitter" checked={formData.twitter} onChange={handleChange} />
-                                <label htmlFor="twitter">Twitter</label>
+                                        <input type="checkbox" id="twitter" name="twitter" checked={formData.twitter} onChange={handleChange} />
+                                        <label htmlFor="twitter">Twitter</label>
+                                    </div>
+                                    <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                    <h1>O</h1>
+                                    <button className="btn btn-warning" onClick={() => AñadirNuevoUsuario()}>Registrarme!</button>
+                                </form>
                             </div>
-                            <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
-                            <h1>O</h1>
-                            <button className="btn btn-warning" onClick={() => AñadirNuevoUsuario()}>Registrarme!</button>
-                        </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
