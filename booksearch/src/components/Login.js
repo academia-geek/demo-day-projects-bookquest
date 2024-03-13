@@ -67,16 +67,30 @@ export default function Login() {
             <div className="hero min-h-screen bg-base-200" style={{backgroundColor:"#B8B8B8"}}>
                 <img src='https://res.cloudinary.com/dtmapxnao/image/upload/v1709768800/Open-Day/LogoBiblioNube_dbrkmt.png' style={{opacity:"0.2", width:"50%"}}/>
                 <div className="hero-content flex-col lg:flex-row" style={{justifyContent:"space-between", width:"90%"}}>
-                    <div style={{display:"flex" ,alignItems:"center", justifyContent:"center", flexDirection:"column", marginLeft:"8%"}}>
-                        <h1 style={{fontSize:"45px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content"}} className="texTo">¡Inicia Sesión!</h1>
-                        <br></br>
-                        <p style={{fontSize:"30px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content", textAlign:"center"}} className="texTo2">Comienza a <span className="resaltado2">navegar</span><br></br>
-                            en nuestra <span className="resaltado2">nube</span> de libros,<br></br>
-                            siéntete <span className="resaltado2">libre</span> de encontrar<br></br>
-                            lo que <span className="resaltado2">necesitas</span> cuando<br></br>
-                            lo necesitas.
-                        </p>
-                    </div>
+                    {isLoginTipe && (
+                        <div style={{display:"flex" ,alignItems:"center", justifyContent:"center", flexDirection:"column", marginLeft:"8%"}}>
+                            <h1 style={{fontSize:"45px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content"}} className="texTo">¡Registrate!</h1>
+                            <br></br>
+                            <p style={{fontSize:"30px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content", textAlign:"center"}} className="texTo2">Comienza a <span className="resaltado2">navegar</span><br></br>
+                                <span>Escoge</span> la opción que <span className="resaltado2">más</span><br></br>
+                                se <span className="resaltado2">adapte</span> a lo que<br></br>
+                                <span className="resaltado2">buscas</span>
+                            </p>
+                        </div>
+                    )}
+                    {isLoginPage && (
+                        <div style={{display:"flex" ,alignItems:"center", justifyContent:"center", flexDirection:"column", marginLeft:"8%"}}>
+                            <h1 style={{fontSize:"45px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content"}} className="texTo">¡Inicia Sesión!</h1>
+                            <br></br>
+                            <p style={{fontSize:"30px" ,backgroundColor: "rgb(255,255,255,0.5)", padding: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "10px", width:"max-content", textAlign:"center"}} className="texTo2">
+                                Comienza a <span className="resaltado2">navegar</span><br></br>
+                                en nuestra <span className="resaltado2">nube</span> de libros,<br></br>
+                                siéntete <span className="resaltado2">libre</span> de encontrar<br></br>
+                                lo que <span className="resaltado2">necesitas</span> cuando<br></br>
+                                lo necesitas.
+                            </p>
+                        </div>
+                    )}
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100" style={{backgroundColor:"rgb(255,255,255,0.5)"}}>
                         <Formik>
                             {isLoginPage && (
