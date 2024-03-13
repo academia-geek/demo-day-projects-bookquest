@@ -45,7 +45,7 @@ const GoogleMaps = () => {
     const [map, setMap] = useState(null); // Estado para el mapa
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 }); // Estado para el centro del mapa
     const [userLocation, setUserLocation] = useState(null); // Estado para la ubicación del usuario
-    const [destination, setDestination] = useState({ lat: coorderadaLatitud, lng: coorderadaLongitud }); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat:  6.867813, lng: -75.236733 }); // Coordenadas del punto de llegada predeterminado
 
 
     // Callback para cuando el mapa se carga correctamente

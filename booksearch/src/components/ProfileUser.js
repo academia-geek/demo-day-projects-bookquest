@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { UsuariosRegistrados, actualizarUsuario } from '../redux/Actions/AgregarLibro';
+import { UsuariosRegistrados, actualizarUsuario, EliminarUsuario } from '../redux/Actions/AgregarLibro';
 import { useDispatch } from 'react-redux';
 import '../Styles/styleProfile.css'
+import { deleteDoc } from 'firebase/firestore';
 
 export default function ProfileUser() {
     const dispatch = useDispatch();
@@ -19,12 +20,12 @@ export default function ProfileUser() {
         try {
             const datosBiblioteca = await UsuariosRegistrados();
             console.log(datosBiblioteca);
-            const usuario = datosBiblioteca.find(persona => persona.NewName_User === 'Carlos');
+            const usuario = datosBiblioteca.find(persona => persona.NewName_User ==="Manzana");
             if (usuario) {
                 console.log("Usuario encontrado...");
                 console.log(usuario);
                 setUsuarioEncontrado(usuario);
-                setEditUsuario(usuario); // Inicializar editUsuario con los datos del usuario encontrado
+                setEditUsuario(usuario); 
             } else {
                 console.log("Usuario no encontrado");
                 setUsuarioEncontrado(null);
@@ -36,8 +37,8 @@ export default function ProfileUser() {
 
     const actualizarDatosUsuario = async () => {
         try {
-            await actualizarUsuario(usuarioEncontrado.id, editUsuario ); // Actualizar el usuario con los datos de editUsuario
-            console.log("Id Saliente: " , usuarioEncontrado.id);
+            await actualizarUsuario(usuarioEncontrado.id, editUsuario); // Actualizar el usuario con los datos de editUsuario
+            // console.log("Id Saliente: ", usuarioEncontrado.id);
             console.log("Datos del usuario actualizados correctamente.");
             // Actualizar usuarioEncontrado con los nuevos datos
             setUsuarioEncontrado(editUsuario);
@@ -47,9 +48,22 @@ export default function ProfileUser() {
         }
     };
 
+    const handleDeleteUser = async () => {
+        if (!usuarioEncontrado) {
+            console.error("No se ha encontrado ningún usuario para eliminar.");
+            return;
+        }
+        try {
+            alert(`Seguro desea eliminar el usuario ${usuarioEncontrado ? usuarioEncontrado.NewName_User : 'ninguno'}`);
+            await EliminarUsuario(usuarioEncontrado.id); // Llama a la función EliminarUsuario con la ID del usuario a eliminar
+            console.log("Usuario eliminado correctamente.");
+        } catch (error) {
+            console.error("Error al eliminar usuario:", error);
+        }
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        // Actualizar el estado de editUsuario cuando se realizan cambios en los campos de entrada del modal
         setEditUsuario(prevState => ({
             ...prevState,
             [name]: value
@@ -76,7 +90,7 @@ export default function ProfileUser() {
                 <label>Terminos y Condiciones</label>
                 <input type="text" value={usuarioEncontrado ? usuarioEncontrado.Terminos : 'No hay'} readOnly />
             </div>
-            <button className="btn btn-error">Borrar Cuenta</button>
+            <button className="btn btn-error" onClick={handleDeleteUser}>Borrar Cuenta</button>
             <button className="btn btn-success" onClick={openModalHandler}>Editar Cuenta</button>
             {openModal && (
                 <div id="my_modal_4" className="modal" open>
