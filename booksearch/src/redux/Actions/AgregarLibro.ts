@@ -28,7 +28,7 @@ export const RegisterUser = (payload: any) => {
     return async (dispatch: any) => {
         try {
             const uid = crypto.randomUUID()
-            const Register_User = doc(dataBase, "ColeccionRegistroUser" , uid)
+            const Register_User = doc(dataBase, "ColeccionRegistroUser", uid)
             const RegistroNuevoUsuario = {
                 ...payload,
                 id: uid
@@ -200,17 +200,17 @@ export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
 
 // -------------------------------------------------------------Función para actualizar un usuario en Firestore-----------------------------------------
 export const actualizarUsuario = async (idUsuario: string, nuevosDatos: DocumentData): Promise<void> => {
-    console.log("Id entrante: " , idUsuario);
+    // console.log("Id entrante: " , idUsuario);
     try {
         // Obtener referencia al documento del usuario
         const usuarioRef = doc(dataBase, 'ColeccionRegistroUser', idUsuario);
         // Verificar si el usuario existe antes de actualizar
         const docSnap = await getDoc(usuarioRef);
-        if (docSnap.exists()) {            
+        if (docSnap.exists()) {
             // Actualizar los datos del usuario
             await updateDoc(usuarioRef, nuevosDatos);
             console.log("Usuario actualizado correctamente.");
-        } 
+        }
     } catch (error) {
         console.error("Error al actualizar usuario:", error);
         throw error;
@@ -218,9 +218,14 @@ export const actualizarUsuario = async (idUsuario: string, nuevosDatos: Document
 };
 
 //---------------------------------------------------------Eliminar Usuario---------------------------------------------
-export const EliminarUsuario = async () => {
+export const EliminarUsuario = async (idUsuario: string): Promise<void> => {
+    console.log("Entro delete id: ", idUsuario);
     try {
+        const UsuarioEliminar = doc(dataBase, 'ColeccionRegistroUser', idUsuario);
+        await deleteDoc(UsuarioEliminar);
+        console.log("Usuario eliminado correctamente.");
     } catch (error) {
-        
+        console.error("Error al eliminar usuario:", error);
+        throw error; // Puedes propagar el error para manejarlo fuera de esta función si es necesario.
     }
-}
+};

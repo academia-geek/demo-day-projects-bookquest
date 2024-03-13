@@ -3,18 +3,17 @@ import '../Styles/StylosLoginBiblioteca.css'
 import { useNavigate } from 'react-router-dom';
 import { AñadirLibrary } from '../redux/Actions/AgregarLibro'
 import { useDispatch } from 'react-redux';
-
+// import { Nominatim } from 'geocoding-library'; 
 
 export default function Biblioteca() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [bibliotecaData, setBibliotecaData] = useState({
-        name: '',
-        isbn: '',
+        nombre: '',
+        contraseña: '',
         api: '',
         email: '',
-        latitude: '',
-        longitude: '',
+        dirección: '',
         nit: ''
     });
 
@@ -25,12 +24,11 @@ export default function Biblioteca() {
             console.log("Entering Almacenar Datos...");
             // Usar los valores ingresados por el usuario en el formulario
             const bibliotecaDataToSend = {
-                name: bibliotecaData.name,
-                isbn: bibliotecaData.isbn,
+                nombre: bibliotecaData.nombre,
+                contraseña: bibliotecaData.contraseña,
                 api: bibliotecaData.api,
                 email: bibliotecaData.email,
-                latitude: bibliotecaData.latitude,
-                longitude: bibliotecaData.longitude,
+                dirección: bibliotecaData.dirección,
                 nit: bibliotecaData.nit
             };
             // Llama a la acción AñadirLibrary con los datos de la biblioteca
@@ -57,17 +55,17 @@ export default function Biblioteca() {
                     <div className="input-row">
                         <input className='inputBiblioteca'
                             type="text"
-                            id="name"
-                            value={bibliotecaData.name}
+                            id="nombre"
+                            value={bibliotecaData.nombre}
                             onChange={handleChange}
                             placeholder='Nombre de la biblioteca'
                         />
                         <input className='inputBiblioteca'
-                            type="text"
-                            id="isbn"
-                            value={bibliotecaData.isbn}
+                            type="password"
+                            id="contraseña"
+                            value={bibliotecaData.contraseña}
                             onChange={handleChange}
-                            placeholder='Nit de la biblioteca'
+                            placeholder='Contraseña'
                         />
                         <input className='inputBiblioteca'
                             type="text"
@@ -87,18 +85,10 @@ export default function Biblioteca() {
                         />
                         <input className='inputBiblioteca'
                             type="text"
-                            id="latitude"
-                            value={bibliotecaData.latitude}
+                            id="dirección"
+                            value={bibliotecaData.dirección}
                             onChange={handleChange}
-                            placeholder='Latitud de la biblioteca'
-                        />
-                        <input className='inputBiblioteca'
-                            type="text"
-                            id="longitude"
-                            value={bibliotecaData.longitude}
-                            onChange={handleChange}
-                            placeholder='Longitud de la biblioteca'
-
+                            placeholder='Dirección'
                         />
                         <input className='inputBiblioteca'
                             type="number"
