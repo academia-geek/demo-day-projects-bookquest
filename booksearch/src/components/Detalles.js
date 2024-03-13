@@ -85,7 +85,7 @@ export default function Detalles() {
             <Nav />
             <div>
                 {/* Contenedor del search */}
-                <div className='contSearch'>
+                <div className='contSearch' style={{position:"sticky", top:"0", backgroundColor:"white", zIndex:"999"}}>
                     <input className='searchEs' type='search' placeholder='Busqueda' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></input>
                     <button className='btnEs'>Buscar</button>
                 </div>
