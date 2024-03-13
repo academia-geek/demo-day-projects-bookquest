@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { actionGoogle } from '../redux/actionsLogin';
@@ -11,6 +11,8 @@ import { AddUser } from '../redux/Actions/AgregarLibro'
 export default function Login() {
     const location = useLocation();
     const navigate = useNavigate();
+    const {Tipo} = useParams();
+    const encodedTipo = encodeURIComponent(Tipo);
     const dispatch = useDispatch();
     const [valueName, setValueName] = useState('');
     const [valuePass, setValuePass] = useState('');
@@ -52,12 +54,12 @@ export default function Login() {
         }
     };
 
-    const RegistroForm = () => {
-        navigate('/Register');  
-    }
     // //
     // dispatch(actionLoginAsyn(valueName, valuePass));
     // reset();
+
+    const isLoginPage = location.pathname === `/Login`;
+    const isLoginTipe = location.pathname === `/Login/${encodedTipo}`;
 
     return (
         <div>
@@ -76,10 +78,8 @@ export default function Login() {
                         </p>
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100" style={{backgroundColor:"rgb(255,255,255,0.5)"}}>
-                        <Formik
-                            initialValues={{ username: '', password: '' }} // Agregar el objeto initialValues
-                        >
-                            {({ isSubmitting }) => (
+                        <Formik>
+                            {isLoginPage && (
                                 <Form className="card-body">
                                     <div className="form-control">
                                         <label className="label">
@@ -106,17 +106,30 @@ export default function Login() {
                                         />
                                         <label className="label">
                                             <a href="#" className="label-text-alt link link-hover">Olvidaste tu Contraseña?</a>
-                                            <button className="btn btn-warning" style={{padding:"10px"}} onClick={() => RegistroForm()}>No tienes cuenta aún?</button>
+                                            <button className="btn btn-warning" style={{padding:"10px"}} onClick={() => navigate("/Login/Tipo")}>No tienes cuenta aún?</button>
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting}><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button><br></br>
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => handleLogin()}>Login</button><br></br>
-                                        <button type="submit" className="btn btn-active" disabled={isSubmitting} onClick={() => navigate('/Biblioteca')}>Biblioteca</button><br></br>
+                                        <button type="submit" className="btn btn-active" ><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button><br></br>
+                                        <button type="submit" className="btn btn-active" onClick={() => handleLogin()}>Login</button><br></br>
                                     </div>
                                 </Form>
                             )}
                         </Formik>
+                        {isLoginTipe && (
+                                <div className="card-body">
+                                    <div style={{display:"flex", flexDirection:"column", alignItems:"center", gap:"10px"}}>
+                                        <button  className="btn btn-active" style={{width:"100%"}} onClick={() => handleLogin()}>Lector</button>
+                                        <h1>O</h1>
+                                        <button  className="btn btn-active" style={{width:"100%"}} onClick={() => navigate('/Biblioteca')}>Biblioteca</button>
+                                        <label className="infoN" style={{padding:"0"}}>
+                                            <a onClick={()=>navigate("/Login")} style={{}} className="label-text-alt link link-hover">Ya tienes una cuenta? <span style={{color:"#30A69A", padding:"0"}}>Inicia sesión</span></a>
+                                        </label>
+                                        <div style={{borderRadius: "10px", border: "solid", borderColor: "white", borderWidth: "1px", width:"100%"}}></div>
+                                        <button  className="btn btn-active" ><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
+                                    </div>
+                                </div>
+                            )}
                     </div>
                 </div>
             </div>
