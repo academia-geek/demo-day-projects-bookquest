@@ -119,7 +119,7 @@ export default function Login() {
                         {isLoginTipe && (
                                 <div className="card-body">
                                     <div style={{display:"flex", flexDirection:"column", alignItems:"center", gap:"10px"}}>
-                                        <button  className="btn btn-active" style={{width:"100%"}} onClick={() => handleLogin()}>Lector</button>
+                                        <button  className="btn btn-active" style={{width:"100%"}} onClick={() => navigate("/Register")}>Lector</button>
                                         <h1>O</h1>
                                         <button  className="btn btn-active" style={{width:"100%"}} onClick={() => navigate('/Biblioteca')}>Biblioteca</button>
                                         <label className="infoN" style={{padding:"0"}}>
