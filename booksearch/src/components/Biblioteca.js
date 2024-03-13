@@ -6,19 +6,20 @@ import { useDispatch } from 'react-redux';
 import Nav from './Extra/Nav';
 import Footer from './Extra/Footer';
 import { Formik, Form, Field } from 'formik';
+import { GeoPoint } from 'firebase/firestore';
 
 
 export default function Biblioteca() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [bibliotecaData, setBibliotecaData] = useState({
-        name: '',
-        isbn: '',
-        api: '',
+        NombreB: '',
+        contra: '',
+        urls: '',
         email: '',
-        latitude: '',
-        longitude: '',
-        nit: ''
+        Latitud: '',
+        Longitud: '',
+        NIT: ''
     });
 
     const AlmacenarDatosBiblioteca = async (event) => {
@@ -28,13 +29,12 @@ export default function Biblioteca() {
             console.log("Entering Almacenar Datos...");
             // Usar los valores ingresados por el usuario en el formulario
             const bibliotecaDataToSend = {
-                name: bibliotecaData.name,
-                isbn: bibliotecaData.isbn,
-                api: bibliotecaData.api,
+                NombreB: bibliotecaData.NombreB,
+                contra: bibliotecaData.contra,
+                urls: bibliotecaData.urls,
                 email: bibliotecaData.email,
-                latitude: bibliotecaData.latitude,
-                longitude: bibliotecaData.longitude,
-                nit: bibliotecaData.nit
+                ubicación: new GeoPoint(parseFloat(bibliotecaData.Latitud), parseFloat(bibliotecaData.Longitud)),
+                NIT: bibliotecaData.NIT
             };
             // Llama a la acción AñadirLibrary con los datos de la biblioteca
             dispatch(AñadirLibrary(bibliotecaDataToSend));
@@ -78,26 +78,26 @@ export default function Biblioteca() {
                                         <input className='inputBiblioteca'
                                             style={{borderRadius:"10px"}}
                                             type="text"
-                                            id="name"
-                                            value={bibliotecaData.name}
+                                            id="NombreB"
+                                            value={bibliotecaData.NombreB}
                                             onChange={handleChange}
                                             placeholder='Nombre de la biblioteca'
                                         />
                                         <div style={{display:"flex", gap:"10px"}}>
                                             <input className='inputBiblioteca'
-                                                type="text"
-                                                id="isbn"
-                                                value={bibliotecaData.isbn}
+                                                type="password"
+                                                id="contra"
+                                                value={bibliotecaData.contra}
                                                 onChange={handleChange}
-                                                placeholder='Nit de la biblioteca'
+                                                placeholder='Contraseña'
                                                 style={{width:"100%", borderRadius:"10px"}}
                                             />
                                             <input className='inputBiblioteca'
                                                 type="text"
-                                                id="api"
-                                                value={bibliotecaData.api}
+                                                id="urls"
+                                                value={bibliotecaData.urls}
                                                 onChange={handleChange}
-                                                placeholder='API de tu Bilbioteca'
+                                                placeholder='Url Base de Datos'
                                                 style={{width:"100%", borderRadius:"10px"}}
                                             />
                                         </div>
@@ -113,16 +113,16 @@ export default function Biblioteca() {
                                         <div style={{display:"flex", gap:"10px"}}>
                                             <input className='inputBiblioteca'
                                                 type="text"
-                                                id="latitude"
-                                                value={bibliotecaData.latitude}
+                                                id="Latitud"
+                                                value={bibliotecaData.Latitud}
                                                 onChange={handleChange}
                                                 placeholder='Latitud de la biblioteca'
                                                 style={{width:"100%", borderRadius:"10px"}}
                                             />
                                             <input className='inputBiblioteca'
                                                 type="text"
-                                                id="longitude"
-                                                value={bibliotecaData.longitude}
+                                                id="Longitud"
+                                                value={bibliotecaData.Longitud}
                                                 onChange={handleChange}
                                                 placeholder='Longitud de la biblioteca'
                                                 style={{width:"100%", borderRadius:"10px"}}
@@ -131,8 +131,8 @@ export default function Biblioteca() {
                                         <input className='inputBiblioteca'
                                         style={{borderRadius:"10px"}}
                                             type="text"
-                                            id="nit"
-                                            value={bibliotecaData.nit}
+                                            id="NIT"
+                                            value={bibliotecaData.NIT}
                                             onChange={handleChange}
                                             placeholder='NIT de la biblioteca'
                                 

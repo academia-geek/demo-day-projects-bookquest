@@ -30,12 +30,9 @@ export default function Register() {
                 id: Math.floor(Math.random() * Date.now()).toString(16),
                 NewName_User: formData.name,
                 Contraseña: formData.password,
-                ContraseñaTwo: formData.password,
                 email: formData.email,
                 terms: formData.terms,
                 dataTreatment: formData.dataTreatment,
-                google: formData.google,
-                twitter: formData.twitter
             }
             dispatch(RegisterUser(payload))
             alert("Usuario Registrado.")
@@ -58,6 +55,12 @@ export default function Register() {
         e.preventDefault();
         console.log(formData); // enviar los datos a backend
     };
+
+    const handleRegister = () =>{
+        AñadirNuevoUsuario()
+        navigate("/Login")
+    }
+
     return (
         <div>
             <Nav />
@@ -83,7 +86,14 @@ export default function Register() {
                                         <label className="label">
                                             <span className="label-text">Correo Electronico</span>
                                         </label>
-                                        <input type="email" id="name" name="name" className='inputBiblioteca' style={{width:"100%", borderRadius:"10px"}} value={formData.name} onChange={handleChange} required placeholder="Correo Electronico"/>
+                                        <input type="email" id="email" name="email" className='inputBiblioteca' style={{width:"100%", borderRadius:"10px"}} value={formData.email} onChange={handleChange} required placeholder="Correo Electronico"/>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label className="label">
+                                            <span className="label-text">Nombre de Usuario</span>
+                                        </label>
+                                        <input type="text" id="name" name="name" className='inputBiblioteca' style={{width:"100%", borderRadius:"10px"}} value={formData.name} onChange={handleChange} required placeholder="Nombre de Usuario"/>
                                     </div>
                 
                                     <div className="form-group">
@@ -111,7 +121,7 @@ export default function Register() {
                                     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                                         <button type="submit" className="btn btn-active"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png' alt='' width={"80px"} onClick={() => dispatch(actionGoogle())}></img>¿Quieres Iniciar con Google?.</button>
                                         <h1>O</h1>
-                                        <button className="btn btn-warning" style={{width:"100%"}} onClick={() => AñadirNuevoUsuario()}>Registrarme!</button>
+                                        <button className="btn btn-warning" style={{width:"100%"}} onClick={() => handleRegister()}>Registrarme!</button>
                                     </div>
                                 </Form>
                             )}
