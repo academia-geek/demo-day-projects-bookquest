@@ -32,7 +32,7 @@ export default function Home() {
                         <h1 className='contText1'>
                             Descubre, <span className="resaltado">encuentra</span> <br></br> y disfruta de tu <br></br> próximo libro <span className="resaltado">físico</span> <br></br> con facilidad <span className='resaltado'>aquí</span>
                         </h1>
-                        <p className='contText2'>
+                        <p className='contText2 texTo2'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                         </p>
                         <button className='btnB' onClick={() => navigate(`/Detalles/All`)}>

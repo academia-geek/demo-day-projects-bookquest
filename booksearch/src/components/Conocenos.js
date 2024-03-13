@@ -29,7 +29,7 @@ export const Conocenos = () => {
                     <div style={{display:"flex", flexDirection:"column", gap:"40px", position:"relative"}}>
                         <div style={{ display: "flex", gap: "40px" }}>
                             <div className='contTextoChido'>
-                                <p className='texTo2'>En BookFinder, nos dedicamos a preservar y catalogar<br></br>libros disponibles en las bibliotecas cercanas, para ponerlos<br></br>
+                                <p className='texTo2'>En Book | Quest, nos dedicamos a preservar y catalogar<br></br>libros disponibles en las bibliotecas cercanas, para ponerlos<br></br>
                                     al alcance de todos. Nuestra meta es servir a investigadores,<br></br>académicos y al público en general interesados en una amplia<br></br>variedad de temas y autores.</p>
                             </div>
                             <div className='contTextoChido'>
