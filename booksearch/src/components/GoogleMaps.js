@@ -11,15 +11,26 @@ const containerStyle = {
 
 const GoogleMaps = () => {
     //Estados para las Coordenadas.
+    const [coorderadaLatitud, setCoordenadasLATITUD] = useState()
+    const [coorderadaLongitud, setCoordenadasLONGITUD] = useState()
 
     // Redux dispatch
     const dispatch = useDispatch();
+
+    // Carga de la API de Google Maps
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-scxript',
+        googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
+    });
+
     const obtenerYMostrarDatos = async () => {
         try {
             const datos = await obtenerDatosBiblioteca();
             // console.log(datos);
             datos.forEach(coordenadas => {
                 console.log(coordenadas.ubicación)
+                setCoordenadasLATITUD(coordenadas.ubicación._lat)
+                setCoordenadasLONGITUD(coordenadas.ubicación._long)
             });
         } catch (error) {
             console.log(error);
@@ -28,18 +39,14 @@ const GoogleMaps = () => {
     //Llamado de la funcion de AgregarLibros Actions.
     useEffect(() => {
         obtenerYMostrarDatos();
-    })
-    // Carga de la API de Google Maps
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-scxript',
-        googleMapsApiKey: "AIzaSyBlEyHUhcHj3sygANdgv-qeOqheojscX5U  "
-    });
+    }, [])
 
     // Estados del componente
     const [map, setMap] = useState(null); // Estado para el mapa
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 }); // Estado para el centro del mapa
     const [userLocation, setUserLocation] = useState(null); // Estado para la ubicación del usuario
-    const [destination, setDestination] = useState({ lat: 6.3317037, lng: -75.5578622 }); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: coorderadaLatitud, lng: coorderadaLongitud }); // Coordenadas del punto de llegada predeterminado
+
 
     // Callback para cuando el mapa se carga correctamente
     const onLoad = useCallback(function callback(map) {

@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
-import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
 import { Navigate } from "react-router-dom";
 import { typesLogin } from "../types/types";
@@ -175,13 +175,10 @@ export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
     try {
         // Obtener referencia a la colección "ColeccionRegistroUser"
         const usuariosRegistradosCollectionRef = collection(dataBase, 'ColeccionRegistroUser');
-
         // Obtener todos los documentos de la colección
         const snapshot = await getDocs(usuariosRegistradosCollectionRef);
-
         // Inicializar un array para almacenar los datos de usuarios registrados
         const arrayUsuariosRegistrados: DocumentData[] = [];
-
         // Iterar sobre cada documento en el snapshot
         snapshot.forEach(doc => {
             // Obtener los datos de cada documento
@@ -199,13 +196,22 @@ export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
     }
 };
 
-//Eliminar UsuarioRegistrado
-export const DeleteUser_Register = async (id: string) => {
+
+// Función para actualizar un usuario en Firestore
+export const actualizarUsuario = async (idUsuario: string, nuevosDatos: DocumentData): Promise<void> => {
+    console.log("Id entrante: " , idUsuario);
     try {
-        const usuarioDocDelete = doc(dataBase, 'ColeccionRegistroUser', id);
-        alert("¿Seguro que desea eliminar su cuenta?")
-        await deleteDoc(usuarioDocDelete);
+        // Obtener referencia al documento del usuario
+        const usuarioRef = doc(dataBase, 'ColeccionRegistroUser', idUsuario);
+        // Verificar si el usuario existe antes de actualizar
+        const docSnap = await getDoc(usuarioRef);
+        if (docSnap.exists()) {            
+            // Actualizar los datos del usuario
+            await updateDoc(usuarioRef, nuevosDatos);
+            console.log("Usuario actualizado correctamente.");
+        } 
     } catch (error) {
-        alert("Error al Eliminar el Usuario")
+        console.error("Error al actualizar usuario:", error);
+        throw error;
     }
-}
+};
