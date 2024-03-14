@@ -13,20 +13,34 @@ export default function Nav() {
     const LoginForm = () => {
         navigate('/Login');
     }
-
     const profileUser = () => {
         navigate('/ProfileUser');
     }
 
+    console.log(usuario.currentUser);
+    let verificacion = false;
+
+
+    if (usuario.currentUser) {
+        verificacion = true;
+        const user = usuario.currentUser.email;
+        // setActual(user)
+    }
+
+    let SalirLogin = false;
     const SalirCuenta = () => {
         signOut(usuario).then(() => {
             // Sign-out successful.
         }).catch((error) => {
             // An error happened.
         });
+        SalirLogin = false;
+    }
+    const AlmacenadorNombreActual = usuario.currentUser
+    if (AlmacenadorNombreActual === null) {
+        SalirLogin = true;
     }
 
-    // const AlmacenadorNombreActual = usuario.currentUser.email
     return (
         <div>
             <div className="navbar bg-base-100" style={{ backgroundColor: "rgb(72, 66, 69, 0.62)", color: "white", width: "100%" }}>
@@ -42,9 +56,13 @@ export default function Nav() {
                     <li onClick={() => navigate("/Colaboradores")}>Colaboradores</li>
                 </ol>
                 <div className="flex-none gap-2">
-                    <button  style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }}  onClick={() => SalirCuenta()}>Salir</button>
-                    <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={LoginForm}>Login/Register</button>
-                    <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%", marginRight: "20px" }} onClick={profileUser}>{}</button>
+                    <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={() => SalirCuenta()}>Salir</button>
+                    {SalirLogin === true && (
+                        <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={LoginForm}>Login</button>
+                    )}
+                    {verificacion === true && (
+                        <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={profileUser}>Ir al Perfil</button>
+                    )}
                 </div>
             </div>
         </div>
