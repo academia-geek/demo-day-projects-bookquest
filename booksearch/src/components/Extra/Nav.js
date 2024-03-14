@@ -1,45 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RecuperacionUsuarioRegistrados, actionLoginSyn } from '../../redux/Actions/AgregarLibro';
-import { useDispatch } from 'react-redux';
 import { getAuth, signOut } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 
 export default function Nav() {
-    const [nombreActual, setActual] = useState('')
-    const dispatch = useDispatch();
-    const usuario = getAuth();
+    const [usuarioActual, setUsuarioActual] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const LoginForm = () => {
+    useEffect(() => {
+        const usuario = getAuth().currentUser;
+        if (usuario) {
+            setUsuarioActual(usuario);
+            setIsLoggedIn(true);
+        } else {
+            setUsuarioActual(null);
+            setIsLoggedIn(false);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        signOut(getAuth())
+            .then(() => {
+                // Sign-out successful.
+                setUsuarioActual(null);
+                setIsLoggedIn(false);
+            })
+            .catch((error) => {
+                // An error happened.
+                console.error('Error while logging out:', error);
+            });
+    };
+
+    const handleLogin = () => {
         navigate('/Login');
-    }
-    const profileUser = () => {
+    };
+
+    const handleProfile = () => {
         navigate('/ProfileUser');
-    }
-
-    console.log(usuario.currentUser);
-    let verificacion = false;
-
-
-    if (usuario.currentUser) {
-        verificacion = true;
-        const user = usuario.currentUser.email;
-        // setActual(user)
-    }
-
-    let SalirLogin = false;
-    const SalirCuenta = () => {
-        signOut(usuario).then(() => {
-            // Sign-out successful.
-        }).catch((error) => {
-            // An error happened.
-        });
-        SalirLogin = false;
-    }
-    const AlmacenadorNombreActual = usuario.currentUser
-    if (AlmacenadorNombreActual === null) {
-        SalirLogin = true;
-    }
+    };
 
     return (
         <div>
@@ -57,12 +57,14 @@ export default function Nav() {
 
                 </ol>
                 <div className="flex-none gap-2">
-                    <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={() => SalirCuenta()}>Salir</button>
-                    {SalirLogin === true && (
-                        <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={LoginForm}>Login</button>
+                    {isLoggedIn && (
+                        <>
+                            <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={handleLogout}>Salir</button>
+                            <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={handleProfile}>Ir al Perfil</button>
+                        </>
                     )}
-                    {verificacion === true && (
-                        <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={profileUser}>Ir al Perfil</button>
+                    {!isLoggedIn && (
+                        <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={handleLogin}>Login</button>
                     )}
                 </div>
             </div>
