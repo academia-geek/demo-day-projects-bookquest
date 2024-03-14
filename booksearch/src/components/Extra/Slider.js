@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Slider.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { obtenerDatosBiblioteca } from '../../redux/Actions/AgregarLibro'
 
 export default function Slider() {
     const navigate = useNavigate();
@@ -12,28 +13,26 @@ export default function Slider() {
 
     const [allLibros, setAllLibros] = useState([]);
 
-    const urls = [
-        `https://biblioteca-el-chiguiro.onrender.com/libros`,
-        `https://biblioteca-el-raton.onrender.com/libros`,
-        `https://biblioteca-la-marzopa.onrender.com/libros`
-    ];
-
+    // Obtener las URLs de las bibliotecas
     useEffect(() => {
-        console.log("Fetching books for all URLs");
+        const obtenerYMostrarDatos = async () => {
+            try {
+                const datos = await obtenerDatosBiblioteca();
+                const urls = datos.flatMap(biblioteca => biblioteca.urls);
+                console.log("URLs de bibliotecas:", urls);
+                // Realizar una sola solicitud para obtener todos los libros de todas las URL
+                const responses = await Promise.all(urls.map(url => axios.get(url)));
+                const libros = responses.map(response => response.data).flat();
+                console.log("Libros recibidos:", libros);
+                setAllLibros(libros);
 
-        // Realizar una sola solicitud para obtener todos los libros de todas las URL
-        axios
-            .all(urls.map(url => axios.get(url).then(response => response.data)))
-            .then(axios.spread((...responses) => {
-                // Combinar todos los resultados de las solicitudes en un solo array
-                const allLibros = responses.flat();
-                console.log("Received all books:", allLibros);
-                setAllLibros(allLibros);
-            }))
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    },[]);
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
+            }
+        };
+        
+        obtenerYMostrarDatos();
+    }, []);
 
     return (
         <section className="containerS">

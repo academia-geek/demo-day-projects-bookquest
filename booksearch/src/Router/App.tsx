@@ -13,7 +13,12 @@ import GoogleMaps from '../components/GoogleMaps';
 import CrudBookBilbiotecas from '../components/Archivos-Importantes/CrudBookBilbiotecas';
 import PrivateRoute from './PrivateRoute';
 import Detalles from '../components/Detalles';
+import { Conocenos } from '../components/Conocenos';
 import Nav from '../components/Extra/Nav';
+import Biblioteca from '../components/Biblioteca';
+import ProfileUser from '../components/ProfileUser';
+import { Colaboradores } from '../components/Colaboradores';
+
 function App() {
   const [user, setUser] = useState(false);
 
@@ -35,15 +40,20 @@ function App() {
         {/* Rutas públicas */}
         <Route path="/" element={<HomePage />} />
         <Route path="/Login" element={<Login />} />
+        <Route path='/Login/:Tipo' element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/Conocenos" element={<Conocenos />} />
         {/* Rutas privadas */}
         <Route path='/Detalles' element={<Detalles />} />
         <Route path="/Detalles/:cat" element={<Detalles />} />
         <Route path="/Detalles/:cat/:librit" element={<Detalles />} />
+        <Route path='/Colaboradores' element={<Colaboradores />} />
         <Route path="/API" element={<Api/>}/>
         <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
+        <Route path="/Biblioteca" element={<Biblioteca/>}/>
+        <Route path="/ProfileUser" element={<ProfileUser />} />
+        {/* <Route path="/Biblioteca" element={<Biblioteca/>}/> */}
         <Route path="/AutenticacionAdmin" element={<AutenticacionAdmin/>}/>
-        {/* <Route path="/CrudBookBibliotecas" element={<PrivateRoute isAuthenticated={user}><CrudBookBilbiotecas/></PrivateRoute>}/> */}
         <Route path="/CrudBookBilbiotecas" element={<CrudBookBilbiotecas/>}/>
         <Route path="/Nav" element={<Nav/>}/>
         <Route path="/GoogleMaps" element={<GoogleMaps/>}/>

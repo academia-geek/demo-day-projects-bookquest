@@ -8,7 +8,7 @@
 }
 
 .contText1 {
-    background-color: #ffffff52 !important;
+    background-color: rgb(255, 255, 255 , 0.55) !important;
     font-weight: bold;
     width: max-content;
     height: auto;
@@ -19,14 +19,13 @@
 }
 
 .contText2 {
-    background-color: rgb(255, 255, 255 , 0.32) !important;
+    background-color: rgb(255, 255, 255 , 0.55) !important;
     margin-top: 2%;
     font-weight: normal;
     width: 35%;
     height: auto;
     font-size: 15px;
     padding: 15px;
-    color: white;
     font-family: "Roboto Slab", serif;
     border-radius: 20px;
 }

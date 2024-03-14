@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
-import { Navigate } from "react-router-dom";
-
+import { Navigate, useNavigate } from "react-router-dom";
+import { typesLogin } from "../types/types";
 //---------------------------------------------------------------------
 export const CreateBook = (payload: object) => {
     return async (dispatch: any) => {
@@ -22,7 +22,117 @@ export const CreateBook = (payload: object) => {
 
 //---------------------------------------------------------------------
 
-// Add User
+// Add New User -Register-
+export const RegisterUser = (payload: any) => {
+    return async (dispatch: any) => {
+        try {
+            const uid = crypto.randomUUID()
+            const Register_User = doc(dataBase, "ColeccionRegistroUser", uid)
+            const RegistroNuevoUsuario = {
+                ...payload,
+                id: uid
+            }
+            await setDoc(Register_User, RegistroNuevoUsuario)
+            dispatch(RegistroNuevoUsuario)
+        } catch (error) {
+            console.log("Error al Registrar el Usuario... ", error)
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------
+// export const RegisterUser = (payload: any) => {
+//     return async (dispatch: any) => {
+//         try {
+//             const auth = getAuth();
+//             createUserWithEmailAndPassword(auth, payload.email, payload.Contraseña)
+//                 .then(async (userCredential) => {
+//                     const user = userCredential.user;
+//                     const Register_User = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
+//                     const RegistroNuevoUsuario = {
+//                         ...payload,
+//                     }
+//                     await setDoc(Register_User, RegistroNuevoUsuario)
+//                     dispatch(RegistroNuevoUsuario)
+//                     window.location.reload()
+//                 })
+//                 .catch((error) => {
+//                     const errorCode = error.code;
+//                     const errorMessage = error.message;
+//                     console.log("Error al Registrar el Usuario....")
+//                 });
+
+//         } catch (error) {
+//             console.log("Error al Registrar el Usuario... ", error)
+//         }
+//     }
+// }
+
+//---------------------------------------------------------------------
+
+// Verficacion user 
+export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
+    return (dispatch: any) => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, valueName, valuePass)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log("Usuario autenticado:", user);
+                alert("Usuario autenticado correctamente");
+                console.log("Datos de usuario:", valueName, valuePass);
+                dispatch(actionLoginSyn(valueName, valuePass));
+            })
+            .catch((error) => {
+                alert("Error al autenticar usuario:");
+            });
+    };
+};
+
+export const actionLoginSyn = (valueName: string, valuePass: string) => {
+    console.log("Despachando acción con datos de usuario:", valueName, valuePass);
+    return {
+        type: 'LOGIN_SUCCESS',
+        payload: [valueName, valuePass]
+    };
+};
+
+
+// export const actionRegisterAsync = (valueName: string, valuePass: string) => {
+//     return (dispatch: any) => {
+//         const auth = getAuth();
+//         createUserWithEmailAndPassword(auth, valueName, valuePass)
+//     }
+// }
+
+// export const actionRegisterSync = (email: string, password: string) => {
+//     console.log("Usuario Agregado con existo");
+//     return {
+//         type: typesLogin.register,
+//         payload: { email, password },
+//     };
+// };
+
+
+
+//------------------------------------Agregar Libro o biblioteca---------------------------------
+export const AñadirLibrary = (payload: object) => {
+    return async (dispatch: any) => {
+        try {
+            const AñadirLibro = doc(dataBase, "ColeccionBibliotecas", crypto.randomUUID())
+            const PaylodaAñadirLibro = {
+                ...payload
+            }
+            await setDoc(AñadirLibro, PaylodaAñadirLibro)
+            dispatch(PaylodaAñadirLibro)
+            console.error("Biblioteca almacenada Correctamente...");
+        } catch (error) {
+            console.error("Error al Añadir Biblioteca...")
+        }
+    }
+}
+
+
+// ---------------------------------------------------Add User-----------------------------------------
 export const AddUser = (payload: object) => {
     return async (dispatch: any) => {
         try {
@@ -38,90 +148,87 @@ export const AddUser = (payload: object) => {
         }
     }
 }
-//---------------------------------------------------------------------
 
-// Add New User -Register-
-export const RegisterUser = (payload: any) => {
-    return async (dispatch: any) => {
-        try {
-            const auth = getAuth();
-            createUserWithEmailAndPassword(auth, payload.email, payload.Contraseña)
-                .then(async (userCredential) => {
-                    const user = userCredential.user;
-                    const RegisterUser = doc(dataBase, "ColeccionRegistroUser", crypto.randomUUID())
-                    const RegistroNuevoUsuario = {
-                        ...payload,
-                        uid: user.uid,
-                    }
-                    await setDoc(RegisterUser, RegistroNuevoUsuario)
-                    dispatch(RegisterUser)
-                    window.location.reload()
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log("Error al Registrar el Usuario.")
-                });
+// --------------------------------------------Library Information ---important----------------------------------------
+export const obtenerDatosBiblioteca = async (): Promise<DocumentData[]> => {
+    try {
+        // Obtener la referencia a la colección
+        const bibliotecasCollectionRef = collection(dataBase, 'ColeccionBibliotecas');
+        // Obtener todos los documentos de la colección
+        const snapshot = await getDocs(bibliotecasCollectionRef);
 
-        } catch (error) {
-            console.log("Error al Registrar el Usuario... ", error)
-        }
+        const bibliotecas: DocumentData[] = [];
+        snapshot.forEach(doc => {
+            // Obtener los datos de cada documento
+            const bibliotecaData = doc.data();
+            // Agregar los datos al array de bibliotecas
+            bibliotecas.push(bibliotecaData);
+        });
+
+        // Devolver el array de bibliotecas
+        return bibliotecas;
+    } catch (error) {
+        console.error("Error al obtener datos de la colección:", error);
+        throw error;
     }
-}
+};
 
-//---------------------------------------------------------------------
-// Library Information ---important---
-export const obtenerDatosBiblioteca = () => {
-    return async (dispatch: any) => {
-        try {
-            // Obtener la referencia al documento que deseas leer
-            const ubicacionBibliotecaRef = doc(dataBase, 'ColeccionBibliotecas', 'dqqyrF5cIU1ivcE9FkAG');
-            // Obtener los datos del documento
-            const ubicacionBibliotecaSnap = await getDoc(ubicacionBibliotecaRef);
-            // Verificar si el documento existe
-            if (ubicacionBibliotecaSnap.exists()) {
-                // Obtener los datos del documento
-                const ubicacionBibliotecaData = ubicacionBibliotecaSnap.data();
-                console.log("Datos de la biblioteca:", ubicacionBibliotecaData.ubicación);
-                // Despachar los datos obtenidos 
-                dispatch(ubicacionBibliotecaData);
-            } else {
-                console.log("El documento no existe.");
-            }
-        } catch (error) {
-            console.log(error);
-        }
+
+//------------------------------------------------Traer informacion del Firestore Usuarlios Registrados-------------------------------------
+export const UsuariosRegistrados = async (): Promise<DocumentData[]> => {
+    try {
+        // Obtener referencia a la colección "ColeccionRegistroUser"
+        const usuariosRegistradosCollectionRef = collection(dataBase, 'ColeccionRegistroUser');
+        // Obtener todos los documentos de la colección
+        const snapshot = await getDocs(usuariosRegistradosCollectionRef);
+        // Inicializar un array para almacenar los datos de usuarios registrados
+        const arrayUsuariosRegistrados: DocumentData[] = [];
+        // Iterar sobre cada documento en el snapshot
+        snapshot.forEach(doc => {
+            // Obtener los datos de cada documento
+            const datosUsuario = doc.data() as DocumentData;
+            // Agregar los datos al array de usuarios registrados
+            arrayUsuariosRegistrados.push(datosUsuario);
+        });
+
+        // Devolver el array de usuarios registrados
+        return arrayUsuariosRegistrados;
+    } catch (error) {
+        // Manejar errores aquí
+        console.error("Error al obtener usuarios registrados:", error);
+        throw error;
     }
-}
+};
 
-// Verficacion user 
-export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: string) => {
-    return async (dispatch: any) => {
-        try {
-            const auth = getAuth();
-            let autenti = false;
-            console.log(autenti);
-            signInWithEmailAndPassword(auth, valueName, valuePass)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log(user);
-                    autenti = true;
-                    console.log(autenti);
-                    sessionStorage.setItem("booleanAutentication", autenti.toString());
-                    sessionStorage.setItem("nameUserSesion", valueName.toString());
-                    console.log(valueName.toString());
-                    window.location.reload();
-                    window.location.href = "/"
-                })
 
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert('Error en autenticación:');
-                    window.location.reload();
-                });
-        } catch (error) {
-            console.error('Error al recuperar información:', error);
+// -------------------------------------------------------------Función para actualizar un usuario en Firestore-----------------------------------------
+export const actualizarUsuario = async (idUsuario: string, nuevosDatos: DocumentData): Promise<void> => {
+    // console.log("Id entrante: " , idUsuario);
+    try {
+        // Obtener referencia al documento del usuario
+        const usuarioRef = doc(dataBase, 'ColeccionRegistroUser', idUsuario);
+        // Verificar si el usuario existe antes de actualizar
+        const docSnap = await getDoc(usuarioRef);
+        if (docSnap.exists()) {
+            // Actualizar los datos del usuario
+            await updateDoc(usuarioRef, nuevosDatos);
+            console.log("Usuario actualizado correctamente.");
         }
-    };
-}
+    } catch (error) {
+        console.error("Error al actualizar usuario:", error);
+        throw error;
+    }
+};
+
+//---------------------------------------------------------Eliminar Usuario---------------------------------------------
+export const EliminarUsuario = async (idUsuario: string): Promise<void> => {
+    console.log("Entro delete id: ", idUsuario);
+    try {
+        const UsuarioEliminar = doc(dataBase, 'ColeccionRegistroUser', idUsuario);
+        await deleteDoc(UsuarioEliminar);
+        console.log("Usuario eliminado correctamente.");
+    } catch (error) {
+        console.error("Error al eliminar usuario:", error);
+        throw error; // Puedes propagar el error para manejarlo fuera de esta función si es necesario.
+    }
+};

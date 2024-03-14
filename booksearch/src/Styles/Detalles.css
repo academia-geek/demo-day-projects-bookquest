@@ -152,3 +152,25 @@
     border-radius: 20px;
     text-align: center;
 }
+
+.popup2 {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 50%;
+    right: calc(100% + 10px);
+    background-color: #ADACAC;
+    border: solid;
+    border-width: 2px;
+    color: white;
+    padding: 10px;
+    z-index: 999;
+    transform: translateY(-50%);
+    font-size: 20px;
+    display: none; /* Por defecto, ocultamos el popup */
+    border-radius: 10px;
+}
+
+.pdelPop:hover + .popup2{
+    display: block;
+}
