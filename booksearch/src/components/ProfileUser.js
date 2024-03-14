@@ -15,6 +15,7 @@ export default function ProfileUser() {
     const usuario = getAuth();
 
     console.log(usuario.currentUser);
+    const usurio = usuario.currentUser;
 
     useEffect(() => {
         obtenerDatos();
@@ -24,7 +25,7 @@ export default function ProfileUser() {
         try {
             const datosBiblioteca = await UsuariosRegistrados();
             console.log(datosBiblioteca);
-            const usuario = datosBiblioteca.find(persona => persona.NewName_User === "sp@gmail.com");
+            const usuario = datosBiblioteca.find(persona => persona.NewName_User === usurio );
             if (usuario) {
                 console.log("Usuario encontrado...");
                 console.log(usuario);
