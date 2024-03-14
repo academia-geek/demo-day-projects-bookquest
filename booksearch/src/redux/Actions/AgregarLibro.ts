@@ -2,9 +2,8 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } f
 import { dataBase } from "../ConfingFirebase/ConfingFirebase";
 import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { typesPublications } from "../types/types";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { typesLogin } from "../types/types";
-
 //---------------------------------------------------------------------
 export const CreateBook = (payload: object) => {
     return async (dispatch: any) => {
@@ -78,36 +77,40 @@ export const RecuperacionUsuarioRegistrados = (valueName: string, valuePass: str
         signInWithEmailAndPassword(auth, valueName, valuePass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(valueName, valueName, "Bienvenido si estas Registrado");
+                console.log("Usuario autenticado:", user);
+                alert("Usuario autenticado correctamente");
+                console.log("Datos de usuario:", valueName, valuePass);
                 dispatch(actionLoginSyn(valueName, valuePass));
             })
             .catch((error) => {
-                console.warn(error, "Usuario NO Autorizado");
+                alert("Error al autenticar usuario:");
             });
     };
 };
-export const actionLoginSyn = (email: string, pass: string) => {
+
+export const actionLoginSyn = (valueName: string, valuePass: string) => {
+    console.log("Despachando acción con datos de usuario:", valueName, valuePass);
     return {
-        type: typesLogin.login,
-        payload: { email, pass },
+        type: 'LOGIN_SUCCESS',
+        payload: [valueName, valuePass]
     };
 };
 
 
-export const actionRegisterAsync = (valueName: string, valuePass: string) => {
-    return (dispatch: any) => {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, valueName, valuePass)
-    }
-}
+// export const actionRegisterAsync = (valueName: string, valuePass: string) => {
+//     return (dispatch: any) => {
+//         const auth = getAuth();
+//         createUserWithEmailAndPassword(auth, valueName, valuePass)
+//     }
+// }
 
-export const actionRegisterSync = (email: string, password: string) => {
-    console.log("Usuario Agregado con existo");
-    return {
-        type: typesLogin.register,
-        payload: { email, password },
-    };
-};
+// export const actionRegisterSync = (email: string, password: string) => {
+//     console.log("Usuario Agregado con existo");
+//     return {
+//         type: typesLogin.register,
+//         payload: { email, password },
+//     };
+// };
 
 
 

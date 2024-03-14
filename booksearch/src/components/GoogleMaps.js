@@ -8,15 +8,29 @@ const containerStyle = {
     width: '500px',
     height: '500px'
 };
-
 const GoogleMaps = () => {
     //Estados para las Coordenadas.
     const [coorderadaLatitud, setCoordenadasLATITUD] = useState()
     const [coorderadaLongitud, setCoordenadasLONGITUD] = useState()
 
+    const ArrayPosiciones = [
+        {
+            lat: 6.310980,
+            lng: -75.554515
+        },
+        {
+            lat: 6.156879,
+            lng: -75.365668
+
+        }
+    ]
+
+    const randomIndex = Math.floor(Math.random() * ArrayPosiciones.length);
+    // Obtener la posición aleatoria
+    const randomPosition = ArrayPosiciones[randomIndex];
+    console.log(randomPosition);
     // Redux dispatch
     const dispatch = useDispatch();
-
     // Carga de la API de Google Maps
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-scxript',
@@ -41,11 +55,13 @@ const GoogleMaps = () => {
         obtenerYMostrarDatos();
     }, [])
 
+
+
     // Estados del componente
     const [map, setMap] = useState(null); // Estado para el mapa
     const [center, setCenter] = useState({ lat: 6.867813, lng: -75.236733 }); // Estado para el centro del mapa
     const [userLocation, setUserLocation] = useState(null); // Estado para la ubicación del usuario
-    const [destination, setDestination] = useState({ lat:  6.332199, lng: -75.556697 }); // Coordenadas del punto de llegada predeterminado
+    const [destination, setDestination] = useState({ lat: 6.332199, lng: -75.556697 }); // Coordenadas del punto de llegada predeterminado
 
 
     // Callback para cuando el mapa se carga correctamente
