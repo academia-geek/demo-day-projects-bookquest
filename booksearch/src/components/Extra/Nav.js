@@ -53,7 +53,8 @@ export default function Nav() {
                     <li onClick={() => navigate("/")}>Inicio</li>
                     <li onClick={() => navigate("/Detalles")}>Estanteria</li>
                     <li onClick={() => navigate("/Conocenos")}>Conocenos</li>
-                    <li onClick={() => navigate("/Colaboradores")}>Colaboradores</li>
+                    <li onClick={() => navigate("/Colaboradores")}>Colaboladores</li>
+
                 </ol>
                 <div className="flex-none gap-2">
                     <button style={{ background: "white", color: "black", padding: "10px", borderRadius: "12px", width: "100%" }} onClick={() => SalirCuenta()}>Salir</button>
