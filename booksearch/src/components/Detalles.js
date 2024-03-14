@@ -18,6 +18,7 @@ export default function Detalles() {
     const [showPopup, setShowPopup] = useState(false);
     const [allLibros, setAllLibros] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const [librosPorBiblioteca, setlibrosPorBiblioteca] = useState([])
     const [librosFiltrados, setLibrosFiltrados] = useState([]);
     const [libritoMayor, setLibritoMayor] = useState([]);
 
@@ -30,8 +31,21 @@ export default function Detalles() {
         const obtenerYMostrarDatos = async () => {
             try {
                 const datos = await obtenerDatosBiblioteca();
+                console.log("datos de las bibliotecas", datos)
+
+                // Filtrar los libros por Biblioteca
+                const librosPorBiblioteca = datos.filter(Biblio => Biblio.NombreB === cat);
+                console.log("biblioteca:", librosPorBiblioteca)
+                const urlBiblio = librosPorBiblioteca.flatMap(BiblioU => BiblioU.urls)
+                console.log("url de la biblioteca especifica", urlBiblio)
+                const responseUrl = await Promise.all(urlBiblio.map(urlBib => axios.get(urlBib)))
+                const librosBiblioEspeci = responseUrl.map(responUr => responUr.data).flat();
+                console.log("Libros de la biblioteca especifica", librosBiblioEspeci )
+                
+                // Extrer todos los urls
                 const urls = datos.flatMap(biblioteca => biblioteca.urls);
                 console.log("URLs de bibliotecas:", urls);
+
                 // Realizar una sola solicitud para obtener todos los libros de todas las URL
                 const responses = await Promise.all(urls.map(url => axios.get(url)));
                 const libros = responses.map(response => response.data).flat();
@@ -45,12 +59,16 @@ export default function Detalles() {
                 // Filtrar los libros por categoría
                 const librosFiltrados = libros.filter(libro => cat === 'All' || libro.genero === cat);
                 console.log("Libros filtrados por categoría:", librosFiltrados);
-                setLibrosFiltrados(librosFiltrados);
 
                 // Elegir un libro exacto
                 const libroExacto = libros.filter(exacto => exacto.titulo === librit);
                 console.log("Libro exacto encontrado:", libroExacto);
                 setLibritoMayor(libroExacto);
+
+                //concatenar los libros para agilizar el filtrado segun sea de todos los url o de uno especifico
+                const librosFiltradosCombinados = librosFiltrados.concat(librosBiblioEspeci);
+                console.log("Filtrado Combinado",librosFiltradosCombinados)
+                setLibrosFiltrados(librosFiltradosCombinados);
 
             } catch (error) {
                 console.error('Error al obtener datos:', error);

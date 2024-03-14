@@ -17,6 +17,7 @@ import { Conocenos } from '../components/Conocenos';
 import Nav from '../components/Extra/Nav';
 import Biblioteca from '../components/Biblioteca';
 import ProfileUser from '../components/ProfileUser';
+import { Colaboradores } from '../components/Colaboradores';
 
 function App() {
   const [user, setUser] = useState(false);
@@ -46,6 +47,7 @@ function App() {
         <Route path='/Detalles' element={<Detalles />} />
         <Route path="/Detalles/:cat" element={<Detalles />} />
         <Route path="/Detalles/:cat/:librit" element={<Detalles />} />
+        <Route path='/Colaboradores' element={<Colaboradores />} />
         <Route path="/API" element={<Api/>}/>
         <Route path="/CrudAdminBook" element={<CrudAdminBook/>}/>
         <Route path="/Biblioteca" element={<Biblioteca/>}/>

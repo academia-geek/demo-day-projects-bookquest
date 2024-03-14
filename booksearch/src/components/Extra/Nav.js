@@ -32,7 +32,7 @@ export default function Nav() {
                     <li onClick={() => navigate("/")}>Inicio</li>
                     <li onClick={() => navigate("/Detalles")}>Estanteria</li>
                     <li onClick={() => navigate("/Conocenos")}>Conocenos</li>
-                    <li onClick={() => navigate()}>Colaboladores</li>
+                    <li onClick={() => navigate("/Colaboradores")}>Colaboladores</li>
                 </ol>
                 <div className="flex-none gap-2">
                     {autentiString === false && (
