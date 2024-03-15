@@ -33,7 +33,7 @@ export default function Home() {
                             Descubre, <span className="resaltado">encuentra</span> <br></br> y disfruta de tu <br></br> próximo libro <span className="resaltado">físico</span> <br></br> con facilidad <span className='resaltado'>aquí</span>
                         </h1>
                         <p className='contText2 texTo2'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                        Para aquellos que aún prefieren la experiencia táctil de los libros físicos, encontrar y adquirir ejemplares puede ser un desafío, Para eso esta Book | Quest.
                         </p>
                         <button className='btnB' onClick={() => navigate(`/Detalles/All`)}>
                             ¡Busca ahora!
