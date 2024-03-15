@@ -1,57 +1,33 @@
-# 👋🏼 Bienvenid@ al Demo Day..
+# 📚 Book Quest 🚀
 
-<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Academia Geek 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
+Book Quest es un proyecto diseñado para automatizar y mejorar la experiencia de lectura de libros, utilizando geolocalización y categorización para una mejor ubicación y acceso a una amplia variedad de libros asociados a nuestra empresa, con un enfoque en fomentar el uso de libros físicos.
 
-En este Proyecto a realizar vas a evidenciar los conceptos adquiridos en todo este proceso de aprendizaje como React Js, JavaScript, Redux y Firebase.
+## Funcionalidades principales
 
-# 🎯 Objetivo del DemoDay:
+- **Geolocalización:** Utilizamos tecnología de geolocalización para organizar la ubicación física de los libros en nuestra biblioteca, lo que facilita su búsqueda y acceso para los usuarios dentro de nuestras instalaciones.
 
-Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de JavaScript Vanilla. 
+- **Categorización:** Los libros se clasifican en diversas categorías, como ficción, no ficción, historia, ciencia ficción, entre otras, para ayudar a los usuarios a encontrar libros de su interés más fácilmente.
 
-Con el Demo Day se pretende que los beneficiarios demuestren todos sus conocimientos adquiridos a empresas Nacionales e Internacionales, con esto pueden vivir la experiencia de exponer un proyecto y una idea de negocio al mundo.
+- **Fomento de libros físicos:** Nuestro principal objetivo es promover y facilitar el acceso a los libros físicos, proporcionando una experiencia de lectura más tangible y enriquecedora. No ofrecemos opción de acceso a libros en formato digital.
 
-# 📹 Video explicado:
+- **Desconexión:** Los usuarios tienen la posibilidad de desconectar los libros en cualquier momento, permitiéndoles retomar la lectura desde el punto donde la dejaron, en formato físico.
 
-[¿Como hacer el proyecto DemoDay?](https://drive.google.com/file/d/1kzQ5TuYc0NuIH6qGe5_Wr3Fnrjd5qKJp/view)
+## Cómo utilizar Book Quest 📝
 
-# ☕ Pasos para desarrollar el DemoDay:
+1. **Explorar la biblioteca:** Utiliza la función de geolocalización para descubrir la ubicación de los libros físicos dentro de nuestras instalaciones.
 
-1. Crear un proyecto con la plantilla Basic Kanban y en la descripción colocar:
+2. **Buscar libros por categoría:** Utiliza la categorización de libros para explorar diferentes géneros literarios y encontrar libros que se ajusten a tus intereses.
 
->- Texto descriptivo.
->- Enlace del prototipo en alta fidelidad (marvel o herramienta usada).
->- Enlace del despliegue.
->- Enlace del video demo.
+3. **Seleccionar formato:** Te invitamos a elegir la versión física del libro para una experiencia de lectura más auténtica y envolvente.
 
-Todo esto usando markdown
+4. **Acceder y desconectar:** Una vez seleccionado un libro, obtendras la ubicación de este.
 
-2. Crear dos milestones que corresponden a todo el desarrollo de la aplicación y se deben crear de esta forma:
+## Contribuir al proyecto 🛠️
 
->- **Componente Design Thinking:** Poner una descripción y los objetivos de ese componente.
->- **Componente técnico:** Poner una descripción y los objetivos de ese componente.
+¡Apreciamos cualquier contribución que pueda mejorar Book Quest! Si tienes ideas para nuevas funcionalidades, mejoras en la interfaz de usuario o correcciones de errores, no dudes en enviar una solicitud de extracción.
 
-3. Crear issues por cada una de las tareas de Design Thinking:
+## Contacto 📧
 
->- 5 por qué
->- Perfil del cliente
->- Mapa de valor
->- Prototipo de baja fidelidad
->- Prototipo de mediana fidelidad
->- Presentación
+Para más información o asistencia, contáctanos en [	apibooksearch@gmail.com]
 
-4. Crear issues por cada una de las tareas técnicas:
-
->- Readme profesional
->- Guía de estilos
->- Landing Page del producto
->- Diseño responsive
->- Autenticación con Google y Facebook
->- Enrutamiento dinámico con protección de rutas
->- Crud con Firebase
->- Imágenes y/o videos en la nube
-
-5. Aquellos issues que consideren crear para su proceso de desarrollo se deben adjuntar al milestone de Componente Técnico.
-
-6. Cada uno de estos issues debe estar asignado a una o más intergrantes del equipo de desarrollo. 
-
-7. Colocar etiquetas que logren diferenciar los diferentes issues según el componente al que corresponde.
+¡Disfruta de tu viaje de lectura con Book Quest! 🚀🌟
